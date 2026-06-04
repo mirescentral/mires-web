@@ -2,10 +2,12 @@ import { createClient } from '@/utils/supabase/server';
 import { Users, Calendar as CalendarIcon, LogOut, Mail, Building, Clock } from 'lucide-react';
 import Link from 'next/link';
 
+
 export const metadata = {
   title: "Bandeja de Entrada | Admin MIRES",
 };
 
+export const dynamic = 'force-dynamic';
 export default async function AdminMensajesPage() {
   const supabase = await createClient();
   
