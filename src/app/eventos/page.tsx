@@ -1,146 +1,133 @@
+import Link from "next/link";
 import { createClient } from '@/utils/supabase/server';
-import { crearEvento, eliminarEvento } from './actions';
-import { CalendarIcon, Trash2, PlusCircle } from 'lucide-react';
-import Link from 'next/link';
+import { Calendar as CalendarIcon, MapPin, Clock, ArrowRight, Ticket } from "lucide-react";
 
 export const metadata = {
-  title: "Gestión de Eventos | Admin MIRES",
+  title: "Eventos | MIRES",
+  description: "Descubre nuestros próximos eventos y actividades para toda la familia.",
 };
 
-export default async function AdminEventosPage({
-  searchParams,
-}: {
-  searchParams: { success: string };
-}) {
+export default async function EventosPage() {
   const supabase = await createClient();
   
-  // 1. Traemos los eventos futuros ordenados por fecha
+  // Consultamos los eventos futuros y hacemos un "join" con la tabla sedes para obtener el nombre de la sede
   const { data: eventos } = await supabase
     .from('eventos')
-    .select('*, sedes(nombre)')
+    .select(`
+      id,
+      titulo,
+      fecha,
+      registro_url,
+      sedes ( nombre )
+    `)
+    // Filtramos para mostrar solo eventos de hoy en adelante
     .gte('fecha', new Date().toISOString())
     .order('fecha', { ascending: true });
 
-  // 2. Traemos las sedes para el menú desplegable del formulario
-  const { data: sedes } = await supabase.from('sedes').select('id, nombre');
-
+  // Función para formatear la fecha a un formato amigable en español
   const formatearFecha = (fechaString: string) => {
-    return new Date(fechaString).toLocaleDateString('es-CL', {
-      day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
-    });
+    const fecha = new Date(fechaString);
+    const opcionesFecha: Intl.DateTimeFormatOptions = { weekday: 'long', day: 'numeric', month: 'long' };
+    const opcionesHora: Intl.DateTimeFormatOptions = { hour: '2-digit', minute: '2-digit' };
+    
+    return {
+      dia: fecha.toLocaleDateString('es-ES', opcionesFecha),
+      hora: fecha.toLocaleTimeString('es-ES', opcionesHora)
+    };
   };
 
   return (
-    <div className="p-8 md:p-12 font-sans max-w-6xl mx-auto">
-      <header className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-3xl font-serif font-bold text-gray-950 flex items-center gap-3">
-            <CalendarIcon className="text-[#E8863A]" />
-            Cartelera de Eventos
+    <div className="flex flex-col min-h-screen bg-mires-bg">
+      
+      {/* HEADER DE SECCIÓN */}
+      <section className="bg-mires-primary text-mires-white py-20">
+        <div className="container mx-auto px-4 text-center max-w-3xl">
+          <h1 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl mb-6 tracking-tight">
+            Próximos Eventos
           </h1>
-          <p className="text-gray-600 mt-2">
-            Agrega o elimina actividades. Los cambios se reflejarán inmediatamente en la sección "Eventos".
+          <p className="font-sans text-lg md:text-xl text-mires-white/80 leading-relaxed">
+            Nuestra iglesia es una comunidad en constante movimiento. Únete a nuestras próximas actividades, conferencias y reuniones especiales.
           </p>
         </div>
-        <Link href="/admin" className="text-sm font-semibold text-gray-500 hover:text-[#1A2E4A] transition-colors border border-gray-200 px-4 py-2 rounded-lg bg-white">
-          Volver al Inicio
-        </Link>
-      </header>
+      </section>
 
-      {searchParams?.success && (
-        <div className="mb-8 p-4 bg-green-50 border border-green-200 text-green-700 rounded-xl font-medium text-sm flex items-center gap-2">
-          ✓ El evento se publicó correctamente en la web.
-        </div>
-      )}
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
-        {/* COLUMNA IZQUIERDA: Formulario para crear evento */}
-        <div className="lg:col-span-1">
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sticky top-6">
-            <h2 className="font-serif font-bold text-xl text-[#1A2E4A] mb-6 flex items-center gap-2">
-              <PlusCircle size={20} className="text-[#E8863A]" />
-              Nuevo Evento
-            </h2>
-            <form action={crearEvento} className="space-y-4">
-              <div>
-                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 block">Título del Evento</label>
-                <input 
-                  type="text" name="titulo" required
-                  placeholder="Ej: Noche de Adoración"
-                  className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#E8863A] focus:border-transparent outline-none transition-all text-sm" 
-                />
-              </div>
-              <div>
-                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 block">Fecha y Hora</label>
-                <input 
-                  type="datetime-local" name="fecha" required
-                  className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#E8863A] focus:border-transparent outline-none transition-all text-sm" 
-                />
-              </div>
-              <div>
-                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 block">Sede</label>
-                <select name="sede_id" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#E8863A] outline-none text-sm bg-white">
-                  <option value="">Selecciona una sede...</option>
-                  {sedes?.map(sede => (
-                    <option key={sede.id} value={sede.id}>{sede.nombre}</option>
-                  ))}
-                </select>
-              </div>
-              <div>
-                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 block">Link de Registro (Opcional)</label>
-                <input 
-                  type="url" name="registro_url"
-                  placeholder="https://forms.gle/..."
-                  className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#E8863A] focus:border-transparent outline-none transition-all text-sm" 
-                />
-              </div>
-              <button type="submit" className="w-full bg-[#1A2E4A] text-white font-semibold py-3 rounded-xl hover:bg-[#0f1d30] transition-colors mt-2 text-sm">
-                Publicar Evento
-              </button>
-            </form>
-          </div>
-        </div>
-
-        {/* COLUMNA DERECHA: Lista de eventos activos */}
-        <div className="lg:col-span-2 space-y-4">
-          <h2 className="font-serif font-bold text-xl text-[#1A2E4A] mb-4">Eventos Activos</h2>
+      {/* LISTADO DE EVENTOS */}
+      <section className="py-20 bg-mires-white">
+        <div className="container mx-auto px-4 max-w-5xl">
           
-          {!eventos || eventos.length === 0 ? (
-            <div className="bg-white rounded-2xl border border-gray-100 p-10 text-center text-gray-500 text-sm">
-              No hay eventos futuros programados.
+          {/* Si no hay eventos programados */}
+          {(!eventos || eventos.length === 0) && (
+            <div className="text-center py-20 bg-mires-bg rounded-3xl border border-mires-primary/10">
+              <CalendarIcon size={48} className="mx-auto text-mires-primary/30 mb-4" />
+              <h3 className="font-display font-bold text-2xl text-mires-primary mb-2">
+                No hay eventos próximos
+              </h3>
+              <p className="font-sans text-mires-textMuted">
+                Estamos preparando nuevas actividades. Vuelve a revisar pronto.
+              </p>
             </div>
-          ) : (
-            eventos.map((evento) => {
-              // Manejo seguro de la relación de sede
-              const nombreSede = Array.isArray(evento.sedes) ? evento.sedes[0]?.nombre : evento.sedes?.nombre;
-              
+          )}
+
+          {/* Grid dinámica de eventos */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {eventos?.map((evento) => {
+              const { dia, hora } = formatearFecha(evento.fecha);
+              // Forzamos el tipo para evitar el bloqueo estricto de TypeScript en la compilación
+              const sedeData = evento.sedes as any;
+              const nombreSede = Array.isArray(sedeData) 
+                ? sedeData[0]?.nombre 
+                : sedeData?.nombre;
+
               return (
-                <div key={evento.id} className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                  <div>
-                    <h3 className="font-bold text-gray-900 text-lg">{evento.titulo}</h3>
-                    <div className="flex flex-wrap items-center gap-3 mt-2 text-sm text-gray-500">
-                      <span className="bg-gray-100 px-2 py-1 rounded-md">{formatearFecha(evento.fecha)}</span>
-                      {nombreSede && <span className="bg-blue-50 text-blue-700 px-2 py-1 rounded-md">{nombreSede}</span>}
+                <div key={evento.id} className="bg-mires-bg rounded-3xl border border-mires-primary/5 hover:border-mires-accent/30 hover:shadow-lg transition-all flex flex-col overflow-hidden group">
+                  
+                  {/* Cabecera de la tarjeta del evento */}
+                  <div className="bg-mires-primary/5 p-8 border-b border-mires-primary/5 relative overflow-hidden">
+                    {/* Elemento decorativo */}
+                    <div className="absolute -right-6 -top-6 w-24 h-24 bg-mires-accent/10 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+                    <div className="relative z-10">
+                      <span className="font-sans inline-block bg-mires-white text-mires-accent px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-4 shadow-sm border border-mires-accent/10">
+                        Destacado
+                      </span>
+                      <h3 className="font-display font-bold text-2xl text-mires-primary leading-tight">
+                        {evento.titulo}
+                      </h3>
                     </div>
                   </div>
-                  
-                  <form action={eliminarEvento}>
-                    <input type="hidden" name="id" value={evento.id} />
-                    <button type="submit" className="p-3 text-red-500 hover:bg-red-50 rounded-xl transition-colors flex items-center gap-2 text-sm font-semibold" title="Eliminar Evento" onClick={(e) => {
-                      if(!confirm('¿Estás seguro de eliminar este evento?')) e.preventDefault();
-                    }}>
-                      <Trash2 size={18} />
-                      <span className="sm:hidden">Eliminar</span>
-                    </button>
-                  </form>
-                </div>
-              )
-            })
-          )}
-        </div>
 
-      </div>
+                  {/* Cuerpo de la tarjeta */}
+                  <div className="p-8 flex-grow flex flex-col">
+                    <div className="space-y-4 mb-8">
+                      <div className="flex items-start gap-3 text-mires-textMuted">
+                        <CalendarIcon size={20} className="text-mires-accent shrink-0" />
+                        <span className="font-sans font-medium capitalize text-mires-textMain">{dia}</span>
+                      </div>
+                      <div className="flex items-center gap-3 text-mires-textMuted">
+                        <Clock size={20} className="text-mires-accent shrink-0" />
+                        <span className="font-sans">{hora}</span>
+                      </div>
+                      <div className="flex items-center gap-3 text-mires-textMuted">
+                        <MapPin size={20} className="text-mires-accent shrink-0" />
+                        <span className="font-sans">{nombreSede || 'Sede por confirmar'}</span>
+                      </div>
+                    </div>
+
+                    {/* Botón de Registro (se empuja al fondo con mt-auto) */}
+                    <Link 
+                      href={evento.registro_url || '/contacto'} 
+                      className="font-sans mt-auto w-full inline-flex items-center justify-center gap-2 bg-mires-primary text-mires-white hover:bg-mires-primary/90 px-6 py-4 rounded-xl font-bold transition-all transform hover:-translate-y-0.5 shadow-md"
+                    >
+                      <Ticket size={18} />
+                      Saber más / Registrarme
+                    </Link>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+        </div>
+      </section>
     </div>
   );
 }
