@@ -72,8 +72,11 @@ export default async function EventosPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {eventos?.map((evento) => {
               const { dia, hora } = formatearFecha(evento.fecha);
-              // Como la relación en Supabase devuelve un objeto o arreglo, lo manejamos de forma segura
-              const nombreSede = Array.isArray(evento.sedes) ? evento.sedes[0]?.nombre : evento.sedes?.nombre;
+              // Forzamos el tipo para evitar el bloqueo estricto de TypeScript en la compilación
+              const sedeData = evento.sedes as any;
+              const nombreSede = Array.isArray(sedeData) 
+                ? sedeData[0]?.nombre 
+                : sedeData?.nombre;
 
               return (
                 <div key={evento.id} className="bg-mires-bg rounded-3xl border border-mires-primary/5 hover:border-mires-accent/30 hover:shadow-lg transition-all flex flex-col overflow-hidden group">
