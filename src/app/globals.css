@@ -1,26 +1,34 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* 
+  Si tienes el archivo Aileron (ej: Aileron-Regular.woff2), colócalo en la carpeta public/fonts/ 
+  y descomenta este bloque para cargarlo localmente:
+  
+  @font-face {
+    font-family: 'Aileron';
+    src: url('/fonts/Aileron-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
   }
+*/
+
+@theme {
+  /* Paleta de Colores MIRES */
+  --color-mires-primary: #2a2a2e;
+  --color-mires-accent: #E8863A;
+  --color-mires-bg: #F5F0E8;
+  --color-mires-textMain: #1C1C1E;
+  --color-mires-textMuted: #6B7280;
+  --color-mires-white: #FFFFFF;
+
+  /* Tipografías Oficiales */
+  --font-display: "Helvetica", "Arial", sans-serif;
+  --font-sans: "Aileron", "Helvetica", "Arial", sans-serif;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  body {
+    background-color: var(--color-mires-bg);
+    color: var(--color-mires-textMain);
+  }
 }
