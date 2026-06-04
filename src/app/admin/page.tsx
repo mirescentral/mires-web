@@ -1,5 +1,5 @@
 import { createClient } from '@/utils/supabase/server';
-import { Users, Calendar as CalendarIcon, LogOut, Phone, MapPin, Building } from 'lucide-react';
+import { Users, Calendar as CalendarIcon, LogOut, Phone, MapPin, Building, Mail } from 'lucide-react';
 import Link from 'next/link';
 
 export const metadata = {
@@ -40,6 +40,10 @@ export default async function AdminDashboard() {
           <Link href="/admin" className="flex items-center gap-3 bg-white/10 text-white px-4 py-3 rounded-xl font-semibold transition-all">
             <Users size={18} className="text-[#E8863A]" />
             Nuevos Visitantes
+          </Link>
+          <Link href="/admin/mensajes" className="flex items-center gap-3 hover:bg-white/5 text-gray-300 hover:text-white px-4 py-3 rounded-xl transition-all">
+            <Mail size={18} />
+            Bandeja de Entrada
           </Link>
           <Link href="/admin/sedes" className="flex items-center gap-3 hover:bg-white/5 text-gray-300 hover:text-white px-4 py-3 rounded-xl transition-all">
             <Building size={18} />
