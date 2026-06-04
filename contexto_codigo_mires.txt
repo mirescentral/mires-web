@@ -1,0 +1,2272 @@
+// ==========================================
+// ARCHIVO: src/app/ofrendas/page.tsx
+// ==========================================
+import { Heart, Building2, Smartphone, ShieldCheck, ArrowRight } from "lucide-react";
+
+export const metadata = {
+  title: "Ofrendas y Donaciones | MIRES",
+  description: "Tu generosidad transforma vidas. Conoce nuestras formas de dar.",
+};
+
+export default function OfrendasPage() {
+  return (
+    <div className="flex flex-col min-h-screen bg-mires-bg">
+      
+      {/* HEADER DE SECCIÓN */}
+      <section className="bg-mires-primary text-mires-white py-20">
+        <div className="container mx-auto px-4 text-center max-w-3xl">
+          <div className="w-16 h-16 bg-mires-accent/20 rounded-full flex items-center justify-center text-mires-accent mx-auto mb-6">
+            <Heart size={32} />
+          </div>
+          <h1 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl mb-6 tracking-tight">
+            Tu generosidad transforma vidas
+          </h1>
+          <p className="font-sans text-lg md:text-xl text-mires-white/80 leading-relaxed">
+            Creemos que dar es una respuesta de adoración y gratitud. 
+            Tus aportes nos permiten sostener la visión de la iglesia, bendecir a nuestra ciudad y extender el mensaje de gracia.
+          </p>
+        </div>
+      </section>
+
+      {/* MÉTODOS DE DONACIÓN */}
+      <section className="py-20 bg-mires-white">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <div className="text-center mb-16">
+            <h2 className="font-display font-bold text-3xl md:text-4xl text-mires-primary mb-4">
+              Formas de dar
+            </h2>
+            <p className="font-sans text-mires-textMuted max-w-2xl mx-auto">
+              Hemos habilitado diferentes canales seguros para facilitar tu aporte desde cualquier lugar de Chile.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            {/* MÉTODO 1: TRANSFERENCIA BANCARIA */}
+            <div className="bg-mires-bg rounded-3xl p-8 border border-mires-primary/10 shadow-sm relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-2 bg-mires-primary"></div>
+              <div className="flex items-center gap-4 mb-8">
+                <div className="w-12 h-12 bg-mires-white rounded-xl shadow-sm flex items-center justify-center text-mires-primary shrink-0">
+                  <Building2 size={24} />
+                </div>
+                <h3 className="font-display font-bold text-2xl text-mires-primary">Transferencia Bancaria</h3>
+              </div>
+              
+              <div className="bg-mires-white rounded-2xl p-6 font-sans text-mires-textMain space-y-4 border border-mires-primary/5">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-mires-bg pb-3">
+                  <span className="text-mires-textMuted text-sm">Banco</span>
+                  <span className="font-bold text-mires-primary">Banco Estado</span>
+                </div>
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-mires-bg pb-3">
+                  <span className="text-mires-textMuted text-sm">Tipo de cuenta</span>
+                  <span className="font-bold text-mires-primary">Cuenta Corriente</span>
+                </div>
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-mires-bg pb-3">
+                  <span className="text-mires-textMuted text-sm">Número de cuenta</span>
+                  <span className="font-bold text-mires-primary">123456789</span>
+                </div>
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-mires-bg pb-3">
+                  <span className="text-mires-textMuted text-sm">Nombre</span>
+                  <span className="font-bold text-mires-primary">Iglesia MIRES</span>
+                </div>
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-mires-bg pb-3">
+                  <span className="text-mires-textMuted text-sm">RUT</span>
+                  <span className="font-bold text-mires-primary">65.000.000-0</span>
+                </div>
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center">
+                  <span className="text-mires-textMuted text-sm">Correo</span>
+                  <span className="font-bold text-mires-accent">ofrendas@mires.cl</span>
+                </div>
+              </div>
+            </div>
+
+            {/* MÉTODO 2: PAGO ONLINE (Webpay / MercadoPago) */}
+            <div className="bg-mires-bg rounded-3xl p-8 border border-mires-primary/10 shadow-sm relative overflow-hidden flex flex-col">
+              <div className="absolute top-0 left-0 w-full h-2 bg-mires-accent"></div>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-12 h-12 bg-mires-white rounded-xl shadow-sm flex items-center justify-center text-mires-accent shrink-0">
+                  <Smartphone size={24} />
+                </div>
+                <h3 className="font-display font-bold text-2xl text-mires-primary">Dar en Línea</h3>
+              </div>
+              
+              <p className="font-sans text-mires-textMuted mb-8 flex-grow">
+                Aporta de manera rápida y segura utilizando tus tarjetas de débito o crédito a través de nuestra pasarela de pago encriptada.
+              </p>
+
+              <div className="flex items-center gap-2 mb-8 text-sm font-sans text-mires-textMuted bg-mires-white p-4 rounded-xl border border-mires-primary/5">
+                <ShieldCheck size={20} className="text-green-600 shrink-0" />
+                <span>Transacción 100% segura y respaldada.</span>
+              </div>
+
+              {/* Botón que llevará a Khipu, Webpay o MercadoPago */}
+              <a 
+                href="#" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="font-sans w-full inline-flex items-center justify-center gap-2 bg-mires-accent text-mires-white hover:bg-[#d9782e] px-6 py-4 rounded-xl font-bold transition-all transform hover:-translate-y-0.5 shadow-md mt-auto"
+              >
+                Dar ahora con Webpay <ArrowRight size={18} />
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* SECCIÓN DE TRANSPARENCIA / DESTINO */}
+      <section className="py-20 bg-mires-primary/5">
+        <div className="container mx-auto px-4 max-w-4xl text-center">
+          <h2 className="font-display font-bold text-3xl text-mires-primary mb-6">
+            ¿A dónde va mi ofrenda?
+          </h2>
+          <p className="font-sans text-mires-textMuted text-lg leading-relaxed mb-12">
+            Administramos cada recurso con integridad y transparencia. Tus donaciones financian:
+          </p>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+            <div>
+              <h4 className="font-display font-bold text-xl text-mires-primary mb-2">Comunidad</h4>
+              <p className="font-sans text-mires-textMuted text-sm">Mantenimiento de nuestras sedes para crear ambientes seguros para ti y tu familia.</p>
+            </div>
+            <div>
+              <h4 className="font-display font-bold text-xl text-mires-primary mb-2">Misiones</h4>
+              <p className="font-sans text-mires-textMuted text-sm">Apoyo a la <i>Fundación Próximo</i> y proyectos de acción social en nuestras comunas.</p>
+            </div>
+            <div>
+              <h4 className="font-display font-bold text-xl text-mires-primary mb-2">Ministerios</h4>
+              <p className="font-sans text-mires-textMuted text-sm">Recursos para el desarrollo de MiresKids, grupos pequeños y equipamiento pastoral.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  );
+}
+
+// ==========================================
+// ARCHIVO: src/app/ministerios/page.tsx
+// ==========================================
+import Link from "next/link";
+import { createClient } from '@/utils/supabase/server';
+import { Users, Coffee, Smile, Heart, Music, Globe, ArrowRight, HeartHandshake } from "lucide-react";
+
+export const metadata = {
+  title: "Ministerios | MIRES",
+  description: "Descubre dónde puedes conectar, crecer y servir en nuestra comunidad.",
+};
+
+// Mapa de iconos dinámicos (igual que en el Home)
+const IconMap: Record<string, React.ElementType> = {
+  Users, Coffee, Smile, Heart, Music, Globe
+};
+
+export default async function MinisteriosPage() {
+  const supabase = await createClient();
+  const { data: ministerios } = await supabase.from('ministerios').select('*').order('nombre');
+
+  return (
+    <div className="flex flex-col min-h-screen bg-mires-bg">
+      
+      {/* HEADER SIMPLE DE SECCIÓN */}
+      <section className="bg-mires-primary text-mires-white py-20">
+        <div className="container mx-auto px-4 text-center max-w-3xl">
+          <h1 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl mb-6 tracking-tight">
+            Hay un lugar para ti
+          </h1>
+          <p className="font-sans text-lg md:text-xl text-mires-white/80 leading-relaxed">
+            Creemos que la vida cristiana no se vive en aislamiento. Conoce nuestros ministerios y encuentra el espacio ideal para conectar, crecer y usar tus talentos.
+          </p>
+        </div>
+      </section>
+
+      {/* GRID DE MINISTERIOS */}
+      <section className="py-20 bg-mires-white">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {ministerios?.map((min) => {
+              const IconoComponente = IconMap[min.icono] || Users; // Fallback de seguridad
+              
+              return (
+                <div key={min.id} className="bg-mires-bg rounded-3xl p-8 border border-mires-primary/5 hover:border-mires-accent/30 hover:shadow-lg transition-all group flex flex-col h-full">
+                  <div className="w-14 h-14 bg-mires-white rounded-2xl flex items-center justify-center shrink-0 shadow-sm mb-6 text-mires-primary group-hover:bg-mires-accent group-hover:text-mires-white transition-colors duration-300">
+                    <IconoComponente size={28} />
+                  </div>
+                  
+                  <h3 className="font-display font-bold text-2xl text-mires-primary mb-3">
+                    {min.nombre}
+                  </h3>
+                  
+                  {/* Flex-grow empuja el enlace hacia abajo para que todas las tarjetas tengan la misma altura */}
+                  <p className="font-sans text-mires-textMuted leading-relaxed mb-8 flex-grow">
+                    {min.descripcion_corta}
+                  </p>
+                  
+                  <Link 
+                    href="/contacto" 
+                    className="font-sans inline-flex items-center gap-2 text-mires-primary font-bold hover:text-mires-accent transition-colors mt-auto w-fit"
+                  >
+                    Quiero participar <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* CALL TO ACTION FINAL */}
+      <section className="py-20 bg-mires-primary/5">
+        <div className="container mx-auto px-4 text-center max-w-3xl">
+          <div className="w-20 h-20 bg-mires-white rounded-full flex items-center justify-center text-mires-accent mx-auto mb-6 shadow-sm">
+            <HeartHandshake size={40} />
+          </div>
+          <h2 className="font-display font-bold text-3xl md:text-4xl text-mires-primary mb-4">
+            ¿No estás seguro por dónde empezar?
+          </h2>
+          <p className="font-sans text-mires-textMuted mb-8 text-lg">
+            Si tienes dudas sobre qué ministerio es el mejor para ti o para tu familia, escríbenos. Nos encantaría orientarte y ayudarte a dar tu primer paso.
+          </p>
+          <Link 
+            href="/contacto"
+            className="font-sans inline-flex items-center justify-center gap-2 bg-mires-primary hover:bg-mires-primary/90 text-mires-white px-8 py-4 rounded-full font-bold text-base transition-all transform hover:-translate-y-1 shadow-lg"
+          >
+            Hablar con un coordinador
+          </Link>
+        </div>
+      </section>
+
+    </div>
+  );
+}
+
+// ==========================================
+// ARCHIVO: src/app/devocionales/page.tsx
+// ==========================================
+import { BookOpen } from 'lucide-react';
+
+export const metadata = {
+  title: "Devocionales | MIRES",
+  description: "Reflexiones y recursos espirituales para tu crecimiento.",
+};
+
+export default function DevocionalesPage() {
+  return (
+    <main className="min-h-screen bg-[#F5F0E8] py-32 px-6 flex flex-col items-center justify-center text-center">
+      <div className="bg-white p-12 rounded-3xl shadow-sm border border-gray-100 max-w-2xl w-full">
+        <div className="flex justify-center mb-6">
+          <div className="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center text-[#1A2E4A]">
+            <BookOpen size={40} />
+          </div>
+        </div>
+        <h1 className="text-4xl md:text-5xl font-serif text-[#1A2E4A] mb-4 font-bold tracking-tight">
+          Devocionales
+        </h1>
+        <p className="text-lg text-gray-600 font-sans leading-relaxed">
+          Estamos preparando este espacio para compartir reflexiones diarias y recursos espirituales que bendecirán tu vida. ¡Vuelve muy pronto!
+        </p>
+      </div>
+    </main>
+  );
+}
+
+// ==========================================
+// ARCHIVO: src/app/contacto/page.tsx
+// ==========================================
+import { createClient } from '@/utils/supabase/server';
+import { MapPin, Clock, MessageCircle, Mail, Send } from 'lucide-react';
+
+export default async function ContactoPage() {
+  const supabase = createClient();
+  // Llamada a la base de datos para traer las sedes de forma asíncrona
+  const { data: sedes } = await (await supabase)
+    .from('sedes')
+    .select('*')
+    .order('created_at', { ascending: true });
+
+  return (
+    <main className="min-h-screen bg-[#F5F0E8] py-20">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <h1 className="text-5xl md:text-6xl font-serif text-[#1A2E4A] mb-4 tracking-tight leading-none">
+            Estamos aquí para ti
+          </h1>
+          <p className="text-lg text-gray-700 max-w-2xl mx-auto font-sans">
+            Ya sea que tengas una petición de oración, preguntas sobre nuestros ministerios o simplemente quieras conversar, nos encantaría escucharte.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Formulario de Contacto General */}
+          <div className="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-gray-100">
+            <h2 className="text-3xl font-serif text-[#1A2E4A] mb-6">Envíanos un mensaje</h2>
+            <form className="space-y-6">
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Nombre completo</label>
+                <input 
+                  type="text" 
+                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#E8863A] focus:border-transparent outline-none transition-all" 
+                  placeholder="Ej: Juan Pérez" 
+                  required 
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Correo electrónico</label>
+                <input 
+                  type="email" 
+                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#E8863A] focus:border-transparent outline-none transition-all" 
+                  placeholder="juan@ejemplo.com" 
+                  required 
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Mensaje</label>
+                <textarea 
+                  rows={4} 
+                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#E8863A] focus:border-transparent outline-none transition-all" 
+                  placeholder="¿En qué podemos ayudarte?" 
+                  required
+                ></textarea>
+              </div>
+              <button 
+                type="submit" 
+                className="w-full bg-[#E8863A] text-white font-semibold py-4 rounded-xl hover:bg-[#d1752f] transition-colors flex items-center justify-center gap-2"
+              >
+                <Send className="w-5 h-5" />
+                Enviar mensaje
+              </button>
+            </form>
+          </div>
+
+          {/* Información de Sedes (Dinámico desde Supabase) */}
+          <div className="space-y-6">
+            <h2 className="text-3xl font-serif text-[#1A2E4A] mb-6">Nuestras Congregaciones</h2>
+            {sedes?.map((sede) => (
+              <div key={sede.id} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition-shadow">
+                <div>
+                  <h3 className="text-2xl font-serif text-[#1A2E4A] mb-4">{sede.nombre}</h3>
+                  <div className="space-y-3 mb-6">
+                    <div className="flex items-start gap-3 text-gray-600">
+                      <MapPin className="w-5 h-5 text-[#E8863A] shrink-0 mt-1" />
+                      <p>{sede.direccion || 'Dirección por confirmar'}</p>
+                    </div>
+                    <div className="flex items-start gap-3 text-gray-600">
+                      <Clock className="w-5 h-5 text-[#E8863A] shrink-0 mt-1" />
+                      <p>{sede.horarios}</p>
+                    </div>
+                  </div>
+                </div>
+                {sede.whatsapp ? (
+                  <a 
+                    href={sede.whatsapp} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="inline-flex items-center gap-2 text-green-600 font-semibold hover:text-green-700 transition-colors"
+                  >
+                    <MessageCircle className="w-5 h-5" />
+                    Contactar por WhatsApp
+                  </a>
+                ) : (
+                  <p className="inline-flex items-center gap-2 text-gray-400 font-semibold">
+                    <Mail className="w-5 h-5" />
+                    Completa el formulario general
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}
+
+// ==========================================
+// ARCHIVO: src/app/punto-encuentro/page.tsx
+// ==========================================
+import { Hammer } from 'lucide-react';
+import Link from 'next/link';
+
+export default function MinisterioEnConstruccion() {
+  return (
+    <main className="min-h-screen bg-[#F5F0E8] flex flex-col items-center justify-center p-6">
+      <div className="bg-white max-w-lg w-full rounded-3xl shadow-sm border border-gray-100 p-10 text-center">
+        <div className="flex justify-center mb-6">
+          <div className="w-20 h-20 bg-orange-50 rounded-full flex items-center justify-center text-[#E8863A]">
+            <Hammer size={40} />
+          </div>
+        </div>
+        <h1 className="text-3xl font-serif text-[#1A2E4A] font-bold mb-4">
+          Próximamente
+        </h1>
+        <p className="text-gray-600 font-sans mb-8 leading-relaxed">
+          Estamos construyendo este espacio para darte toda la información sobre este ministerio. ¡Vuelve muy pronto!
+        </p>
+        <Link 
+          href="/ministerios" 
+          className="inline-block bg-[#1A2E4A] text-white font-semibold px-8 py-3 rounded-xl hover:bg-[#0f1d30] transition-colors"
+        >
+          Volver a Ministerios
+        </Link>
+      </div>
+    </main>
+  );
+}
+
+// ==========================================
+// ARCHIVO: src/app/admin/layout.tsx
+// ==========================================
+import { createClient } from '@/utils/supabase/server';
+import { redirect } from 'next/navigation';
+
+export default async function AdminLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const supabase = await createClient();
+  
+  // Verificamos si existe un usuario logueado en Supabase
+  const { data: { user } } = await supabase.auth.getUser();
+
+  // Si no hay usuario, lo devolvemos a la pantalla de login
+  if (!user) {
+    redirect('/login');
+  }
+
+  // Si es un usuario válido, mostramos el panel de administración
+  return <>{children}</>;
+}
+
+// ==========================================
+// ARCHIVO: src/app/admin/sedes/actions.ts
+// ==========================================
+'use server'
+
+import { createClient } from '@/utils/supabase/server'
+import { revalidatePath } from 'next/cache'
+import { redirect } from 'next/navigation'
+
+export async function actualizarSede(formData: FormData) {
+  const supabase = await createClient()
+
+  // Extraemos los datos del formulario
+  const id = formData.get('id') as string
+  const nombre = formData.get('nombre') as string
+  const direccion = formData.get('direccion') as string
+  const horarios = formData.get('horarios') as string
+  const whatsapp = formData.get('whatsapp') as string
+
+  // Actualizamos la base de datos
+  const { error } = await supabase
+    .from('sedes')
+    .update({ 
+      nombre, 
+      direccion, 
+      horarios, 
+      whatsapp 
+    })
+    .eq('id', id)
+
+  if (error) {
+    console.error("Error actualizando sede:", error)
+    // Podríamos manejar el error aquí, pero por ahora lanzaremos un log
+  }
+
+  // ¡La Magia de Next.js! Le decimos que limpie la caché de estas páginas 
+  // para que los visitantes vean los cambios de inmediato
+  revalidatePath('/')
+  revalidatePath('/contacto')
+  revalidatePath('/admin/sedes')
+  
+  redirect('/admin/sedes?success=true')
+}
+
+// ==========================================
+// ARCHIVO: src/app/admin/sedes/page.tsx
+// ==========================================
+import { createClient } from '@/utils/supabase/server';
+import { actualizarSede } from './actions';
+import { Building, Save, MapPin, Clock, Phone } from 'lucide-react';
+import Link from 'next/link';
+
+export const metadata = {
+  title: "Gestión de Sedes | Admin MIRES",
+};
+
+export default async function AdminSedesPage({
+  searchParams,
+}: {
+  searchParams: { success: string };
+}) {
+  const supabase = await createClient();
+  
+  // Traemos todas las sedes de la base de datos
+  const { data: sedes } = await supabase
+    .from('sedes')
+    .select('*')
+    .order('created_at', { ascending: true });
+
+  return (
+    <div className="p-8 md:p-12 font-sans max-w-5xl mx-auto">
+      <header className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-3xl font-serif font-bold text-gray-950 flex items-center gap-3">
+            <Building className="text-[#E8863A]" />
+            Gestión de Sedes
+          </h1>
+          <p className="text-gray-600 mt-2">
+            Actualiza la información de contacto y horarios de las congregaciones. Los cambios se reflejarán inmediatamente en la web.
+          </p>
+        </div>
+        <Link href="/admin" className="text-sm font-semibold text-gray-500 hover:text-[#1A2E4A] transition-colors border border-gray-200 px-4 py-2 rounded-lg bg-white">
+          Volver al Inicio
+        </Link>
+      </header>
+
+      {searchParams?.success && (
+        <div className="mb-8 p-4 bg-green-50 border border-green-200 text-green-700 rounded-xl font-medium text-sm flex items-center gap-2">
+          ✓ Los datos de la sede se actualizaron correctamente en la web en vivo.
+        </div>
+      )}
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {sedes?.map((sede) => (
+          <div key={sede.id} className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+            <div className="bg-gray-50/70 p-4 border-b border-gray-100">
+              <h2 className="font-serif font-bold text-xl text-[#1A2E4A]">{sede.nombre}</h2>
+            </div>
+            
+            <form action={actualizarSede} className="p-6 space-y-5">
+              <input type="hidden" name="id" value={sede.id} />
+              
+              <div>
+                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 block flex items-center gap-2">
+                   Nombre Público
+                </label>
+                <input 
+                  type="text" 
+                  name="nombre" 
+                  defaultValue={sede.nombre}
+                  className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#E8863A] focus:border-transparent outline-none transition-all text-gray-900" 
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 block flex items-center gap-2">
+                  <MapPin size={14} /> Dirección Exacta
+                </label>
+                <input 
+                  type="text" 
+                  name="direccion" 
+                  defaultValue={sede.direccion || ''}
+                  className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#E8863A] focus:border-transparent outline-none transition-all text-gray-900" 
+                  placeholder="Ej: Av. Vicuña Mackenna 1234, La Florida"
+                />
+              </div>
+
+              <div>
+                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 block flex items-center gap-2">
+                  <Clock size={14} /> Horarios de Reunión
+                </label>
+                <input 
+                  type="text" 
+                  name="horarios" 
+                  defaultValue={sede.horarios || ''}
+                  className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#E8863A] focus:border-transparent outline-none transition-all text-gray-900" 
+                  placeholder="Ej: Domingos 10:00 y 12:00 hrs"
+                />
+              </div>
+
+              <div>
+                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 block flex items-center gap-2">
+                  <Phone size={14} /> Enlace de WhatsApp
+                </label>
+                <input 
+                  type="url" 
+                  name="whatsapp" 
+                  defaultValue={sede.whatsapp || ''}
+                  className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#E8863A] focus:border-transparent outline-none transition-all text-gray-900" 
+                  placeholder="Ej: https://wa.me/56912345678"
+                />
+              </div>
+
+              <div className="pt-4">
+                <button 
+                  type="submit" 
+                  className="w-full bg-[#1A2E4A] text-white font-semibold py-3 rounded-xl hover:bg-[#0f1d30] transition-colors flex items-center justify-center gap-2"
+                >
+                  <Save size={18} />
+                  Guardar Cambios
+                </button>
+              </div>
+            </form>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ==========================================
+// ARCHIVO: src/app/admin/eventos/actions.ts
+// ==========================================
+'use server'
+
+import { createClient } from '@/utils/supabase/server'
+import { revalidatePath } from 'next/cache'
+import { redirect } from 'next/navigation'
+
+// Función para crear un nuevo evento
+export async function crearEvento(formData: FormData) {
+  const supabase = await createClient()
+
+  const titulo = formData.get('titulo') as string
+  const fechaLocal = formData.get('fecha') as string
+  const registro_url = formData.get('registro_url') as string
+  const sede_id = formData.get('sede_id') as string
+
+  // Convertimos la fecha del formulario al formato de base de datos
+  const fecha = new Date(fechaLocal).toISOString()
+
+  const { error } = await supabase
+    .from('eventos')
+    .insert([
+      { 
+        titulo, 
+        fecha, 
+        registro_url, 
+        sede_id: sede_id ? parseInt(sede_id) : null 
+      }
+    ])
+
+  if (error) {
+    console.error("Error al crear evento:", error)
+  }
+
+  // Limpiamos la caché para que el evento aparezca de inmediato en la web pública
+  revalidatePath('/eventos')
+  revalidatePath('/admin/eventos')
+  redirect('/admin/eventos?success=true')
+}
+
+// Función para eliminar un evento
+export async function eliminarEvento(formData: FormData) {
+  const supabase = await createClient()
+  const id = formData.get('id') as string
+
+  await supabase.from('eventos').delete().eq('id', id)
+
+  revalidatePath('/eventos')
+  revalidatePath('/admin/eventos')
+}
+
+// ==========================================
+// ARCHIVO: src/app/admin/eventos/page.tsx
+// ==========================================
+import { createClient } from '@/utils/supabase/server';
+import { crearEvento, eliminarEvento } from './actions';
+import { CalendarIcon, Trash2, PlusCircle } from 'lucide-react';
+import Link from 'next/link';
+
+export const metadata = {
+  title: "Gestión de Eventos | Admin MIRES",
+};
+
+export default async function AdminEventosPage({
+  searchParams,
+}: {
+  searchParams: { success: string };
+}) {
+  const supabase = await createClient();
+  
+  // 1. Traemos los eventos futuros ordenados por fecha
+  const { data: eventos } = await supabase
+    .from('eventos')
+    .select('*, sedes(nombre)')
+    .gte('fecha', new Date().toISOString())
+    .order('fecha', { ascending: true });
+
+  // 2. Traemos las sedes para el menú desplegable del formulario
+  const { data: sedes } = await supabase.from('sedes').select('id, nombre');
+
+  const formatearFecha = (fechaString: string) => {
+    return new Date(fechaString).toLocaleDateString('es-CL', {
+      day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
+    });
+  };
+
+  return (
+    <div className="p-8 md:p-12 font-sans max-w-6xl mx-auto">
+      <header className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-3xl font-serif font-bold text-gray-950 flex items-center gap-3">
+            <CalendarIcon className="text-[#E8863A]" />
+            Cartelera de Eventos
+          </h1>
+          <p className="text-gray-600 mt-2">
+            Agrega o elimina actividades. Los cambios se reflejarán inmediatamente en la sección "Eventos".
+          </p>
+        </div>
+        <Link href="/admin" className="text-sm font-semibold text-gray-500 hover:text-[#1A2E4A] transition-colors border border-gray-200 px-4 py-2 rounded-lg bg-white">
+          Volver al Inicio
+        </Link>
+      </header>
+
+      {searchParams?.success && (
+        <div className="mb-8 p-4 bg-green-50 border border-green-200 text-green-700 rounded-xl font-medium text-sm flex items-center gap-2">
+          ✓ El evento se publicó correctamente en la web.
+        </div>
+      )}
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        {/* COLUMNA IZQUIERDA: Formulario para crear evento */}
+        <div className="lg:col-span-1">
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sticky top-6">
+            <h2 className="font-serif font-bold text-xl text-[#1A2E4A] mb-6 flex items-center gap-2">
+              <PlusCircle size={20} className="text-[#E8863A]" />
+              Nuevo Evento
+            </h2>
+            <form action={crearEvento} className="space-y-4">
+              <div>
+                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 block">Título del Evento</label>
+                <input 
+                  type="text" name="titulo" required
+                  placeholder="Ej: Noche de Adoración"
+                  className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#E8863A] focus:border-transparent outline-none transition-all text-sm" 
+                />
+              </div>
+              <div>
+                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 block">Fecha y Hora</label>
+                <input 
+                  type="datetime-local" name="fecha" required
+                  className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#E8863A] focus:border-transparent outline-none transition-all text-sm" 
+                />
+              </div>
+              <div>
+                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 block">Sede</label>
+                <select name="sede_id" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#E8863A] outline-none text-sm bg-white">
+                  <option value="">Selecciona una sede...</option>
+                  {sedes?.map(sede => (
+                    <option key={sede.id} value={sede.id}>{sede.nombre}</option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 block">Link de Registro (Opcional)</label>
+                <input 
+                  type="url" name="registro_url"
+                  placeholder="https://forms.gle/..."
+                  className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#E8863A] focus:border-transparent outline-none transition-all text-sm" 
+                />
+              </div>
+              <button type="submit" className="w-full bg-[#1A2E4A] text-white font-semibold py-3 rounded-xl hover:bg-[#0f1d30] transition-colors mt-2 text-sm">
+                Publicar Evento
+              </button>
+            </form>
+          </div>
+        </div>
+
+        {/* COLUMNA DERECHA: Lista de eventos activos */}
+        <div className="lg:col-span-2 space-y-4">
+          <h2 className="font-serif font-bold text-xl text-[#1A2E4A] mb-4">Eventos Activos</h2>
+          
+          {!eventos || eventos.length === 0 ? (
+            <div className="bg-white rounded-2xl border border-gray-100 p-10 text-center text-gray-500 text-sm">
+              No hay eventos futuros programados.
+            </div>
+          ) : (
+            eventos.map((evento) => {
+              // Manejo seguro de la relación de sede
+              const nombreSede = Array.isArray(evento.sedes) ? evento.sedes[0]?.nombre : evento.sedes?.nombre;
+              
+              return (
+                <div key={evento.id} className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div>
+                    <h3 className="font-bold text-gray-900 text-lg">{evento.titulo}</h3>
+                    <div className="flex flex-wrap items-center gap-3 mt-2 text-sm text-gray-500">
+                      <span className="bg-gray-100 px-2 py-1 rounded-md">{formatearFecha(evento.fecha)}</span>
+                      {nombreSede && <span className="bg-blue-50 text-blue-700 px-2 py-1 rounded-md">{nombreSede}</span>}
+                    </div>
+                  </div>
+                  
+                  <form action={eliminarEvento}>
+                    <input type="hidden" name="id" value={evento.id} />
+                    <button type="submit" className="p-3 text-red-500 hover:bg-red-50 rounded-xl transition-colors flex items-center gap-2 text-sm font-semibold" title="Eliminar Evento" onClick={(e) => {
+                      if(!confirm('¿Estás seguro de eliminar este evento?')) e.preventDefault();
+                    }}>
+                      <Trash2 size={18} />
+                      <span className="sm:hidden">Eliminar</span>
+                    </button>
+                  </form>
+                </div>
+              )
+            })
+          )}
+        </div>
+
+      </div>
+    </div>
+  );
+}
+
+// ==========================================
+// ARCHIVO: src/app/admin/page.tsx
+// ==========================================
+import { createClient } from '@/utils/supabase/server';
+import { Users, Calendar as CalendarIcon, LogOut, Phone, MapPin, Building } from 'lucide-react';
+import Link from 'next/link';
+
+export const metadata = {
+  title: "Admin Dashboard | MIRES",
+};
+
+export default async function AdminDashboard() {
+  const supabase = await createClient();
+  
+  // Traemos los últimos visitantes registrados en la base de datos
+  const { data: visitantes } = await supabase
+    .from('visitantes')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  // Función interna para formatear la fecha a horario de Chile
+  const formatearFecha = (fechaString: string) => {
+    return new Date(fechaString).toLocaleDateString('es-CL', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-50 flex">
+      
+      {/* BARRA LATERAL DE NAVEGACIÓN */}
+      <aside className="w-64 bg-[#1A2E4A] text-white p-6 flex flex-col shrink-0">
+        <div className="mb-10">
+          <h2 className="text-2xl font-serif font-bold text-[#E8863A] tracking-tight">MIRES Admin</h2>
+          <p className="text-xs text-gray-400 mt-1 font-sans">Panel de Control Interno</p>
+        </div>
+        
+        <nav className="flex-1 space-y-2 font-sans">
+          <Link href="/admin" className="flex items-center gap-3 bg-white/10 text-white px-4 py-3 rounded-xl font-semibold transition-all">
+            <Users size={18} className="text-[#E8863A]" />
+            Nuevos Visitantes
+          </Link>
+          <Link href="/admin/sedes" className="flex items-center gap-3 hover:bg-white/5 text-gray-300 hover:text-white px-4 py-3 rounded-xl transition-all">
+            <Building size={18} />
+            Gestión de Sedes
+          </Link>
+          <Link href="/admin/eventos" className="flex items-center gap-3 hover:bg-white/5 text-gray-300 hover:text-white px-4 py-3 rounded-xl transition-all">
+            <CalendarIcon size={18} />
+            Gestionar Eventos
+          </Link>
+        </nav>
+
+        <div className="pt-6 border-t border-white/10">
+          <Link href="/" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors font-sans px-4 py-2 text-sm">
+            <LogOut size={16} />
+            Volver a la Web
+          </Link>
+        </div>
+      </aside>
+
+      {/* CONTENIDO PRINCIPAL */}
+      <main className="flex-1 p-8 md:p-12 overflow-y-auto">
+        <header className="mb-8 font-sans">
+          <h1 className="text-3xl font-serif font-bold text-gray-950">Registro de Nuevos Visitantes</h1>
+          <p className="text-gray-600 mt-2">
+            Gestiona y contacta a las personas que completaron el formulario "Soy Nuevo" en la web.
+          </p>
+        </header>
+
+        {/* TABLA DE DATOS */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse font-sans">
+              <thead>
+                <tr className="bg-gray-50/70 border-b border-gray-100 text-gray-500 text-xs font-bold uppercase tracking-wider">
+                  <th className="p-5">Fecha de Registro</th>
+                  <th className="p-5">Nombre Completo</th>
+                  <th className="p-5">WhatsApp / Contacto</th>
+                  <th className="p-5">Sede de Interés</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100 text-gray-700 text-sm">
+                {!visitantes || visitantes.length === 0 ? (
+                  <tr>
+                    <td colSpan={4} className="p-12 text-center text-gray-400">
+                      Aún no se han registrado nuevos visitantes en la base de datos.
+                    </td>
+                  </tr>
+                ) : (
+                  visitantes.map((visita) => (
+                    <tr key={visita.id} className="hover:bg-gray-50/50 transition-colors">
+                      <td className="p-5 text-gray-500 whitespace-nowrap">
+                        {formatearFecha(visita.created_at)}
+                      </td>
+                      <td className="p-5 font-semibold text-gray-900">
+                        {visita.nombre}
+                      </td>
+                      <td className="p-5 whitespace-nowrap">
+                        <a 
+                          href={`https://wa.me/${visita.whatsapp.replace(/[^0-9]/g, '')}`} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="inline-flex items-center gap-2 text-green-600 hover:text-green-700 font-medium group"
+                        >
+                          <Phone size={16} className="text-green-500" />
+                          <span className="group-hover:underline">{visita.whatsapp}</span>
+                        </a>
+                      </td>
+                      <td className="p-5 whitespace-nowrap">
+                        <span className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold">
+                          <MapPin size={12} />
+                          {visita.sede_interes || 'No especificada'}
+                        </span>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+      
+    </div>
+  );
+}
+
+// ==========================================
+// ARCHIVO: src/app/nuevos-hijos/page.tsx
+// ==========================================
+import { Hammer } from 'lucide-react';
+import Link from 'next/link';
+
+export default function MinisterioEnConstruccion() {
+  return (
+    <main className="min-h-screen bg-[#F5F0E8] flex flex-col items-center justify-center p-6">
+      <div className="bg-white max-w-lg w-full rounded-3xl shadow-sm border border-gray-100 p-10 text-center">
+        <div className="flex justify-center mb-6">
+          <div className="w-20 h-20 bg-orange-50 rounded-full flex items-center justify-center text-[#E8863A]">
+            <Hammer size={40} />
+          </div>
+        </div>
+        <h1 className="text-3xl font-serif text-[#1A2E4A] font-bold mb-4">
+          Próximamente
+        </h1>
+        <p className="text-gray-600 font-sans mb-8 leading-relaxed">
+          Estamos construyendo este espacio para darte toda la información sobre este ministerio. ¡Vuelve muy pronto!
+        </p>
+        <Link 
+          href="/ministerios" 
+          className="inline-block bg-[#1A2E4A] text-white font-semibold px-8 py-3 rounded-xl hover:bg-[#0f1d30] transition-colors"
+        >
+          Volver a Ministerios
+        </Link>
+      </div>
+    </main>
+  );
+}
+
+// ==========================================
+// ARCHIVO: src/app/escuela-alabanza/page.tsx
+// ==========================================
+import { Hammer } from 'lucide-react';
+import Link from 'next/link';
+
+export default function MinisterioEnConstruccion() {
+  return (
+    <main className="min-h-screen bg-[#F5F0E8] flex flex-col items-center justify-center p-6">
+      <div className="bg-white max-w-lg w-full rounded-3xl shadow-sm border border-gray-100 p-10 text-center">
+        <div className="flex justify-center mb-6">
+          <div className="w-20 h-20 bg-orange-50 rounded-full flex items-center justify-center text-[#E8863A]">
+            <Hammer size={40} />
+          </div>
+        </div>
+        <h1 className="text-3xl font-serif text-[#1A2E4A] font-bold mb-4">
+          Próximamente
+        </h1>
+        <p className="text-gray-600 font-sans mb-8 leading-relaxed">
+          Estamos construyendo este espacio para darte toda la información sobre este ministerio. ¡Vuelve muy pronto!
+        </p>
+        <Link 
+          href="/ministerios" 
+          className="inline-block bg-[#1A2E4A] text-white font-semibold px-8 py-3 rounded-xl hover:bg-[#0f1d30] transition-colors"
+        >
+          Volver a Ministerios
+        </Link>
+      </div>
+    </main>
+  );
+}
+
+// ==========================================
+// ARCHIVO: src/app/sermones/page.tsx
+// ==========================================
+import Link from "next/link";
+import { MonitorPlay, Calendar, ArrowRight, BookOpen } from "lucide-react";
+
+export const metadata = {
+  title: "Sermones y Mensajes | MIRES",
+  description: "Encuentra esperanza, dirección y propósito en nuestra biblioteca de predicaciones.",
+};
+
+export default function SermonesPage() {
+  // Datos de ejemplo para la grilla de videos (En Fase B esto vendrá de YouTube API)
+  const predicacionesRecientes = [
+    { id: 1, titulo: "Caminando en Fe", fecha: "24 Mayo, 2026", serie: "Fundamentos" },
+    { id: 2, titulo: "El poder de la gracia", fecha: "17 Mayo, 2026", serie: "Identidad" },
+    { id: 3, titulo: "Restaurando la familia", fecha: "10 Mayo, 2026", serie: "Hogar" },
+    { id: 4, titulo: "Superando la ansiedad", fecha: "3 Mayo, 2026", serie: "Salud Mental" },
+    { id: 5, titulo: "Llamados a servir", fecha: "26 Abril, 2026", serie: "Propósito" },
+    { id: 6, titulo: "El valor de la comunidad", fecha: "19 Abril, 2026", serie: "Fundamentos" },
+  ];
+
+  return (
+    <div className="flex flex-col min-h-screen bg-mires-bg">
+      
+      {/* HEADER SIMPLE DE SECCIÓN */}
+      <section className="bg-mires-primary text-mires-white py-20">
+        <div className="container mx-auto px-4 text-center max-w-3xl">
+          <h1 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl mb-6 tracking-tight">
+            Mensajes que transforman
+          </h1>
+          <p className="font-sans text-lg md:text-xl text-mires-white/80 leading-relaxed">
+            Nuestra oración es que cada mensaje te acerque más a Dios y te dé herramientas prácticas para enfrentar los desafíos de cada día.
+          </p>
+        </div>
+      </section>
+
+      {/* VIDEO DESTACADO (ÚLTIMA PREDICACIÓN) */}
+      <section className="py-20 bg-mires-white border-b border-mires-primary/5">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="flex items-center gap-3 mb-8">
+            <div className="w-10 h-10 bg-mires-accent/10 text-mires-accent rounded-full flex items-center justify-center shrink-0">
+              <MonitorPlay size={20} />
+            </div>
+            <h2 className="font-display font-bold text-2xl md:text-3xl text-mires-primary">
+              Mensaje más reciente
+            </h2>
+          </div>
+
+          <div className="bg-mires-bg rounded-3xl overflow-hidden shadow-lg border border-mires-primary/10">
+            <div className="aspect-video w-full bg-mires-primary/5 relative">
+              {/* IFRAME DEL ÚLTIMO VIDEO */}
+              <iframe 
+                className="absolute top-0 left-0 w-full h-full"
+                src="https://www.youtube.com/embed/nuestro-video-aqui?si=placeholder" 
+                title="Última Predicación MIRES Central" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowFullScreen
+              ></iframe>
+            </div>
+            <div className="p-8 md:p-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+              <div>
+                <span className="font-sans inline-block bg-mires-accent/10 text-mires-accent px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
+                  Serie Actual
+                </span>
+                <h3 className="font-display font-bold text-3xl text-mires-primary mb-2">
+                  El inicio de algo nuevo
+                </h3>
+                <p className="font-sans text-mires-textMuted flex items-center gap-2">
+                  <Calendar size={16} /> Domingo, 31 de Mayo, 2026
+                </p>
+              </div>
+              <a 
+                href="https://www.youtube.com/@MiresCentral" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="font-sans shrink-0 bg-mires-primary hover:bg-mires-primary/90 text-mires-white px-8 py-4 rounded-full font-bold transition-all transform hover:-translate-y-1 shadow-md"
+              >
+                Suscribirse al canal
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ARCHIVO DE MENSAJES ANTERIORES */}
+      <section className="py-20 bg-mires-bg">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-12 gap-4">
+            <h2 className="font-display font-bold text-3xl text-mires-primary">
+              Mensajes anteriores
+            </h2>
+            <Link href="/devocionales" className="font-sans inline-flex items-center gap-2 text-mires-accent font-bold hover:text-[#d9782e] transition-colors">
+              <BookOpen size={18} /> Ver devocionales
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {predicacionesRecientes.map((predica) => (
+              <a 
+                key={predica.id}
+                href="https://www.youtube.com/@MiresCentral" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="group bg-mires-white rounded-2xl overflow-hidden shadow-sm border border-mires-primary/5 hover:shadow-xl transition-all hover:-translate-y-1 block"
+              >
+                <div className="aspect-video bg-mires-primary/10 relative flex items-center justify-center overflow-hidden">
+                  {/* Overlay oscuro al hacer hover */}
+                  <div className="absolute inset-0 bg-mires-primary/0 group-hover:bg-mires-primary/40 transition-colors z-10 flex items-center justify-center">
+                    <div className="w-16 h-16 bg-mires-white rounded-full flex items-center justify-center text-mires-accent opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition-all duration-300">
+                      <MonitorPlay size={24} className="ml-1" />
+                    </div>
+                  </div>
+                  {/* Placeholder de miniatura (Thumbnail) */}
+                  <div className="font-display font-bold text-mires-primary/20 text-4xl">MIRES</div>
+                </div>
+                
+                <div className="p-6">
+                  <span className="font-sans text-xs font-bold text-mires-accent uppercase tracking-wider mb-2 block">
+                    {predica.serie}
+                  </span>
+                  <h3 className="font-display font-bold text-xl text-mires-primary mb-2 group-hover:text-mires-accent transition-colors">
+                    {predica.titulo}
+                  </h3>
+                  <p className="font-sans text-sm text-mires-textMuted flex items-center gap-2">
+                    <Calendar size={14} /> {predica.fecha}
+                  </p>
+                </div>
+              </a>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <a 
+              href="https://www.youtube.com/@MiresCentral" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="font-sans inline-flex items-center gap-2 text-mires-primary font-bold hover:text-mires-accent transition-colors px-6 py-3 border-2 border-mires-primary/10 rounded-full hover:border-mires-accent"
+            >
+              Ver biblioteca completa en YouTube <ArrowRight size={18} />
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  );
+}
+
+// ==========================================
+// ARCHIVO: src/app/fundacion-proximo/page.tsx
+// ==========================================
+import { Hammer } from 'lucide-react';
+import Link from 'next/link';
+
+export default function MinisterioEnConstruccion() {
+  return (
+    <main className="min-h-screen bg-[#F5F0E8] flex flex-col items-center justify-center p-6">
+      <div className="bg-white max-w-lg w-full rounded-3xl shadow-sm border border-gray-100 p-10 text-center">
+        <div className="flex justify-center mb-6">
+          <div className="w-20 h-20 bg-orange-50 rounded-full flex items-center justify-center text-[#E8863A]">
+            <Hammer size={40} />
+          </div>
+        </div>
+        <h1 className="text-3xl font-serif text-[#1A2E4A] font-bold mb-4">
+          Próximamente
+        </h1>
+        <p className="text-gray-600 font-sans mb-8 leading-relaxed">
+          Estamos construyendo este espacio para darte toda la información sobre este ministerio. ¡Vuelve muy pronto!
+        </p>
+        <Link 
+          href="/ministerios" 
+          className="inline-block bg-[#1A2E4A] text-white font-semibold px-8 py-3 rounded-xl hover:bg-[#0f1d30] transition-colors"
+        >
+          Volver a Ministerios
+        </Link>
+      </div>
+    </main>
+  );
+}
+
+// ==========================================
+// ARCHIVO: src/app/layout.tsx
+// ==========================================
+import type { Metadata } from "next";
+import "./globals.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer"; // Importamos el nuevo componente
+
+
+export const metadata: Metadata = {
+  title: "MIRES | Ministerio Restauración",
+  description: "Su gracia escribe nuevas historias",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="es">
+      <body className="font-sans antialiased min-h-screen flex flex-col">
+        <Header />
+        
+        {/* Flex-grow empuja el footer hacia abajo si hay poco contenido */}
+        <main className="flex-grow">
+          {children}
+        </main>
+
+        <Footer /> {/* Inyectamos el pie de página */}
+      </body>
+    </html>
+  );
+}
+
+// ==========================================
+// ARCHIVO: src/app/soy-nuevo/FormularioVisita.tsx
+// ==========================================
+'use client'
+
+import { useState } from 'react';
+import { Send, CheckCircle2, Loader2 } from 'lucide-react';
+import { registrarVisitante } from './actions';
+
+// Definimos la forma de los datos que recibe el componente
+interface Sede {
+  id: string;
+  nombre: string;
+}
+
+export default function FormularioVisita({ sedes }: { sedes: Sede[] }) {
+  const [isPending, setIsPending] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  // Manejador del envío
+  async function handleSubmit(formData: FormData) {
+    setIsPending(true);
+    const result = await registrarVisitante(formData);
+    setIsPending(false);
+
+    if (result.success) {
+      setIsSuccess(true);
+    } else {
+      alert("Hubo un problema al enviar los datos. Por favor, intenta de nuevo.");
+    }
+  }
+
+  // Si ya se envió con éxito, mostramos un mensaje de agradecimiento
+  if (isSuccess) {
+    return (
+      <div className="bg-mires-white p-8 md:p-10 rounded-2xl shadow-lg border border-mires-primary/10 text-center flex flex-col items-center">
+        <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6">
+          <CheckCircle2 size={32} />
+        </div>
+        <h3 className="font-display font-bold text-2xl text-mires-primary mb-2">¡Datos enviados!</h3>
+        <p className="font-sans text-mires-textMuted">
+          Nos alegra mucho que decidas visitarnos. Uno de nuestros coordinadores te escribirá pronto por WhatsApp.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="bg-mires-white p-8 md:p-10 rounded-2xl shadow-lg border border-mires-primary/10">
+      <h3 className="font-display font-bold text-2xl text-mires-primary mb-2">Déjanos tus datos</h3>
+      <p className="font-sans text-mires-textMuted text-sm mb-6">
+        Nos encantaría saludarte, enviarte información y ayudarte en tus primeros pasos.
+      </p>
+      
+      <form action={handleSubmit} className="space-y-4 font-sans">
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="nombre" className="block text-sm font-medium text-mires-textMain mb-1">Nombre</label>
+            <input type="text" id="nombre" name="nombre" className="w-full bg-mires-bg border border-mires-primary/10 rounded-lg px-4 py-3 focus:outline-none focus:border-mires-accent focus:ring-1 focus:ring-mires-accent transition-colors" placeholder="Tu nombre" required />
+          </div>
+          <div>
+            <label htmlFor="apellido" className="block text-sm font-medium text-mires-textMain mb-1">Apellido</label>
+            <input type="text" id="apellido" name="apellido" className="w-full bg-mires-bg border border-mires-primary/10 rounded-lg px-4 py-3 focus:outline-none focus:border-mires-accent focus:ring-1 focus:ring-mires-accent transition-colors" placeholder="Tu apellido" />
+          </div>
+        </div>
+        
+        <div>
+          <label htmlFor="whatsapp" className="block text-sm font-medium text-mires-textMain mb-1">WhatsApp</label>
+          <input type="tel" id="whatsapp" name="whatsapp" className="w-full bg-mires-bg border border-mires-primary/10 rounded-lg px-4 py-3 focus:outline-none focus:border-mires-accent focus:ring-1 focus:ring-mires-accent transition-colors" placeholder="+56 9 1234 5678" required />
+        </div>
+
+        <div>
+          <label htmlFor="sede_id" className="block text-sm font-medium text-mires-textMain mb-1">¿A qué sede te gustaría asistir?</label>
+          <select id="sede_id" name="sede_id" className="w-full bg-mires-bg border border-mires-primary/10 rounded-lg px-4 py-3 focus:outline-none focus:border-mires-accent focus:ring-1 focus:ring-mires-accent transition-colors text-mires-textMain" required>
+            <option value="">Selecciona una opción</option>
+            {sedes.map(sede => (
+              <option key={sede.id} value={sede.id}>{sede.nombre}</option>
+            ))}
+          </select>
+        </div>
+        
+        <button 
+          type="submit" 
+          disabled={isPending}
+          className="w-full bg-mires-primary hover:bg-mires-primary/90 disabled:bg-mires-primary/50 text-mires-white px-6 py-4 rounded-lg font-bold flex items-center justify-center gap-2 transition-transform transform hover:-translate-y-0.5 mt-4"
+        >
+          {isPending ? <Loader2 size={18} className="animate-spin" /> : <Send size={18} />}
+          {isPending ? 'Enviando...' : 'Enviar mis datos'}
+        </button>
+        <p className="text-xs text-mires-textMuted text-center mt-4">
+          Tus datos están seguros con nosotros. No compartimos tu información.
+        </p>
+      </form>
+    </div>
+  );
+}
+
+// ==========================================
+// ARCHIVO: src/app/soy-nuevo/actions.ts
+// ==========================================
+'use server'
+
+import { createClient } from '@/utils/supabase/server';
+import { revalidatePath } from 'next/cache';
+
+export async function registrarVisitante(formData: FormData) {
+  const supabase = await createClient();
+  
+  // Extraemos los datos del formulario
+  const nombre = formData.get('nombre') as string;
+  const apellido = formData.get('apellido') as string;
+  const whatsapp = formData.get('whatsapp') as string;
+  const sede_id = formData.get('sede_id') as string;
+
+  // Insertamos en Supabase
+  const { error } = await supabase
+    .from('visitantes')
+    .insert([
+      { 
+        nombre, 
+        apellido, 
+        whatsapp, 
+        sede_id: sede_id ? sede_id : null 
+      }
+    ]);
+
+  if (error) {
+    console.error('Error guardando visitante:', error);
+    return { success: false, error: 'Hubo un error al enviar tus datos.' };
+  }
+
+  // Refrescamos la caché de la página
+  revalidatePath('/soy-nuevo');
+  return { success: true };
+}
+
+// ==========================================
+// ARCHIVO: src/app/soy-nuevo/page.tsx
+// ==========================================
+import { createClient } from '@/utils/supabase/server';
+import { MapPin, Clock, Coffee, Music, BookOpen } from "lucide-react";
+import FormularioVisita from './FormularioVisita'; // Importamos el formulario interactivo
+
+export const metadata = {
+  title: "Soy Nuevo | MIRES",
+  description: "Bienvenido a casa. Planifica tu visita y conoce qué esperar en nuestra comunidad.",
+};
+
+export default async function SoyNuevoPage() {
+  const supabase = await createClient();
+  const { data: sedes } = await supabase.from('sedes').select('id, nombre, horarios').order('nombre');
+
+  return (
+    <div className="flex flex-col min-h-screen bg-mires-bg">
+      
+      {/* HEADER SIMPLE DE SECCIÓN */}
+      <section className="bg-mires-primary text-mires-white py-20">
+        <div className="container mx-auto px-4 text-center max-w-3xl">
+          <h1 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl mb-6 tracking-tight">
+            Bienvenido a casa
+          </h1>
+          <p className="font-sans text-lg md:text-xl text-mires-white/80 leading-relaxed">
+            Sabemos que visitar una iglesia por primera vez puede ser intimidante. 
+            Queremos que te sientas en familia desde el momento en que cruzas la puerta.
+          </p>
+        </div>
+      </section>
+
+      {/* ¿QUÉ PASA EN UN CULTO? */}
+      <section className="py-20 bg-mires-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="font-display font-bold text-3xl md:text-4xl text-mires-primary mb-4">
+              ¿Qué esperar en tu visita?
+            </h2>
+            <p className="font-sans text-mires-textMuted max-w-2xl mx-auto">
+              Nuestras reuniones duran aproximadamente 90 minutos y están diseñadas para que conectes con Dios y con otras personas de forma genuina.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="p-8 rounded-2xl bg-mires-bg border border-mires-primary/5 text-center hover:-translate-y-1 transition-transform">
+              <div className="w-16 h-16 bg-mires-white rounded-full flex items-center justify-center text-mires-accent mx-auto mb-6 shadow-sm">
+                <Music size={32} />
+              </div>
+              <h3 className="font-display font-bold text-xl text-mires-primary mb-3">Alabanza Contemporánea</h3>
+              <p className="font-sans text-mires-textMuted text-sm">Comenzamos con música en vivo. Eres libre de cantar, levantar tus manos o simplemente escuchar y reflexionar.</p>
+            </div>
+
+            <div className="p-8 rounded-2xl bg-mires-bg border border-mires-primary/5 text-center hover:-translate-y-1 transition-transform">
+              <div className="w-16 h-16 bg-mires-white rounded-full flex items-center justify-center text-mires-accent mx-auto mb-6 shadow-sm">
+                <BookOpen size={32} />
+              </div>
+              <h3 className="font-display font-bold text-xl text-mires-primary mb-3">Mensaje Práctico</h3>
+              <p className="font-sans text-mires-textMuted text-sm">Escucharás una predicación basada en la Biblia, con aplicaciones reales y directas para tu día a día.</p>
+            </div>
+
+            <div className="p-8 rounded-2xl bg-mires-bg border border-mires-primary/5 text-center hover:-translate-y-1 transition-transform">
+              <div className="w-16 h-16 bg-mires-white rounded-full flex items-center justify-center text-mires-accent mx-auto mb-6 shadow-sm">
+                <Coffee size={32} />
+              </div>
+              <h3 className="font-display font-bold text-xl text-mires-primary mb-3">Comunidad Cercana</h3>
+              <p className="font-sans text-mires-textMuted text-sm">Antes y después del servicio, nos encanta conversar. Siempre habrá alguien dispuesto a saludarte y resolver tus dudas.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* HORARIOS Y SEDES */}
+      <section className="py-20 bg-mires-bg">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <div className="flex flex-col lg:flex-row gap-12 items-center">
+            <div className="lg:w-1/2">
+              <h2 className="font-display font-bold text-3xl md:text-4xl text-mires-primary mb-6">
+                Planifica tu visita esta semana
+              </h2>
+              <p className="font-sans text-mires-textMuted mb-8">
+                Elige la sede que te quede más cómoda. Tenemos equipos de bienvenida listos para recibirte, orientarte y mostrarte dónde puedes sentarte.
+              </p>
+              <div className="space-y-4">
+                {sedes?.map((sede) => (
+                  <div key={sede.id} className="bg-mires-white p-4 rounded-xl border border-mires-primary/10 flex items-center gap-4">
+                    <div className="bg-mires-primary/10 p-3 rounded-lg text-mires-primary">
+                      <MapPin size={24} />
+                    </div>
+                    <div>
+                      <h4 className="font-display font-bold text-lg text-mires-primary">{sede.nombre}</h4>
+                      <p className="font-sans text-sm text-mires-textMuted flex items-center gap-1">
+                        <Clock size={14} className="text-mires-accent" /> {sede.horarios}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            {/* AQUÍ INYECTAMOS NUESTRO FORMULARIO INTERACTIVO */}
+            <div className="lg:w-1/2 w-full">
+              <FormularioVisita sedes={sedes || []} />
+            </div>
+            
+          </div>
+        </div>
+      </section>
+
+    </div>
+  );
+}
+
+// ==========================================
+// ARCHIVO: src/app/mires-kids/page.tsx
+// ==========================================
+import { Hammer } from 'lucide-react';
+import Link from 'next/link';
+
+export default function MinisterioEnConstruccion() {
+  return (
+    <main className="min-h-screen bg-[#F5F0E8] flex flex-col items-center justify-center p-6">
+      <div className="bg-white max-w-lg w-full rounded-3xl shadow-sm border border-gray-100 p-10 text-center">
+        <div className="flex justify-center mb-6">
+          <div className="w-20 h-20 bg-orange-50 rounded-full flex items-center justify-center text-[#E8863A]">
+            <Hammer size={40} />
+          </div>
+        </div>
+        <h1 className="text-3xl font-serif text-[#1A2E4A] font-bold mb-4">
+          Próximamente
+        </h1>
+        <p className="text-gray-600 font-sans mb-8 leading-relaxed">
+          Estamos construyendo este espacio para darte toda la información sobre este ministerio. ¡Vuelve muy pronto!
+        </p>
+        <Link 
+          href="/ministerios" 
+          className="inline-block bg-[#1A2E4A] text-white font-semibold px-8 py-3 rounded-xl hover:bg-[#0f1d30] transition-colors"
+        >
+          Volver a Ministerios
+        </Link>
+      </div>
+    </main>
+  );
+}
+
+// ==========================================
+// ARCHIVO: src/app/eventos/page.tsx
+// ==========================================
+import Link from "next/link";
+import { createClient } from '@/utils/supabase/server';
+import { Calendar as CalendarIcon, MapPin, Clock, ArrowRight, Ticket } from "lucide-react";
+
+export const metadata = {
+  title: "Eventos | MIRES",
+  description: "Descubre nuestros próximos eventos y actividades para toda la familia.",
+};
+
+export default async function EventosPage() {
+  const supabase = await createClient();
+  
+  // Consultamos los eventos futuros y hacemos un "join" con la tabla sedes para obtener el nombre de la sede
+  const { data: eventos } = await supabase
+    .from('eventos')
+    .select(`
+      id,
+      titulo,
+      fecha,
+      registro_url,
+      sedes ( nombre )
+    `)
+    // Filtramos para mostrar solo eventos de hoy en adelante
+    .gte('fecha', new Date().toISOString())
+    .order('fecha', { ascending: true });
+
+  // Función para formatear la fecha a un formato amigable en español
+  const formatearFecha = (fechaString: string) => {
+    const fecha = new Date(fechaString);
+    const opcionesFecha: Intl.DateTimeFormatOptions = { weekday: 'long', day: 'numeric', month: 'long' };
+    const opcionesHora: Intl.DateTimeFormatOptions = { hour: '2-digit', minute: '2-digit' };
+    
+    return {
+      dia: fecha.toLocaleDateString('es-ES', opcionesFecha),
+      hora: fecha.toLocaleTimeString('es-ES', opcionesHora)
+    };
+  };
+
+  return (
+    <div className="flex flex-col min-h-screen bg-mires-bg">
+      
+      {/* HEADER DE SECCIÓN */}
+      <section className="bg-mires-primary text-mires-white py-20">
+        <div className="container mx-auto px-4 text-center max-w-3xl">
+          <h1 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl mb-6 tracking-tight">
+            Próximos Eventos
+          </h1>
+          <p className="font-sans text-lg md:text-xl text-mires-white/80 leading-relaxed">
+            Nuestra iglesia es una comunidad en constante movimiento. Únete a nuestras próximas actividades, conferencias y reuniones especiales.
+          </p>
+        </div>
+      </section>
+
+      {/* LISTADO DE EVENTOS */}
+      <section className="py-20 bg-mires-white">
+        <div className="container mx-auto px-4 max-w-5xl">
+          
+          {/* Si no hay eventos programados */}
+          {(!eventos || eventos.length === 0) && (
+            <div className="text-center py-20 bg-mires-bg rounded-3xl border border-mires-primary/10">
+              <CalendarIcon size={48} className="mx-auto text-mires-primary/30 mb-4" />
+              <h3 className="font-display font-bold text-2xl text-mires-primary mb-2">
+                No hay eventos próximos
+              </h3>
+              <p className="font-sans text-mires-textMuted">
+                Estamos preparando nuevas actividades. Vuelve a revisar pronto.
+              </p>
+            </div>
+          )}
+
+          {/* Grid dinámica de eventos */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {eventos?.map((evento) => {
+              const { dia, hora } = formatearFecha(evento.fecha);
+              // Forzamos el tipo para evitar el bloqueo estricto de TypeScript en la compilación
+              const sedeData = evento.sedes as any;
+              const nombreSede = Array.isArray(sedeData) 
+                ? sedeData[0]?.nombre 
+                : sedeData?.nombre;
+
+              return (
+                <div key={evento.id} className="bg-mires-bg rounded-3xl border border-mires-primary/5 hover:border-mires-accent/30 hover:shadow-lg transition-all flex flex-col overflow-hidden group">
+                  
+                  {/* Cabecera de la tarjeta del evento */}
+                  <div className="bg-mires-primary/5 p-8 border-b border-mires-primary/5 relative overflow-hidden">
+                    {/* Elemento decorativo */}
+                    <div className="absolute -right-6 -top-6 w-24 h-24 bg-mires-accent/10 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+                    <div className="relative z-10">
+                      <span className="font-sans inline-block bg-mires-white text-mires-accent px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-4 shadow-sm border border-mires-accent/10">
+                        Destacado
+                      </span>
+                      <h3 className="font-display font-bold text-2xl text-mires-primary leading-tight">
+                        {evento.titulo}
+                      </h3>
+                    </div>
+                  </div>
+
+                  {/* Cuerpo de la tarjeta */}
+                  <div className="p-8 flex-grow flex flex-col">
+                    <div className="space-y-4 mb-8">
+                      <div className="flex items-start gap-3 text-mires-textMuted">
+                        <CalendarIcon size={20} className="text-mires-accent shrink-0" />
+                        <span className="font-sans font-medium capitalize text-mires-textMain">{dia}</span>
+                      </div>
+                      <div className="flex items-center gap-3 text-mires-textMuted">
+                        <Clock size={20} className="text-mires-accent shrink-0" />
+                        <span className="font-sans">{hora}</span>
+                      </div>
+                      <div className="flex items-center gap-3 text-mires-textMuted">
+                        <MapPin size={20} className="text-mires-accent shrink-0" />
+                        <span className="font-sans">{nombreSede || 'Sede por confirmar'}</span>
+                      </div>
+                    </div>
+
+                    {/* Botón de Registro (se empuja al fondo con mt-auto) */}
+                    <Link 
+                      href={evento.registro_url || '/contacto'} 
+                      className="font-sans mt-auto w-full inline-flex items-center justify-center gap-2 bg-mires-primary text-mires-white hover:bg-mires-primary/90 px-6 py-4 rounded-xl font-bold transition-all transform hover:-translate-y-0.5 shadow-md"
+                    >
+                      <Ticket size={18} />
+                      Saber más / Registrarme
+                    </Link>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+        </div>
+      </section>
+    </div>
+  );
+}
+
+// ==========================================
+// ARCHIVO: src/app/privacidad/page.tsx
+// ==========================================
+import { ShieldCheck } from 'lucide-react';
+
+export const metadata = {
+  title: "Privacidad | MIRES",
+};
+
+export default function PrivacidadPage() {
+  return (
+    <main className="min-h-screen bg-[#F5F0E8] py-20 px-6">
+      <div className="max-w-3xl mx-auto bg-white p-10 md:p-16 rounded-3xl shadow-sm border border-gray-100">
+        <div className="flex items-center gap-4 mb-8 pb-8 border-b border-gray-100">
+          <ShieldCheck size={40} className="text-[#E8863A]" />
+          <h1 className="text-3xl md:text-4xl font-serif text-[#1A2E4A] font-bold">
+            Política de Privacidad
+          </h1>
+        </div>
+        
+        <div className="space-y-6 font-sans text-gray-700 leading-relaxed">
+          <p>
+            En <strong>Ministerio Restauración (MIRES)</strong> valoramos y respetamos tu privacidad. Esta página contiene información sobre cómo manejamos los datos de nuestra comunidad.
+          </p>
+          
+          <h2 className="text-xl font-semibold text-[#1A2E4A] mt-8 mb-4">1. Recopilación de Datos</h2>
+          <p>
+            Al completar nuestros formularios de "Soy Nuevo", contacto o inscripción a eventos, únicamente solicitamos la información estrictamente necesaria (como nombre y WhatsApp) para poder comunicarnos contigo de manera efectiva y brindarte apoyo pastoral.
+          </p>
+
+          <h2 className="text-xl font-semibold text-[#1A2E4A] mt-8 mb-4">2. Uso de la Información</h2>
+          <p>
+            Los datos proporcionados son de uso exclusivo e interno de la iglesia. No vendemos, alquilamos ni compartimos tu información personal con terceros ajenos a nuestra organización bajo ninguna circunstancia.
+          </p>
+
+          <p className="mt-10 text-sm text-gray-500 bg-gray-50 p-4 rounded-xl">
+            Si tienes alguna duda sobre el manejo de tu información o deseas que eliminemos tus datos de nuestros registros, por favor comunícate con nosotros a través de la página de Contacto.
+          </p>
+        </div>
+      </div>
+    </main>
+  );
+}
+
+// ==========================================
+// ARCHIVO: src/app/page.tsx
+// ==========================================
+import Link from "next/link";
+import Image from "next/image"; 
+import { createClient } from '@/utils/supabase/server';
+// Importamos más iconos para la carga dinámica de ministerios
+import { Calendar, Play, MapPin, Users, BookOpen, HeartHandshake, ArrowRight, Clock, Map, Coffee, Smile, Heart, Music, Globe, MonitorPlay } from "lucide-react";
+
+import fotoPrincipal from '@/app/foto principal.png'; 
+
+// Mapa de iconos dinámicos para los ministerios
+const IconMap: Record<string, React.ElementType> = {
+  Users, Coffee, Smile, Heart, Music, Globe
+};
+
+export default async function Home() {
+  const supabase = await createClient();
+  
+  // Consultamos sedes y ministerios en paralelo
+  const [ { data: sedes }, { data: ministerios } ] = await Promise.all([
+    supabase.from('sedes').select('*').order('nombre'),
+    supabase.from('ministerios').select('*').limit(6)
+  ]);
+
+  return (
+    <div className="flex flex-col min-h-screen">
+      
+      {/* BLOQUE 2: HERO PRINCIPAL */}
+      <section className="relative w-full h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image src={fotoPrincipal} alt="Comunidad MIRES" fill sizes="100vw" className="object-cover object-center" priority />
+          <div className="absolute inset-0 bg-mires-primary/80 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-gradient-to-t from-mires-bg via-transparent to-transparent opacity-90" />
+        </div>
+
+        <div className="relative z-10 container mx-auto px-4 text-center max-w-4xl flex flex-col items-center">
+          <h1 className="font-display font-bold text-5xl md:text-6xl lg:text-7xl text-mires-white leading-none md:leading-[1.05] tracking-tight mb-6 drop-shadow-md">
+            Su gracia escribe nuevas historias
+          </h1>
+          <p className="font-sans text-lg md:text-xl text-mires-white/90 mb-10 max-w-2xl font-medium">
+            Bienvenido a MIRES — una iglesia para ti y tu familia.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+            <Link href="/soy-nuevo" className="flex items-center justify-center gap-2 bg-mires-accent hover:bg-[#d9782e] text-mires-white px-8 py-4 rounded-full font-bold text-base transition-all transform hover:-translate-y-1 shadow-lg">
+              <Calendar size={20} />
+              Planifica tu visita
+            </Link>
+            <Link href="/sermones" className="flex items-center justify-center gap-2 bg-mires-white/10 hover:bg-mires-white/20 backdrop-blur-md border border-mires-white/30 text-mires-white px-8 py-4 rounded-full font-bold text-base transition-all transform hover:-translate-y-1 shadow-lg">
+              <Play size={20} />
+              Ver predicación en vivo
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* BLOQUE 6: PRÓXIMOS PASOS */}
+      <section className="py-20 bg-mires-bg">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="font-display font-bold text-3xl md:text-4xl text-mires-primary mb-4">
+              Tu camino en MIRES
+            </h2>
+            <p className="font-sans text-mires-textMuted max-w-2xl mx-auto">
+              No importa dónde te encuentres en tu viaje, hay un próximo paso diseñado especialmente para ti.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+            <div className="hidden lg:block absolute top-12 left-[10%] right-[10%] h-0.5 bg-mires-primary/10 -z-10" />
+            
+            {/* Tarjetas de pasos (minimizadas para legibilidad del código) */}
+            {[
+              { icon: MapPin, title: "1. Visítanos", desc: "Ven un domingo y experimenta nuestra comunidad." },
+              { icon: Users, title: "2. Nuevos Hijos", desc: "Conoce la visión y el ADN de nuestra casa." },
+              { icon: BookOpen, title: "3. Discipulado", desc: "Crece espiritualmente en un grupo pequeño." },
+              { icon: HeartHandshake, title: "4. Servir", desc: "Usa tus talentos para bendecir a otros." }
+            ].map((paso, i) => (
+              <div key={i} className="bg-mires-white p-8 rounded-2xl shadow-sm border border-mires-primary/5 flex flex-col items-center text-center group hover:-translate-y-1 transition-transform duration-300">
+                <div className="w-16 h-16 bg-mires-bg rounded-full flex items-center justify-center text-mires-accent mb-6 group-hover:scale-110 transition-transform">
+                  <paso.icon size={32} />
+                </div>
+                <h3 className="font-display font-bold text-xl text-mires-primary mb-2">{paso.title}</h3>
+                <p className="font-sans text-mires-textMuted text-sm">{paso.desc}</p>
+              </div>
+            ))}
+          </div>
+          
+          <div className="mt-12 text-center">
+            <Link href="/soy-nuevo" className="font-sans inline-flex items-center gap-2 text-mires-primary font-bold hover:text-mires-accent transition-colors">
+              Comenzar mi viaje <ArrowRight size={20} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* BLOQUE 5: PREDICACIÓN RECIENTE (YouTube) */}
+      <section className="py-20 bg-mires-primary text-mires-white">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col lg:flex-row gap-12 items-center">
+            <div className="lg:w-1/2">
+              <h2 className="font-display font-bold text-3xl md:text-4xl mb-6">
+                Escucha el mensaje de esta semana
+              </h2>
+              <p className="font-sans text-mires-white/80 mb-8 max-w-lg leading-relaxed">
+                Cada semana compartimos mensajes basados en la Biblia, diseñados para traer esperanza, dirección y propósito a tu vida cotidiana.
+              </p>
+              
+              <div className="flex flex-wrap gap-4">
+                {/* Botón actualizado hacia los devocionales */}
+                <Link href="/devocionales" className="font-sans inline-flex items-center gap-2 bg-mires-white text-mires-primary px-8 py-3 rounded-full font-bold hover:bg-mires-bg transition-colors shadow-lg">
+                  <BookOpen size={20} className="text-mires-accent" />
+                  Ver nuestros devocionales
+                </Link>
+                
+                {/* Botón directo al canal oficial */}
+                <a 
+                  href="https://www.youtube.com/@MiresCentral" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="font-sans inline-flex items-center gap-2 bg-transparent border border-mires-white/30 text-mires-white px-8 py-3 rounded-full font-bold hover:bg-mires-white/10 transition-colors"
+                >
+                  Ir al canal de YouTube
+                </a>
+              </div>
+            </div>
+            
+            <div className="lg:w-1/2 w-full">
+              {/* Contenedor responsivo para YouTube */}
+              <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border border-mires-white/10 bg-mires-primary/50">
+                <iframe 
+                  className="absolute top-0 left-0 w-full h-full"
+                  /* REEMPLAZA "ID_DEL_VIDEO_AQUI" por el código de tu último video */
+                  src="https://www.youtube.com/embed/ID_DEL_VIDEO_AQUI" 
+                  title="Predicación MIRES Central" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* BLOQUE 7: MINISTERIOS (Dinámico) */}
+      <section className="py-20 bg-mires-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="font-display font-bold text-3xl md:text-4xl text-mires-primary mb-4">
+              En MIRES hay un lugar para ti
+            </h2>
+            <p className="font-sans text-mires-textMuted max-w-2xl mx-auto">
+              Conoce nuestros ministerios y encuentra el espacio ideal para conectar, crecer y servir junto a otros.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {ministerios?.map((min) => {
+              const IconoComponente = IconMap[min.icono] || Users; // Fallback a 'Users' si no encuentra el icono
+              
+              return (
+                <Link key={min.id} href={`/ministerios/${min.slug}`} className="group bg-mires-bg rounded-2xl p-6 border border-mires-primary/5 hover:border-mires-accent/50 hover:shadow-md transition-all flex items-start gap-4 cursor-pointer">
+                  <div className="w-12 h-12 bg-mires-white rounded-xl flex items-center justify-center shrink-0 shadow-sm group-hover:bg-mires-accent group-hover:text-mires-white transition-colors text-mires-primary">
+                    <IconoComponente size={24} />
+                  </div>
+                  <div>
+                    <h3 className="font-display font-bold text-lg text-mires-primary mb-1 group-hover:text-mires-accent transition-colors">{min.nombre}</h3>
+                    <p className="font-sans text-mires-textMuted text-sm line-clamp-2">{min.descripcion_corta}</p>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+          
+          <div className="mt-12 text-center">
+            <Link href="/ministerios" className="font-sans inline-flex items-center gap-2 text-mires-primary font-bold hover:text-mires-accent transition-colors">
+              Ver todos los ministerios <ArrowRight size={20} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* BLOQUE 3: SELECTOR DE SEDE (Ubicado al final) */}
+      <section className="py-20 bg-mires-bg border-t border-mires-primary/5">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="font-display font-bold text-3xl md:text-4xl text-mires-primary mb-4">
+              ¿Cuál es la sede más cercana a ti?
+            </h2>
+            <p className="text-mires-textMuted max-w-2xl mx-auto font-sans">
+              Encuentra tu lugar en nuestra familia. Tenemos reuniones presenciales en distintas comunas.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {sedes?.map((sede) => (
+              <div key={sede.id} className="bg-mires-white rounded-2xl p-8 shadow-sm border border-mires-primary/5 hover:shadow-lg transition-all hover:-translate-y-1">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 bg-mires-primary text-mires-white rounded-full flex items-center justify-center shrink-0">
+                    <MapPin size={24} />
+                  </div>
+                  <h3 className="font-display font-bold text-2xl text-mires-primary">{sede.nombre}</h3>
+                </div>
+                
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-center gap-3 text-mires-textMuted">
+                    <Clock size={20} className="text-mires-accent" />
+                    <span className="font-sans font-medium text-mires-textMain">{sede.horarios}</span>
+                  </div>
+                  <div className="flex items-start gap-3 text-mires-textMuted">
+                    <Map size={20} className="text-mires-accent shrink-0 mt-0.5" />
+                    <span className="font-sans text-sm">{sede.direccion || 'Dirección exacta disponible pronto.'}</span>
+                  </div>
+                </div>
+
+                <a href={sede.map_url || '#'} target="_blank" rel="noopener noreferrer" className="w-full inline-flex items-center justify-center gap-2 bg-transparent border-2 border-mires-primary text-mires-primary hover:bg-mires-primary hover:text-mires-white px-6 py-3 rounded-full font-bold font-sans transition-colors">
+                  Cómo llegar <ArrowRight size={18} />
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+    </div>
+  );
+}
+
+// ==========================================
+// ARCHIVO: src/app/login/actions.ts
+// ==========================================
+'use server'
+
+import { revalidatePath } from 'next/cache'
+import { redirect } from 'next/navigation'
+import { createClient } from '@/utils/supabase/server'
+
+export async function login(formData: FormData) {
+  const supabase = await createClient()
+
+  // Extraemos el correo y contraseña del formulario
+  const data = {
+    email: formData.get('email') as string,
+    password: formData.get('password') as string,
+  }
+
+  // Intentamos iniciar sesión con Supabase
+  const { error } = await supabase.auth.signInWithPassword(data)
+
+  if (error) {
+    // Si la contraseña es incorrecta, recargamos la página con un error
+    redirect('/login?error=true')
+  }
+
+  // Si es correcto, validamos la sesión y redirigimos al panel seguro
+  revalidatePath('/admin', 'layout')
+  redirect('/admin')
+}
+
+// ==========================================
+// ARCHIVO: src/app/login/page.tsx
+// ==========================================
+import { login } from './actions';
+import { Lock } from 'lucide-react';
+import Image from 'next/image';
+import logoMires from '@/app/Logo Mires simple.png'; // Asegúrate de que la extensión sea correcta
+
+export default function LoginPage({
+  searchParams,
+}: {
+  searchParams: { error: string };
+}) {
+  return (
+    <div className="min-h-screen bg-[#F5F0E8] flex flex-col justify-center items-center p-4">
+      <div className="w-full max-w-md bg-white rounded-3xl shadow-lg p-10 border border-gray-100">
+        
+        <div className="flex justify-center mb-8">
+          <Image src={logoMires} alt="MIRES Logo" width={150} height={50} className="object-contain" />
+        </div>
+
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-50 rounded-full text-[#1A2E4A] mb-4">
+            <Lock size={24} />
+          </div>
+          <h1 className="text-2xl font-serif text-[#1A2E4A] font-bold">Acceso Administrativo</h1>
+          <p className="text-gray-500 text-sm mt-2">Ingresa tus credenciales autorizadas.</p>
+        </div>
+
+        <form action={login} className="space-y-6">
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">Correo Electrónico</label>
+            <input 
+              name="email" 
+              type="email" 
+              required 
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#E8863A] focus:border-transparent outline-none transition-all" 
+              placeholder="admin@mires.cl" 
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">Contraseña</label>
+            <input 
+              name="password" 
+              type="password" 
+              required 
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#E8863A] focus:border-transparent outline-none transition-all" 
+              placeholder="••••••••" 
+            />
+          </div>
+
+          {searchParams?.error && (
+            <p className="text-red-500 text-sm font-medium text-center bg-red-50 py-2 rounded-lg">
+              Correo o contraseña incorrectos.
+            </p>
+          )}
+
+          <button 
+            type="submit" 
+            className="w-full bg-[#1A2E4A] text-white font-semibold py-4 rounded-xl hover:bg-[#0f1d30] transition-colors"
+          >
+            Iniciar Sesión
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+// ==========================================
+// ARCHIVO: src/app/vive-mujer/page.tsx
+// ==========================================
+import { Hammer } from 'lucide-react';
+import Link from 'next/link';
+
+export default function MinisterioEnConstruccion() {
+  return (
+    <main className="min-h-screen bg-[#F5F0E8] flex flex-col items-center justify-center p-6">
+      <div className="bg-white max-w-lg w-full rounded-3xl shadow-sm border border-gray-100 p-10 text-center">
+        <div className="flex justify-center mb-6">
+          <div className="w-20 h-20 bg-orange-50 rounded-full flex items-center justify-center text-[#E8863A]">
+            <Hammer size={40} />
+          </div>
+        </div>
+        <h1 className="text-3xl font-serif text-[#1A2E4A] font-bold mb-4">
+          Próximamente
+        </h1>
+        <p className="text-gray-600 font-sans mb-8 leading-relaxed">
+          Estamos construyendo este espacio para darte toda la información sobre este ministerio. ¡Vuelve muy pronto!
+        </p>
+        <Link 
+          href="/ministerios" 
+          className="inline-block bg-[#1A2E4A] text-white font-semibold px-8 py-3 rounded-xl hover:bg-[#0f1d30] transition-colors"
+        >
+          Volver a Ministerios
+        </Link>
+      </div>
+    </main>
+  );
+}
+
+// ==========================================
+// ARCHIVO: src/utils/supabase/server.ts
+// ==========================================
+import { createServerClient } from '@supabase/ssr'
+import { cookies } from 'next/headers'
+
+export async function createClient() {
+  const cookieStore = await cookies()
+
+  return createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return cookieStore.getAll()
+        },
+        setAll(cookiesToSet) {
+          try {
+            cookiesToSet.forEach(({ name, value, options }) =>
+              cookieStore.set(name, value, options)
+            )
+          } catch {
+            // Se ignora el error si se llama desde un Server Component
+          }
+        },
+      },
+    }
+  )
+}
+
+// ==========================================
+// ARCHIVO: src/components/Footer.tsx
+// ==========================================
+import Link from 'next/link';
+import Image from 'next/image';
+import { createClient } from '@/utils/supabase/server';
+import { MapPin, MessageCircle, Mail } from 'lucide-react';
+
+// Importamos el logo local
+import logoMires from '@/app/Logo Mires simple.png';
+
+export default async function Footer() {
+  const supabase = await createClient();
+  const { data: sedes } = await supabase.from('sedes').select('*').order('nombre');
+
+  return (
+    <footer className="bg-mires-primary text-mires-white pt-16 pb-8 border-t border-mires-primary/20">
+      <div className="container mx-auto px-4">
+        
+        {/* Top: Newsletter */}
+        <div className="flex flex-col md:flex-row items-center justify-between bg-mires-white/5 rounded-2xl p-8 mb-16 border border-mires-white/10">
+          <div className="mb-6 md:mb-0">
+            <h3 className="font-display font-bold text-2xl mb-2">Conéctate con nuestra comunidad</h3>
+            <p className="font-sans text-mires-white/70">Suscríbete para recibir noticias, eventos y devocionales.</p>
+          </div>
+          <form className="flex w-full md:w-auto gap-2">
+            <input 
+              type="email" 
+              placeholder="Tu correo electrónico" 
+              className="font-sans bg-mires-primary border border-mires-white/20 rounded-full px-6 py-3 text-mires-white focus:outline-none focus:border-mires-accent w-full md:w-80"
+              required
+            />
+            <button 
+              type="submit" 
+              className="font-sans bg-mires-accent hover:bg-[#d9782e] text-mires-white px-6 py-3 rounded-full font-bold transition-colors"
+            >
+              Unirme
+            </button>
+          </form>
+        </div>
+
+        {/* Middle: Grid de Enlaces e Información */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
+          
+          {/* Columna 1: Marca y Redes */}
+          <div className="lg:col-span-2">
+            <Link href="/" className="inline-block mb-6 bg-mires-white p-2 rounded-lg">
+              <Image 
+                src={logoMires} 
+                alt="Logo MIRES" 
+                height={40} 
+                className="w-auto h-10 object-contain"
+              />
+            </Link>
+            <p className="font-sans text-mires-white/70 mb-6 max-w-sm leading-relaxed">
+              Personas que se aman, bendicen familias e influyen comunidades. 
+              Una iglesia diseñada para ti y tu familia.
+            </p>
+            <div className="flex items-center gap-4">
+              {/* Instagram SVG */}
+              <a href="https://www.instagram.com/mirescentral" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-mires-white/10 flex items-center justify-center hover:bg-mires-accent transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+              </a>
+              {/* YouTube SVG */}
+              <a href="https://www.youtube.com/@MiresCentral" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-mires-white/10 flex items-center justify-center hover:bg-[#FF0000] transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2C5.12 19.5 12 19.5 12 19.5s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+              </a>
+            </div>
+          </div>
+
+          {/* Columna 2: Enlaces Rápidos */}
+          <div>
+            <h4 className="font-display font-bold text-lg mb-6">Enlaces Rápidos</h4>
+            <ul className="font-sans space-y-4 text-mires-white/70">
+              <li><Link href="/soy-nuevo" className="hover:text-mires-accent transition-colors">Soy Nuevo</Link></li>
+              <li><Link href="/ministerios" className="hover:text-mires-accent transition-colors">Ministerios</Link></li>
+              <li><Link href="/sermones" className="hover:text-mires-accent transition-colors">Sermones</Link></li>
+              <li><Link href="/devocionales" className="hover:text-mires-accent transition-colors">Devocionales</Link></li>
+              <li><Link href="/ofrendas" className="hover:text-mires-accent font-medium text-mires-white transition-colors">Donaciones</Link></li>
+            </ul>
+          </div>
+
+          {/* Columnas 3 y 4: Sedes Dinámicas */}
+          <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-8">
+            {sedes?.map((sede) => (
+              <div key={sede.id}>
+                <h4 className="font-display font-bold text-lg mb-6 text-mires-accent">{sede.nombre}</h4>
+                <ul className="font-sans space-y-4 text-sm text-mires-white/70">
+                  <li className="flex items-start gap-3">
+                    <MapPin size={18} className="shrink-0 mt-0.5" />
+                    <span>{sede.direccion || 'Dirección por definir'}</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <MessageCircle size={18} className="shrink-0" />
+                    <span>WhatsApp disponible pronto</span>
+                  </li>
+                </ul>
+              </div>
+            ))}
+          </div>
+
+        </div>
+
+        {/* Bottom: Copyright */}
+        <div className="pt-8 border-t border-mires-white/10 flex flex-col md:flex-row items-center justify-between gap-4 font-sans text-sm text-mires-white/50">
+          <p>© {new Date().getFullYear()} MIRES — Ministerio Restauración. Todos los derechos reservados.</p>
+          <div className="flex items-center gap-6">
+            <Link href="/privacidad" className="hover:text-mires-white transition-colors">Política de Privacidad</Link>
+            <Link href="/contacto" className="hover:text-mires-white transition-colors">Contacto</Link>
+            {/* Este es el nuevo botón de acceso para ingresar desde la web */}
+            <Link href="/login" className="hover:text-mires-accent transition-colors font-medium">
+              Acceso Equipo
+            </Link>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+  );
+}
+
+// ==========================================
+// ARCHIVO: src/components/Header.tsx
+// ==========================================
+import Link from 'next/link';
+import Image from 'next/image';
+import { createClient } from '@/utils/supabase/server';
+import { MapPin, ChevronDown } from 'lucide-react';
+// Importamos el logo local directamente
+import logoMires from '@/app/Logo Mires simple.png';
+
+export default async function Header() {
+  const supabase = await createClient();
+  const { data: sedes } = await supabase.from('sedes').select('id, nombre, horarios').order('nombre');
+
+  return (
+    <header className="sticky top-0 z-50 w-full bg-mires-bg/90 backdrop-blur-md border-b border-mires-primary/10 shadow-sm transition-all">
+      <div className="container mx-auto px-4 h-20 flex items-center justify-between">
+        
+        {/* Izquierda: Logo Optimizado y Selector de Sede */}
+        <div className="flex items-center gap-8">
+          <Link href="/" className="flex items-center gap-2 transition-transform hover:scale-[1.02]">
+            <Image 
+              src={logoMires} 
+              alt="Logo MIRES" 
+              height={45} 
+              className="w-auto h-11 object-contain"
+              priority // Carga el logo con prioridad alta por estar en el viewport inicial
+            />
+          </Link>
+
+          <div className="hidden md:flex group relative items-center gap-1 cursor-pointer text-sm font-medium text-mires-textMuted hover:text-mires-primary transition-colors">
+            <MapPin size={16} />
+            <span>Sedes</span>
+            <ChevronDown size={14} className="group-hover:rotate-180 transition-transform duration-200" />
+            
+            {/* Dropdown de Sedes */}
+            <div className="absolute top-full left-0 mt-2 w-56 bg-mires-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 border border-gray-100 p-2">
+              {sedes?.map((sede) => (
+                <div key={sede.id} className="p-3 hover:bg-mires-bg rounded-md transition-colors cursor-pointer">
+                  <p className="font-semibold text-mires-primary text-sm">{sede.nombre}</p>
+                  <p className="text-xs text-mires-textMuted mt-1">{sede.horarios}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Centro: Navegación Principal */}
+        <nav className="hidden lg:flex items-center gap-6 text-sm font-medium text-mires-textMain">
+          <Link href="/" className="hover:text-mires-accent transition-colors">Inicio</Link>
+          <Link href="/soy-nuevo" className="hover:text-mires-accent transition-colors">Soy Nuevo</Link>
+          <Link href="/ministerios" className="hover:text-mires-accent transition-colors">Ministerios</Link>
+          <Link href="/eventos" className="hover:text-mires-accent transition-colors">Eventos</Link>
+          <Link href="/sermones" className="hover:text-mires-accent transition-colors">Sermones</Link>
+        </nav>
+
+        {/* Derecha: CTA Principal */}
+        <div className="flex items-center gap-4">
+          <Link 
+            href="/soy-nuevo" 
+            className="bg-mires-primary hover:bg-mires-primary/90 text-mires-white px-6 py-2.5 rounded-full font-medium text-sm transition-all transform hover:-translate-y-0.5 shadow-md"
+          >
+            VISÍTANOS
+          </Link>
+        </div>
+
+      </div>
+    </header>
+  );
+}
+
