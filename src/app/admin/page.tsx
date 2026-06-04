@@ -41,6 +41,10 @@ export default async function AdminDashboard() {
             <Users size={18} className="text-[#E8863A]" />
             Nuevos Visitantes
           </Link>
+          <Link href="/admin/sedes" className="flex items-center gap-3 hover:bg-white/5 text-gray-300 hover:text-white px-4 py-3 rounded-xl transition-all">
+            <Building size={18} />
+            Gestión de Sedes
+          </Link>
           <Link href="/admin/eventos" className="flex items-center gap-3 hover:bg-white/5 text-gray-300 hover:text-white px-4 py-3 rounded-xl transition-all">
             <CalendarIcon size={18} />
             Gestionar Eventos
