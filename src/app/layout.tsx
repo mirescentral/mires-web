@@ -3,6 +3,9 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer"; // Importamos el nuevo componente
 
+// Le decimos a Next.js que use la red global rápida de Cloudflare
+export const runtime = 'edge';
+
 export const metadata: Metadata = {
   title: "MIRES | Ministerio Restauración",
   description: "Su gracia escribe nuevas historias",
