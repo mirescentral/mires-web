@@ -104,6 +104,10 @@ export default async function Footer() {
           <div className="flex items-center gap-6">
             <Link href="/privacidad" className="hover:text-mires-white transition-colors">Política de Privacidad</Link>
             <Link href="/contacto" className="hover:text-mires-white transition-colors">Contacto</Link>
+            {/* Este es el nuevo botón de acceso para ingresar desde la web */}
+            <Link href="/login" className="hover:text-mires-accent transition-colors font-medium">
+              Acceso Equipo
+            </Link>
           </div>
         </div>
 
