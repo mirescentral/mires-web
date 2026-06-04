@@ -1,5 +1,5 @@
 import { createClient } from '@/utils/supabase/server';
-import { Users, Calendar as CalendarIcon, LogOut, Phone, MapPin } from 'lucide-react';
+import { Users, Calendar as CalendarIcon, LogOut, Phone, MapPin, Building } from 'lucide-react';
 import Link from 'next/link';
 
 export const metadata = {
