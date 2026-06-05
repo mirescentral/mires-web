@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
 @theme {
-  /* Paleta Minimalista Editorial Eden Church */
+  /* La paleta cromática exacta de Eden Church */
   --color-eden-black: #0A0A0A;
   --color-eden-white: #FFFFFF;
   --color-eden-cream: #F9F8F6;
   --color-eden-stone: #E6E5E1;
   --color-eden-muted: #737373;
 
-  /* Tipografías */
+  /* Tipografías Editoriales */
   --font-sans: var(--font-inter), sans-serif;
-  --font-serif-eden: var(--font-playfair), serif;
+  --font-serif: var(--font-playfair), serif;
 }
 
 @layer base {
@@ -18,10 +18,12 @@
     background-color: var(--color-eden-cream);
     color: var(--color-eden-black);
     font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
   }
-  
-  h1, h2, h3, .font-serif-eden {
-    font-family: var(--font-serif-eden);
+
+  /* Forzamos que los títulos adopten la tipografía Serif elegante con patitas */
+  h1, h2, h3, h4, .font-serif-eden {
+    font-family: var(--font-serif);
     letter-spacing: -0.03em;
   }
   

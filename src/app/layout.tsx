@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-// Definimos las fuentes al estilo Eden Church
 const inter = Inter({ 
   subsets: ["latin"],
   variable: '--font-inter',
@@ -28,10 +28,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className="scroll-smooth">
-      <body className={`${inter.variable} ${playfair.variable} font-sans bg-[#F9F8F6] text-[#0A0A0A] antialiased flex flex-col min-h-screen`}>
-        <div className="flex-grow">
+      <body className={`${inter.variable} ${playfair.variable} bg-eden-cream text-eden-black antialiased min-h-screen flex flex-col`}>
+        <Navbar />
+        <main className="flex-grow">
           {children}
-        </div>
+        </main>
         <Footer />
       </body>
     </html>
