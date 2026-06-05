@@ -6,7 +6,15 @@ export default function Footer() {
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="flex flex-col md:flex-row justify-between items-start gap-16 mb-24">
           <div className="max-w-md">
-            <h2 className="font-logo-mires text-5xl font-bold lowercase tracking-tighter mb-6">mires</h2>
+            <h2 
+              className="text-5xl font-bold tracking-tighter mb-6"
+              style={{ 
+                fontFamily: '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif',
+                textTransform: 'lowercase' 
+              }}
+            >
+              mires
+            </h2>
             <p className="font-sans text-eden-stone/70 font-light leading-relaxed text-base">
               Amamos ver a las personas restauradas por el amor y la gracia de Jesús.
             </p>

@@ -8,12 +8,9 @@
   --color-eden-stone: #E6E5E1;
   --color-eden-muted: #737373;
 
-  /* Tipografías Editoriales */
+  /* Tipografías */
   --font-sans: var(--font-inter), sans-serif;
   --font-serif: var(--font-playfair), serif;
-  
-  /* Forzamos la familia Sans Neo-Grotesca Helvetica para el logo */
-  --font-logo: "Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 @layer base {
@@ -29,14 +26,8 @@
     letter-spacing: -0.03em;
   }
   
-  /* Nueva clase utilitaria para inyectar Helvetica Now Display */
-  .font-logo-mires {
-    font-family: var(--font-logo);
-  }
-  
   ::selection {
-    background-color: var(--color-eden-black);
-    color: var(--color-eden-white);
+    @apply bg-eden-black text-eden-white;
   }
 }
 
