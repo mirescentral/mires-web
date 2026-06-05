@@ -109,6 +109,30 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* SECCIÓN 2.5: QUIÉNES SOMOS (BLOQUE ASIMÉTRICO EDITORIAL) */}
+      <section className="py-24 md:py-32 bg-eden-cream border-t border-eden-stone/30">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-12 md:gap-20">
+            <div className="md:w-1/2 space-y-6">
+              <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase text-eden-muted">
+                Nuestra Identidad
+              </span>
+              <h2 className="font-serif text-4xl md:text-5xl leading-[1.1] text-eden-black tracking-tight">
+                El corazón <br /> detrás de nuestra casa.
+              </h2>
+            </div>
+            <div className="md:w-1/2 space-y-8 border-l border-eden-stone/50 pl-6 md:pl-10">
+              <p className="font-sans text-lg text-eden-muted font-light leading-relaxed">
+                Nuestra convicción está basada en las enseñanzas de la Biblia y en el deseo de crecer espiritualmente, desarrollar una relación más profunda con Dios y compartir nuestra historia contigo.
+              </p>
+              <Link href="/quienes-somos" className="inline-flex items-center gap-3 text-eden-black font-sans text-xs font-bold tracking-widest uppercase hover:text-eden-muted transition-colors duration-300 group">
+                Conócenos a fondo <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform duration-300" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* SECCIÓN 3: PREDICACIONES */}
       <section className="py-32 md:py-40 bg-eden-black text-eden-white">
         <div className="container mx-auto px-6 max-w-7xl">
