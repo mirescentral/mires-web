@@ -22,7 +22,6 @@ function FilaCargaMultimedia({ seccion, titulo, descripcion }: CardCargaProps) {
     }
   };
 
-  // Cambio crítico: Usamos onSubmit estándar para tener control total
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!archivo) return;
@@ -33,15 +32,18 @@ function FilaCargaMultimedia({ seccion, titulo, descripcion }: CardCargaProps) {
     formData.append('seccion', seccion);
     formData.append('imagen', archivo);
     
+    // El servidor hace su trabajo ligero y devuelve la respuesta
     const respuesta = await subirImagenSeccion(formData);
     
     setIsPending(false); 
     setArchivo(null);
 
-    if (respuesta.status === 'success') {
+    if (respuesta?.status === 'success') {
+      // El navegador es quien asume el trabajo de refrescar la web, salvando la memoria de Vercel
+      router.refresh();
       router.push(`/admin/multimedia?success=true&actualizado=${respuesta.seccion}`);
     } else {
-      router.push(`/admin/multimedia?error=${respuesta.code}`);
+      router.push(`/admin/multimedia?error=${respuesta?.code || 'falla_servidor'}`);
     }
   };
 
