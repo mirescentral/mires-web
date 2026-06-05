@@ -1,9 +1,10 @@
-import { ArrowRight, MapPin, Clock } from 'lucide-react';
+import { ArrowRight, MapPin, Clock, CheckCircle2 } from 'lucide-react';
 import { createClient } from '@/utils/supabase/server';
 
 export const metadata = { title: "Planifica tu Visita | mires" };
 
-export default async function SoyNuevoPage() {
+// AÑADIMOS SEARCHPARAMS AQUÍ
+export default async function SoyNuevoPage({ searchParams }: { searchParams: { success?: string, error?: string } }) {
   const supabase = await createClient();
   const { data: sedes } = await supabase.from('sedes').select('*').order('nombre');
 
@@ -13,6 +14,8 @@ export default async function SoyNuevoPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-eden-cream text-eden-black pt-32">
+      
+      {/* ... (Todo el header se mantiene igual) ... */}
       <section className="py-20 px-6">
         <div className="container mx-auto max-w-5xl text-center fade-in-up">
           <span className="font-sans text-xs font-semibold tracking-[0.25em] uppercase text-eden-muted mb-6 block">Bienvenido a Casa</span>
@@ -26,6 +29,8 @@ export default async function SoyNuevoPage() {
       <section className="py-24 bg-eden-white border-t border-eden-stone">
         <div className="container mx-auto px-6 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+            
+            {/* COLUMNA IZQUIERDA (Reuniones) */}
             <div>
               <h2 className="font-serif text-4xl mb-12">Nuestras Reuniones</h2>
               <div className="space-y-12">
@@ -41,10 +46,10 @@ export default async function SoyNuevoPage() {
               </div>
             </div>
 
+            {/* COLUMNA DERECHA (Formulario) */}
             <div className="relative overflow-hidden p-10 md:p-16 border border-eden-stone/40 bg-[#EDEBE6]">
               
               <div className="absolute inset-0 z-0 select-none pointer-events-none">
-                {/* Eliminamos el onError y agregamos text-transparent */}
                 <img 
                   src={urlFondo} 
                   alt="" 
@@ -54,39 +59,61 @@ export default async function SoyNuevoPage() {
               </div>
 
               <div className="relative z-10">
-                <h2 className="font-serif text-3xl mb-8">Déjanos tus datos</h2>
-                <form action="/api/visita" method="POST" className="space-y-8 font-sans">
-                  <div>
-                    <label className="block text-xs font-semibold tracking-widest uppercase text-eden-muted mb-3">Nombre Completo</label>
-                    <input type="text" name="nombre" required placeholder="Ej. Ana Silva" className="w-full bg-transparent border-b border-eden-stone focus:border-eden-black py-2 outline-none transition-colors rounded-none" />
+                
+                {/* MENSAJE DE ÉXITO DINÁMICO */}
+                {searchParams?.success ? (
+                  <div className="bg-green-50 border border-green-200 p-8 text-center space-y-4 mb-8">
+                    <CheckCircle2 size={40} className="mx-auto text-green-600" />
+                    <h3 className="font-serif text-2xl text-green-900">¡Te esperamos!</h3>
+                    <p className="text-sm font-light text-green-800">
+                      Hemos recibido tus datos correctamente. Nuestro equipo se pondrá en contacto contigo muy pronto para recibirte este domingo.
+                    </p>
                   </div>
-                  <div>
-                    <label className="block text-xs font-semibold tracking-widest uppercase text-eden-muted mb-3">WhatsApp</label>
-                    <input type="tel" name="whatsapp" required placeholder="+56 9 0000 0000" className="w-full bg-transparent border-b border-eden-stone focus:border-eden-black py-2 outline-none transition-colors rounded-none" />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-semibold tracking-widest uppercase text-eden-muted mb-3">¿A qué iglesia asistirás?</label>
-                    <div className="relative">
-                      <select 
-                        name="sede_id" required defaultValue=""
-                        className="w-full bg-transparent border-b border-eden-stone focus:border-eden-black py-2 outline-none appearance-none rounded-none cursor-pointer transition-colors text-eden-black"
-                      >
-                        <option value="" disabled className="text-eden-muted">Selecciona una sede</option>
-                        {sedes?.map((sede) => (
-                          <option key={sede.id} value={sede.id} className="bg-eden-cream text-eden-black">{sede.nombre}</option>
-                        ))}
-                      </select>
-                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-1 text-eden-muted">
-                        <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                ) : (
+                  <>
+                    <h2 className="font-serif text-3xl mb-8">Déjanos tus datos</h2>
+                    
+                    {/* MENSAJE DE ERROR (Opcional) */}
+                    {searchParams?.error && (
+                      <div className="mb-6 p-4 text-xs font-bold text-red-600 border border-red-200 bg-red-50 uppercase tracking-widest text-center">
+                        Ocurrió un error. Por favor, intenta nuevamente.
                       </div>
-                    </div>
-                  </div>
-                  <button type="submit" className="w-full bg-eden-black text-eden-white font-semibold py-5 text-xs tracking-[0.2em] uppercase hover:bg-eden-muted transition-colors flex items-center justify-center gap-3 mt-4 rounded-none">
-                    Confirmar Visita <ArrowRight size={16} />
-                  </button>
-                </form>
-              </div>
+                    )}
 
+                    <form action="/api/visita" method="POST" className="space-y-8 font-sans">
+                      <div>
+                        <label className="block text-xs font-semibold tracking-widest uppercase text-eden-muted mb-3">Nombre Completo</label>
+                        <input type="text" name="nombre" required placeholder="Ej. Ana Silva" className="w-full bg-transparent border-b border-eden-stone focus:border-eden-black py-2 outline-none transition-colors rounded-none" />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-semibold tracking-widest uppercase text-eden-muted mb-3">WhatsApp</label>
+                        <input type="tel" name="whatsapp" required placeholder="+56 9 0000 0000" className="w-full bg-transparent border-b border-eden-stone focus:border-eden-black py-2 outline-none transition-colors rounded-none" />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-semibold tracking-widest uppercase text-eden-muted mb-3">¿A qué iglesia asistirás?</label>
+                        <div className="relative">
+                          <select 
+                            name="sede_id" required defaultValue=""
+                            className="w-full bg-transparent border-b border-eden-stone focus:border-eden-black py-2 outline-none appearance-none rounded-none cursor-pointer transition-colors text-eden-black"
+                          >
+                            <option value="" disabled className="text-eden-muted">Selecciona una sede</option>
+                            {sedes?.map((sede) => (
+                              <option key={sede.id} value={sede.id} className="bg-eden-cream text-eden-black">{sede.nombre}</option>
+                            ))}
+                          </select>
+                          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-1 text-eden-muted">
+                            <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                          </div>
+                        </div>
+                      </div>
+                      <button type="submit" className="w-full bg-eden-black text-eden-white font-semibold py-5 text-xs tracking-[0.2em] uppercase hover:bg-eden-muted transition-colors flex items-center justify-center gap-3 mt-4 rounded-none">
+                        Confirmar Visita <ArrowRight size={16} />
+                      </button>
+                    </form>
+                  </>
+                )}
+
+              </div>
             </div>
           </div>
         </div>
