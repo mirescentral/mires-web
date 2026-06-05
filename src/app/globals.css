@@ -1,19 +1,33 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  /* Paleta Minimalista Editorial Eden Church */
+  --color-eden-black: #0A0A0A;
+  --color-eden-white: #FFFFFF;
+  --color-eden-cream: #F9F8F6;
+  --color-eden-stone: #E6E5E1;
+  --color-eden-muted: #737373;
+
+  /* Tipografías */
+  --font-sans: var(--font-inter), sans-serif;
+  --font-serif-eden: var(--font-playfair), serif;
+}
 
 @layer base {
   body {
-    @apply bg-eden-cream text-eden-black font-sans;
+    background-color: var(--color-eden-cream);
+    color: var(--color-eden-black);
+    font-family: var(--font-sans);
   }
   
-  /* Hacemos que los títulos usen la fuente elegante */
   h1, h2, h3, .font-serif-eden {
-    @apply font-serif tracking-tight;
+    font-family: var(--font-serif-eden);
+    letter-spacing: -0.03em;
   }
   
   ::selection {
-    @apply bg-eden-black text-eden-white;
+    background-color: var(--color-eden-black);
+    color: var(--color-eden-white);
   }
 }
 

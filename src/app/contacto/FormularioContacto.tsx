@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react';
-import { Send, CheckCircle2, Loader2 } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Loader2 } from 'lucide-react';
 import { enviarMensaje } from './actions';
 
 export default function FormularioContacto() {
@@ -12,48 +12,40 @@ export default function FormularioContacto() {
     setIsPending(true);
     const result = await enviarMensaje(formData);
     setIsPending(false);
-
-    if (result.success) {
-      setIsSuccess(true);
-    } else {
-      alert("Hubo un problema al enviar el mensaje. Por favor, intenta de nuevo.");
-    }
+    if (result.success) setIsSuccess(true);
+    else alert("Hubo un problema. Por favor, intenta de nuevo.");
   }
 
-  // Si el mensaje se envió con éxito, mostramos esta pantalla de agradecimiento
   if (isSuccess) {
     return (
-      <div className="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-gray-100 text-center flex flex-col items-center justify-center min-h-[400px]">
-        <div className="w-20 h-20 bg-green-50 text-green-600 rounded-full flex items-center justify-center mb-6">
-          <CheckCircle2 size={40} />
-        </div>
-        <h3 className="text-3xl font-serif text-[#1A2E4A] mb-4">¡Mensaje enviado!</h3>
-        <p className="font-sans text-gray-600 max-w-sm">
-          Gracias por escribirnos. Nuestro equipo ha recibido tu mensaje y te contactaremos a la brevedad.
+      <div className="bg-eden-cream p-10 md:p-16 flex flex-col items-center justify-center text-center h-full min-h-[400px]">
+        <CheckCircle2 size={40} className="text-eden-black mb-6" />
+        <h3 className="font-serif-eden text-3xl mb-4">¡Mensaje enviado!</h3>
+        <p className="font-sans text-sm font-light text-eden-muted">
+          Gracias por escribirnos. Nuestro equipo te contactará a la brevedad.
         </p>
       </div>
     );
   }
 
-  // Si aún no se envía, mostramos el formulario
   return (
-    <div className="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-gray-100">
-      <h2 className="text-3xl font-serif text-[#1A2E4A] mb-6">Envíanos un mensaje</h2>
-      <form action={handleSubmit} className="space-y-6 font-sans">
+    <div className="bg-eden-cream p-10 md:p-16">
+      <h2 className="font-serif-eden text-3xl mb-8">Envíanos un mensaje</h2>
+      <form action={handleSubmit} className="space-y-8 font-sans">
         <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-2">Nombre completo</label>
-          <input type="text" name="nombre" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#E8863A] focus:border-transparent outline-none transition-all" placeholder="Ej: Juan Pérez" required />
+          <label className="block text-xs font-semibold tracking-widest uppercase text-eden-muted mb-3">Nombre completo</label>
+          <input type="text" name="nombre" required className="w-full bg-transparent border-b border-eden-stone focus:border-eden-black py-2 outline-none transition-colors rounded-none text-eden-black" />
         </div>
         <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-2">Correo electrónico</label>
-          <input type="email" name="email" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#E8863A] focus:border-transparent outline-none transition-all" placeholder="juan@ejemplo.com" required />
+          <label className="block text-xs font-semibold tracking-widest uppercase text-eden-muted mb-3">Correo electrónico</label>
+          <input type="email" name="email" required className="w-full bg-transparent border-b border-eden-stone focus:border-eden-black py-2 outline-none transition-colors rounded-none text-eden-black" />
         </div>
         <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-2">Mensaje</label>
-          <textarea name="mensaje" rows={4} className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#E8863A] focus:border-transparent outline-none transition-all" placeholder="¿En qué podemos ayudarte?" required></textarea>
+          <label className="block text-xs font-semibold tracking-widest uppercase text-eden-muted mb-3">Mensaje</label>
+          <textarea name="mensaje" rows={4} required className="w-full bg-transparent border-b border-eden-stone focus:border-eden-black py-2 outline-none transition-colors rounded-none text-eden-black resize-none"></textarea>
         </div>
-        <button type="submit" disabled={isPending} className="w-full bg-[#E8863A] text-white font-semibold py-4 rounded-xl hover:bg-[#d1752f] disabled:bg-[#E8863A]/50 transition-colors flex items-center justify-center gap-2">
-          {isPending ? <Loader2 className="w-5 h-5 animate-spin" /> : <Send className="w-5 h-5" />}
+        <button type="submit" disabled={isPending} className="w-full bg-eden-black text-eden-white font-semibold py-5 text-xs tracking-[0.2em] uppercase hover:bg-eden-muted disabled:bg-eden-stone transition-colors flex items-center justify-center gap-3 mt-4">
+          {isPending ? <Loader2 className="w-5 h-5 animate-spin" /> : <ArrowRight className="w-5 h-5" />}
           {isPending ? 'Enviando...' : 'Enviar mensaje'}
         </button>
       </form>
