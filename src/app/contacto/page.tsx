@@ -72,7 +72,7 @@ export default async function ContactoPage() {
 
                 {/* NUEVO CAMPO: SELECCIÓN DINÁMICA DE IGLESIA (SEDE) */}
                 <div className="flex flex-col gap-2">
-                  <label className="text-[10px] font-bold tracking-widest uppercase text-eden-muted">¿A qué iglesia asistirás?</label>
+                  <label className="text-[10px] font-bold tracking-widest uppercase text-eden-muted">¿A qué iglesia asistes?</label>
                   <div className="relative">
                     <select 
                       name="sede_id"

@@ -42,13 +42,40 @@ export default async function SoyNuevoPage() {
               <form action="/api/visita" method="POST" className="space-y-8 font-sans">
                 <div>
                   <label className="block text-xs font-semibold tracking-widest uppercase text-eden-muted mb-3">Nombre Completo</label>
-                  <input type="text" name="nombre" required className="w-full bg-transparent border-b border-eden-stone focus:border-eden-black py-2 outline-none transition-colors rounded-none" />
+                  <input type="text" name="nombre" required placeholder="Ej. Ana Silva" className="w-full bg-transparent border-b border-eden-stone focus:border-eden-black py-2 outline-none transition-colors rounded-none" />
                 </div>
+                
                 <div>
                   <label className="block text-xs font-semibold tracking-widest uppercase text-eden-muted mb-3">WhatsApp</label>
-                  <input type="tel" name="whatsapp" required className="w-full bg-transparent border-b border-eden-stone focus:border-eden-black py-2 outline-none transition-colors rounded-none" />
+                  <input type="tel" name="whatsapp" required placeholder="+56 9 0000 0000" className="w-full bg-transparent border-b border-eden-stone focus:border-eden-black py-2 outline-none transition-colors rounded-none" />
                 </div>
-                <button type="submit" className="w-full bg-eden-black text-eden-white font-semibold py-5 text-xs tracking-[0.2em] uppercase hover:bg-eden-muted transition-colors flex items-center justify-center gap-3 mt-4">
+
+                {/* NUEVO CAMPO: SELECCIÓN DINÁMICA DE IGLESIA (SEDE) */}
+                <div>
+                  <label className="block text-xs font-semibold tracking-widest uppercase text-eden-muted mb-3">¿A qué iglesia asistirás?</label>
+                  <div className="relative">
+                    <select 
+                      name="sede_id"
+                      required
+                      defaultValue=""
+                      className="w-full bg-transparent border-b border-eden-stone focus:border-eden-black py-2 outline-none appearance-none rounded-none cursor-pointer transition-colors text-eden-black"
+                    >
+                      <option value="" disabled className="text-eden-muted">Selecciona una sede</option>
+                      {sedes?.map((sede) => (
+                        <option key={sede.id} value={sede.id} className="bg-eden-cream text-eden-black">
+                          {sede.nombre}
+                        </option>
+                      ))}
+                    </select>
+                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-1 text-eden-muted">
+                      <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                <button type="submit" className="w-full bg-eden-black text-eden-white font-semibold py-5 text-xs tracking-[0.2em] uppercase hover:bg-eden-muted transition-colors flex items-center justify-center gap-3 mt-4 rounded-none">
                   Confirmar Visita <ArrowRight size={16} />
                 </button>
               </form>
