@@ -8,7 +8,7 @@ export default function Footer() {
           <div className="max-w-md">
             <h2 className="font-serif text-5xl mb-6">MIRES</h2>
             <p className="font-sans text-eden-stone/70 font-light leading-relaxed text-base">
-              Una iglesia para la ciudad. Existimos para ver a las personas restauradas por el amor y la gracia de Jesús.
+              Amamos ver a las personas restauradas por el amor y la gracia de Jesús.
             </p>
           </div>
           

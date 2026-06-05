@@ -45,6 +45,10 @@ export default async function AdminDashboard() {
             <Mail size={18} />
             Bandeja de Entrada
           </Link>
+          <Link href="/admin/multimedia" className="flex items-center gap-3 hover:bg-white/5 text-gray-300 hover:text-white px-4 py-3 rounded-xl transition-all">
+            <Image size={18} />
+            Gestor Multimedia
+          </Link>
           <Link href="/admin/sedes" className="flex items-center gap-3 hover:bg-white/5 text-gray-300 hover:text-white px-4 py-3 rounded-xl transition-all">
             <Building size={18} />
             Gestión de Sedes

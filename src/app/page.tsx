@@ -37,7 +37,7 @@ export default async function Home() {
             Su gracia escribe nuevas historias.
           </h1>
           <p className="font-sans text-sm md:text-base text-eden-stone mb-12 max-w-xl font-light tracking-[0.2em] uppercase">
-            Una iglesia para ti y tu familia en la ciudad.
+            Una iglesia para ti y tu familia.
           </p>
           <Link href="/soy-nuevo" className="inline-flex items-center justify-center gap-3 bg-eden-white text-eden-black px-10 py-5 rounded-full font-sans text-xs font-semibold tracking-widest uppercase hover:bg-eden-stone transition-colors duration-300">
             Planifica tu visita <ArrowRight size={16} />
@@ -52,7 +52,7 @@ export default async function Home() {
             Somos una iglesia de personas que se aman, que bendicen familias e influyen comunidades con el mensaje de Jesús.
           </h2>
           <p className="font-sans text-lg md:text-xl text-eden-muted leading-relaxed max-w-2xl mx-auto font-light">
-            No importa dónde te encuentres en tu viaje espiritual, en MIRES hay un lugar preparado para ti. Descubre el propósito que Dios tiene para tu vida junto a una comunidad genuina.
+            No importa en la etapa en que te encuentres, en Mires hay un lugar preparado para ti. Descubre el propósito que Dios tiene para tu vida junto a nuestra familia de la fe.
           </p>
         </div>
       </section>
