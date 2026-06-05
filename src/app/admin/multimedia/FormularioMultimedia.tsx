@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { Image as ImageIcon, Upload, Loader2, CheckCircle2 } from 'lucide-react';
-import { subirImagenSeccion } from './actions';
 import { useRouter } from 'next/navigation';
 
 interface CardCargaProps {
@@ -27,23 +26,31 @@ function FilaCargaMultimedia({ seccion, titulo, descripcion }: CardCargaProps) {
     if (!archivo) return;
     
     setIsPending(true);
-    
     const formData = new FormData();
     formData.append('seccion', seccion);
     formData.append('imagen', archivo);
     
-    // El servidor hace su trabajo ligero y devuelve la respuesta
-    const respuesta = await subirImagenSeccion(formData);
-    
-    setIsPending(false); 
-    setArchivo(null);
+    try {
+      // Llamamos a nuestra nueva API transparente
+      const response = await fetch('/api/multimedia', {
+        method: 'POST',
+        body: formData,
+      });
 
-    if (respuesta?.status === 'success') {
-      // El navegador es quien asume el trabajo de refrescar la web, salvando la memoria de Vercel
-      router.refresh();
-      router.push(`/admin/multimedia?success=true&actualizado=${respuesta.seccion}`);
-    } else {
-      router.push(`/admin/multimedia?error=${respuesta?.code || 'falla_servidor'}`);
+      const data = await response.json();
+      setIsPending(false); 
+      setArchivo(null);
+
+      if (response.ok && data.status === 'success') {
+        router.refresh(); // Refresca en segundo plano de forma segura
+        router.push(`/admin/multimedia?success=true&actualizado=${data.seccion}`);
+      } else {
+        // Extraemos el error real de Supabase y lo enviamos a la URL para poder leerlo
+        router.push(`/admin/multimedia?error=falla_servidor&detalle=${encodeURIComponent(data.message)}`);
+      }
+    } catch (error: any) {
+      setIsPending(false);
+      router.push(`/admin/multimedia?error=falla_servidor&detalle=Error_De_Conexion_O_Timeout`);
     }
   };
 
@@ -66,24 +73,13 @@ function FilaCargaMultimedia({ seccion, titulo, descripcion }: CardCargaProps) {
         <div className="text-center sm:text-right min-w-[120px]">
           <label className="block text-xs font-semibold tracking-widest uppercase text-[#0A0A0A] cursor-pointer hover:text-[#737373] transition-colors border-b border-[#0A0A0A] pb-0.5 inline-block">
             {archivo ? 'Cambiar' : '[ Seleccionar ]'}
-            <input 
-              type="file" 
-              name="imagen" 
-              accept="image/*" 
-              className="hidden" 
-              onChange={handleFileChange}
-            />
+            <input type="file" accept="image/*" className="hidden" onChange={handleFileChange} />
           </label>
-          {archivo && (
-            <p className="text-[10px] text-green-700 font-medium mt-1 flex items-center justify-center sm:justify-end gap-1">
-              <CheckCircle2 size={10} /> Adjunto
-            </p>
-          )}
+          {archivo && <p className="text-[10px] text-green-700 font-medium mt-1 flex items-center justify-center sm:justify-end gap-1"><CheckCircle2 size={10} /> Adjunto</p>}
         </div>
 
         <button 
-          type="submit" 
-          disabled={isPending || !archivo} 
+          type="submit" disabled={isPending || !archivo} 
           className="bg-[#0A0A0A] text-white font-semibold py-3 px-6 text-xs tracking-[0.2em] uppercase hover:bg-[#737373] disabled:bg-[#E6E5E1] disabled:text-[#737373] transition-colors flex items-center justify-center gap-2"
         >
           {isPending ? 'Subiendo' : 'Cargar'}
@@ -98,9 +94,9 @@ export default function FormularioMultimedia() {
   return (
     <div className="space-y-6 w-full">
       <FilaCargaMultimedia seccion="hero" titulo="Portada Principal (Landing Hero)" descripcion="Fotografía a pantalla completa regulada por opacidad para la primera sección de inicio de la web." />
-      <FilaCargaMultimedia seccion="soy-nuevo" titulo="Fondo Geométrico: Soy Nuevo" descripcion="Aplica una textura multimedia sobre el contenedor del formulario 'Déjanos tus datos' en la sección Planifica tu Visita." />
+      <FilaCargaMultimedia seccion="soy-nuevo" titulo="Fondo Geométrico: Soy Nuevo" descripcion="Aplica una textura multimedia sobre el contenedor del formulario 'Déjanos tus datos'." />
       <FilaCargaMultimedia seccion="ministerios" titulo="Fondo Geométrico: Ministerios" descripcion="Inyecta una fotografía sutil sobre el bloque de cabecera principal de la cartelera de Ministerios." />
-      <FilaCargaMultimedia seccion="quienes-somos" titulo="Fondo Geométrico: Quiénes Somos" descripcion="Establece la imagen corporativa/pastoral difuminada sobre el bloque introductorio de Nuestra Historia." />
+      <FilaCargaMultimedia seccion="quienes-somos" titulo="Fondo Geométrico: Quiénes Somos" descripcion="Establece la imagen corporativa/pastoral difuminada sobre el bloque introductorio." />
     </div>
   );
 }
