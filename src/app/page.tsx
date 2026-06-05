@@ -2,7 +2,7 @@ import Link from "next/link";
 import { createClient } from '@/utils/supabase/server';
 import { ArrowRight, MapPin, Clock } from "lucide-react";
 
-// Función optimizada para obtener estrictamente el ÚLTIMO VIDEO SUBIDO (no transmisiones en vivo)
+// Función "Detective" para extraer estrictamente videos tradicionales (Excluyendo directos/Lives)
 async function getLatestUploadedVideo() {
   const API_KEY = process.env.YOUTUBE_API_KEY;
   const CHANNEL_ID = process.env.YOUTUBE_CHANNEL_ID;
@@ -10,17 +10,40 @@ async function getLatestUploadedVideo() {
   if (!API_KEY || !CHANNEL_ID) return null;
 
   try {
-    // Paso A: Convertimos el Channel ID (UC...) al ID de la lista de reproducción de subidas (UU...)
-    // Esta lista contiene única y exclusivamente los videos subidos tradicionalmente.
     const uploadsPlaylistId = CHANNEL_ID.replace(/^UC/, 'UU');
 
-    // Paso B: Pedimos el primer elemento de esa lista específica de subidas
-    const url = `https://www.googleapis.com/youtube/v3/playlistItems?key=${API_KEY}&playlistId=${uploadsPlaylistId}&part=snippet&maxResults=1`;
+    // 1. Obtenemos los últimos 5 videos recientes del canal en bloque
+    const playlistUrl = `https://www.googleapis.com/youtube/v3/playlistItems?key=${API_KEY}&playlistId=${uploadsPlaylistId}&part=snippet&maxResults=5`;
+    const playlistRes = await fetch(playlistUrl, { next: { revalidate: 3600 } }); 
+    const playlistData = await playlistRes.json();
     
-    const res = await fetch(url, { next: { revalidate: 3600 } }); // Cacheado por 1 hora
-    const data = await res.json();
-    
-    return data.items?.[0] || null;
+    if (!playlistData.items || playlistData.items.length === 0) return null;
+
+    // 2. Extraemos todos los IDs de esos 5 videos
+    const videoIds = playlistData.items.map((item: any) => item.snippet.resourceId.videoId).join(',');
+
+    // 3. Consultamos a YouTube los metadatos de diagnóstico de esos 5 videos (liveStreamingDetails)
+    const videosUrl = `https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&id=${videoIds}&part=snippet,liveStreamingDetails`;
+    const videosRes = await fetch(videosUrl, { next: { revalidate: 3600 } });
+    const videosData = await videosRes.json();
+
+    // 4. EL FILTRO MÁGICO: Buscamos el primero que NO tenga historial de haber sido un "Directo"
+    const regularVideo = videosData.items?.find((video: any) => !video.liveStreamingDetails);
+
+    // Si encontramos un video tradicional puro, lo devolvemos
+    if (regularVideo) {
+      return {
+        id: regularVideo.id,
+        title: regularVideo.snippet.title
+      };
+    }
+
+    // Si por alguna razón los últimos 5 fueron directos, devolvemos el primero como respaldo
+    return {
+      id: playlistData.items[0].snippet.resourceId.videoId,
+      title: playlistData.items[0].snippet.title
+    };
+
   } catch (error) {
     console.error("Error al obtener el video cargado desde YouTube:", error);
     return null;
@@ -44,9 +67,9 @@ export default async function Home() {
   const cacheBuster = new Date().getTime();
   const urlFinalImagen = `${publicUrl}?v=${cacheBuster}`;
 
-  // Extraemos el ID del video real (en playlistItems viene dentro de snippet.resourceId)
-  const videoId = latestVideoItem?.snippet?.resourceId?.videoId || '';
-  const videoTitle = latestVideoItem?.snippet?.title || 'Mensaje Reciente';
+  // Extraemos las variables limpias que nos envió nuestra función filtrada
+  const videoId = latestVideoItem?.id || '';
+  const videoTitle = latestVideoItem?.title || 'Mensaje Reciente';
 
   return (
     <div className="flex flex-col min-h-screen bg-eden-cream text-eden-black">
@@ -87,19 +110,19 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* SECCIÓN 3: PREDICACIONES (Filtrado estricto para Videos subidos) */}
+      {/* SECCIÓN 3: PREDICACIONES (Excluyendo transmisiones en vivo) */}
       <section className="py-32 md:py-40 bg-eden-black text-eden-white">
         <div className="container mx-auto px-6 max-w-7xl">
           <div className="flex flex-col lg:flex-row gap-16 items-center">
             <div className="lg:w-5/12 space-y-8">
               <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase text-eden-muted">
-                Mensaje Reciente
+                No te pierdas nuestras transmisiones y tiempos de adoración.
               </span>
               <h2 className="font-serif text-5xl md:text-6xl leading-[1.1] tracking-tight">
-                Escucha la voz de Dios hoy.
+                Suscríbete a nuestro canal de Youtube.
               </h2>
               <p className="font-sans text-eden-stone/80 text-lg font-light leading-relaxed">
-                Cada semana compartimos mensajes basados en la Biblia, diseñados para traer esperanza, dirección y propósito a tu vida cotidiana.
+                Canciones, inspiración y momentos que acercan tu corazón a Dios.
               </p>
               <a href="https://www.youtube.com/@miresCentral/videos" target="_blank" rel="noopener noreferrer" className="inline-flex mt-4 items-center gap-3 border border-eden-white/30 px-8 py-4 font-sans text-xs font-bold tracking-widest uppercase hover:bg-eden-white hover:text-eden-black transition-all duration-300">
                 Ver más videos <ArrowRight size={16} />
