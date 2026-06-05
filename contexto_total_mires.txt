@@ -1659,7 +1659,7 @@ export default async function Home() {
       <section className="py-32 md:py-48 bg-eden-white">
         <div className="container mx-auto px-6 max-w-5xl text-center">
           <h2 className="font-serif-eden text-4xl md:text-5xl lg:text-6xl mb-10 leading-tight text-eden-black">
-            Personas que se aman, bendicen familias e influyen comunidades.
+            Somos una iglesia de personas que se aman, que bendicen familias e influyen comunidades con el mensaje de Jesús.
           </h2>
           <p className="font-sans text-lg md:text-xl text-eden-muted leading-relaxed max-w-2xl mx-auto font-light">
             No importa dónde te encuentres en tu viaje espiritual, en MIRES hay un lugar preparado para ti. Descubre el propósito que Dios tiene para tu vida junto a una comunidad genuina.
@@ -1986,7 +1986,7 @@ export default async function Footer() {
               />
             </Link>
             <p className="font-sans text-mires-white/70 mb-6 max-w-sm leading-relaxed">
-              Personas que se aman, bendicen familias e influyen comunidades. 
+              Somos una iglesia de personas que se aman, que bendicen familias e influyen comunidades con el mensaje de Jesús. 
               Una iglesia diseñada para ti y tu familia.
             </p>
             <div className="flex items-center gap-4">
