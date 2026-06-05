@@ -1,7 +1,7 @@
 import { login } from './actions';
 import { Lock } from 'lucide-react';
 import Image from 'next/image';
-import logomires from '@/app/Logo mires simple.png'; // Asegúrate de que la extensión sea correcta
+import logomires from '@/app/logo-mires.png'; // Asegúrate de que la extensión sea correcta
 
 export default function LoginPage({
   searchParams,

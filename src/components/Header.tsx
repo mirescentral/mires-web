@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { createClient } from '@/utils/supabase/server';
 import { MapPin, ChevronDown } from 'lucide-react';
 // Importamos el logo local directamente
-import logomires from '@/app/Logo mires simple.png';
+import logomires from '@/app/logo-mires.png';
 
 export default async function Header() {
   const supabase = await createClient();

@@ -1811,7 +1811,7 @@ export async function login(formData: FormData) {
 import { login } from './actions';
 import { Lock } from 'lucide-react';
 import Image from 'next/image';
-import logomires from '@/app/Logo mires simple.png'; // Asegúrate de que la extensión sea correcta
+import logomires from '@/app/logo-mires.png'; // Asegúrate de que la extensión sea correcta
 
 export default function LoginPage({
   searchParams,
@@ -1940,7 +1940,7 @@ import { createClient } from '@/utils/supabase/server';
 import { MapPin, MessageCircle, Mail } from 'lucide-react';
 
 // Importamos el logo local
-import logomires from '@/app/Logo mires simple.png';
+import logomires from '@/app/logo-mires.png';
 
 export default async function Footer() {
   const supabase = await createClient();
@@ -2058,7 +2058,7 @@ import Image from 'next/image';
 import { createClient } from '@/utils/supabase/server';
 import { MapPin, ChevronDown } from 'lucide-react';
 // Importamos el logo local directamente
-import logomires from '@/app/Logo mires simple.png';
+import logomires from '@/app/logo-mires.png';
 
 export default async function Header() {
   const supabase = await createClient();
