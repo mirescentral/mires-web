@@ -8,13 +8,12 @@ export async function subirImagenSeccion(formData: FormData) {
   const supabase = await createClient();
   
   const archivo = formData.get('imagen') as File;
-  const seccion = formData.get('seccion') as string; // 'hero', 'soy-nuevo', 'ministerios', 'quienes-somos'
+  const seccion = formData.get('seccion') as string;
 
   if (!archivo || archivo.size === 0 || !seccion) {
     redirect(`/admin/multimedia?error=sin_archivo`);
   }
 
-  // Asignación de nombres fijos y limpios según la sección para evitar desorden en la nube
   let nombreArchivo = '';
   if (seccion === 'hero') nombreArchivo = 'foto-principal-hero.png';
   else if (seccion === 'soy-nuevo') nombreArchivo = 'bg-soy-nuevo.png';
@@ -24,32 +23,34 @@ export async function subirImagenSeccion(formData: FormData) {
     redirect(`/admin/multimedia?error=sin_archivo`);
   }
 
-  try {
-    const arrayBuffer = await archivo.arrayBuffer();
-    const buffer = Buffer.from(arrayBuffer);
+  // Variable para guardar a dónde iremos después
+  let urlRedireccion = '';
 
-    // Subimos usando upsert: true para sobreescribir la imagen vieja de inmediato
+  try {
+    // Subimos el archivo nativo directamente a Supabase
     const { error } = await supabase.storage
       .from('recursos_web')
-      .upload(nombreArchivo, buffer, {
+      .upload(nombreArchivo, archivo, {
         contentType: archivo.type,
-        upsert: true
+        upsert: true // Sobreescribe si ya existe
       });
 
     if (error) {
-      console.error("Error Supabase Storage:", error);
-      redirect(`/admin/multimedia?error=falla_servidor`);
+      console.error("Error de permisos en Supabase Storage:", error);
+      urlRedireccion = `/admin/multimedia?error=falla_servidor`;
+    } else {
+      // Si todo sale bien, rompemos caché y preparamos redirección de éxito
+      revalidatePath('/');
+      revalidatePath('/soy-nuevo');
+      revalidatePath('/ministerios');
+      revalidatePath('/quienes-somos');
+      urlRedireccion = `/admin/multimedia?success=true&actualizado=${seccion}`;
     }
-
-    // Rompemos la caché de Next.js en las rutas correspondientes de inmediato
-    revalidatePath('/');
-    revalidatePath('/soy-nuevo');
-    revalidatePath('/ministerios');
-    revalidatePath('/quienes-somos');
-    
-    redirect(`/admin/multimedia?success=true&actualizado=${seccion}`);
   } catch (err) {
     console.error("Error crítico en carga:", err);
-    redirect(`/admin/multimedia?error=falla_servidor`);
+    urlRedireccion = `/admin/multimedia?error=falla_servidor`;
   }
+
+  // En Next.js, redirect SIEMPRE debe ir fuera del try/catch
+  redirect(urlRedireccion);
 }
