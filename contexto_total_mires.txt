@@ -90,7 +90,7 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Dar | MIRES",
+  title: "Dar | mires",
   description: "Tu generosidad transforma vidas. Conoce nuestras formas de dar.",
 };
 
@@ -171,7 +171,7 @@ import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { createClient } from '@/utils/supabase/server';
 
-export const metadata = { title: "Ministerios | MIRES" };
+export const metadata = { title: "Ministerios | mires" };
 
 export default async function MinisteriosPage() {
   const supabase = await createClient();
@@ -215,7 +215,7 @@ export default async function MinisteriosPage() {
 import { BookOpen } from 'lucide-react';
 
 export const metadata = {
-  title: "Devocionales | MIRES",
+  title: "Devocionales | mires",
   description: "Reflexiones y recursos espirituales para tu crecimiento.",
 };
 
@@ -335,7 +335,7 @@ import { MapPin, Clock, MessageCircle, Mail } from 'lucide-react';
 import FormularioContacto from './FormularioContacto';
 
 export const metadata = {
-  title: "Contacto | MIRES",
+  title: "Contacto | mires",
   description: "Estamos aquí para ti. Envíanos un mensaje o contáctanos vía WhatsApp.",
 };
 
@@ -504,7 +504,7 @@ import { Building, Save, MapPin, Clock, Phone } from 'lucide-react';
 import Link from 'next/link';
 
 export const metadata = {
-  title: "Gestión de Sedes | Admin MIRES",
+  title: "Gestión de Sedes | Admin mires",
 };
 
 export default async function AdminSedesPage({
@@ -680,7 +680,7 @@ import { CalendarIcon, Trash2, PlusCircle } from 'lucide-react';
 import Link from 'next/link';
 
 export const metadata = {
-  title: "Gestión de Eventos | Admin MIRES",
+  title: "Gestión de Eventos | Admin mires",
 };
 
 export default async function AdminEventosPage({
@@ -827,7 +827,7 @@ import { Users, Calendar as CalendarIcon, LogOut, Phone, MapPin, Building, Mail 
 import Link from 'next/link';
 
 export const metadata = {
-  title: "Admin Dashboard | MIRES",
+  title: "Admin Dashboard | mires",
 };
 
 export default async function AdminDashboard() {
@@ -856,7 +856,7 @@ export default async function AdminDashboard() {
       {/* BARRA LATERAL DE NAVEGACIÓN */}
       <aside className="w-64 bg-[#1A2E4A] text-white p-6 flex flex-col shrink-0">
         <div className="mb-10">
-          <h2 className="text-2xl font-serif font-bold text-[#E8863A] tracking-tight">MIRES Admin</h2>
+          <h2 className="text-2xl font-serif font-bold text-[#E8863A] tracking-tight">mires Admin</h2>
           <p className="text-xs text-gray-400 mt-1 font-sans">Panel de Control Interno</p>
         </div>
         
@@ -961,7 +961,7 @@ import Link from 'next/link';
 
 
 export const metadata = {
-  title: "Bandeja de Entrada | Admin MIRES",
+  title: "Bandeja de Entrada | Admin mires",
 };
 
 export const dynamic = 'force-dynamic';
@@ -986,7 +986,7 @@ export default async function AdminMensajesPage() {
       {/* BARRA LATERAL DE NAVEGACIÓN */}
       <aside className="w-64 bg-[#1A2E4A] text-white p-6 flex flex-col shrink-0">
         <div className="mb-10">
-          <h2 className="text-2xl font-serif font-bold text-[#E8863A] tracking-tight">MIRES Admin</h2>
+          <h2 className="text-2xl font-serif font-bold text-[#E8863A] tracking-tight">mires Admin</h2>
           <p className="text-xs text-gray-400 mt-1 font-sans">Panel de Control Interno</p>
         </div>
         
@@ -1119,7 +1119,7 @@ export default function MinisterioEnConstruccion() {
 
 import { ArrowRight } from 'lucide-react';
 
-export const metadata = { title: "Sermones | MIRES" };
+export const metadata = { title: "Sermones | mires" };
 
 export default function SermonesPage() {
   return (
@@ -1162,7 +1162,7 @@ export default function SermonesPage() {
           </div>
           
           <div className="mt-20 text-center">
-            <a href="https://www.youtube.com/@MiresCentral" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-3 bg-eden-black text-eden-white px-10 py-5 font-sans text-xs font-semibold tracking-widest uppercase hover:bg-eden-muted transition-colors duration-300">
+            <a href="https://www.youtube.com/@miresCentral" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-3 bg-eden-black text-eden-white px-10 py-5 font-sans text-xs font-semibold tracking-widest uppercase hover:bg-eden-muted transition-colors duration-300">
               Ir al canal de YouTube <ArrowRight size={16} />
             </a>
           </div>
@@ -1222,7 +1222,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "MIRES | Ministerio Restauración",
+  title: "mires | Ministerio Restauración",
   description: "Una iglesia para la ciudad.",
 };
 
@@ -1381,7 +1381,7 @@ import Link from 'next/link';
 import { createClient } from '@/utils/supabase/server';
 
 export const metadata = {
-  title: "Planifica tu Visita | MIRES",
+  title: "Planifica tu Visita | mires",
   description: "Nos encantaría conocerte este domingo. Prepara tu visita.",
 };
 
@@ -1498,7 +1498,7 @@ export default function MinisterioEnConstruccion() {
 import { createClient } from '@/utils/supabase/server';
 import { ArrowRight, Calendar } from 'lucide-react';
 
-export const metadata = { title: "Eventos | MIRES" };
+export const metadata = { title: "Eventos | mires" };
 
 export default async function EventosPage() {
   const supabase = await createClient();
@@ -1569,7 +1569,7 @@ export default async function EventosPage() {
 import { ShieldCheck } from 'lucide-react';
 
 export const metadata = {
-  title: "Privacidad | MIRES",
+  title: "Privacidad | mires",
 };
 
 export default function PrivacidadPage() {
@@ -1585,7 +1585,7 @@ export default function PrivacidadPage() {
         
         <div className="space-y-6 font-sans text-gray-700 leading-relaxed">
           <p>
-            En <strong>Ministerio Restauración (MIRES)</strong> valoramos y respetamos tu privacidad. Esta página contiene información sobre cómo manejamos los datos de nuestra comunidad.
+            En <strong>Ministerio Restauración (mires)</strong> valoramos y respetamos tu privacidad. Esta página contiene información sobre cómo manejamos los datos de nuestra comunidad.
           </p>
           
           <h2 className="text-xl font-semibold text-[#1A2E4A] mt-8 mb-4">1. Recopilación de Datos</h2>
@@ -1632,7 +1632,7 @@ export default async function Home() {
         <div className="absolute inset-0 z-0">
           <Image 
             src={fotoPrincipal} 
-            alt="Comunidad MIRES" 
+            alt="Comunidad mires" 
             fill 
             sizes="100vw" 
             className="object-cover object-center grayscale opacity-70" 
@@ -1662,7 +1662,7 @@ export default async function Home() {
             Somos una iglesia de personas que se aman, que bendicen familias e influyen comunidades con el mensaje de Jesús.
           </h2>
           <p className="font-sans text-lg md:text-xl text-eden-muted leading-relaxed max-w-2xl mx-auto font-light">
-            No importa en la etapa en que te encuentres, en Mires hay un lugar preparado para ti. Descubre el propósito que Dios tiene para tu vida junto a nuestra familia de la fe.
+            No importa en la etapa en que te encuentres, en mires hay un lugar preparado para ti. Descubre el propósito que Dios tiene para tu vida junto a nuestra familia de la fe.
           </p>
         </div>
       </section>
@@ -1682,7 +1682,7 @@ export default async function Home() {
               <p className="font-sans text-eden-stone/80 text-lg font-light leading-relaxed">
                 Cada semana compartimos mensajes basados en la Biblia, diseñados para traer esperanza, dirección y propósito a tu vida cotidiana.
               </p>
-              <a href="https://www.youtube.com/@MiresCentral" target="_blank" rel="noopener noreferrer" className="inline-flex mt-4 items-center gap-3 border border-eden-white/30 px-8 py-4 rounded-full font-sans text-xs font-semibold tracking-widest uppercase hover:bg-eden-white hover:text-eden-black transition-all duration-300">
+              <a href="https://www.youtube.com/@miresCentral" target="_blank" rel="noopener noreferrer" className="inline-flex mt-4 items-center gap-3 border border-eden-white/30 px-8 py-4 rounded-full font-sans text-xs font-semibold tracking-widest uppercase hover:bg-eden-white hover:text-eden-black transition-all duration-300">
                 Ver en YouTube <ArrowRight size={16} />
               </a>
             </div>
@@ -1693,7 +1693,7 @@ export default async function Home() {
                 <iframe 
                   className="absolute top-0 left-0 w-full h-full grayscale hover:grayscale-0 transition-all duration-700"
                   src="https://www.youtube.com/embed/nuestro-video-aqui?si=placeholder" 
-                  title="Predicación MIRES Central" 
+                  title="Predicación mires Central" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                   allowFullScreen
                 ></iframe>
@@ -1811,7 +1811,7 @@ export async function login(formData: FormData) {
 import { login } from './actions';
 import { Lock } from 'lucide-react';
 import Image from 'next/image';
-import logoMires from '@/app/Logo Mires simple.png'; // Asegúrate de que la extensión sea correcta
+import logomires from '@/app/Logo mires simple.png'; // Asegúrate de que la extensión sea correcta
 
 export default function LoginPage({
   searchParams,
@@ -1823,7 +1823,7 @@ export default function LoginPage({
       <div className="w-full max-w-md bg-white rounded-3xl shadow-lg p-10 border border-gray-100">
         
         <div className="flex justify-center mb-8">
-          <Image src={logoMires} alt="MIRES Logo" width={150} height={50} className="object-contain" />
+          <Image src={logomires} alt="mires Logo" width={150} height={50} className="object-contain" />
         </div>
 
         <div className="text-center mb-8">
@@ -1940,7 +1940,7 @@ import { createClient } from '@/utils/supabase/server';
 import { MapPin, MessageCircle, Mail } from 'lucide-react';
 
 // Importamos el logo local
-import logoMires from '@/app/Logo Mires simple.png';
+import logomires from '@/app/Logo mires simple.png';
 
 export default async function Footer() {
   const supabase = await createClient();
@@ -1979,8 +1979,8 @@ export default async function Footer() {
           <div className="lg:col-span-2">
             <Link href="/" className="inline-block mb-6 bg-mires-white p-2 rounded-lg">
               <Image 
-                src={logoMires} 
-                alt="Logo MIRES" 
+                src={logomires} 
+                alt="Logo mires" 
                 height={40} 
                 className="w-auto h-10 object-contain"
               />
@@ -1995,7 +1995,7 @@ export default async function Footer() {
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
               </a>
               {/* YouTube SVG */}
-              <a href="https://www.youtube.com/@MiresCentral" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-mires-white/10 flex items-center justify-center hover:bg-[#FF0000] transition-colors">
+              <a href="https://www.youtube.com/@miresCentral" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-mires-white/10 flex items-center justify-center hover:bg-[#FF0000] transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2C5.12 19.5 12 19.5 12 19.5s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
               </a>
             </div>
@@ -2036,7 +2036,7 @@ export default async function Footer() {
 
         {/* Bottom: Copyright */}
         <div className="pt-8 border-t border-mires-white/10 flex flex-col md:flex-row items-center justify-between gap-4 font-sans text-sm text-mires-white/50">
-          <p>© {new Date().getFullYear()} MIRES — Ministerio Restauración. Todos los derechos reservados.</p>
+          <p>© {new Date().getFullYear()} mires — Ministerio Restauración. Todos los derechos reservados.</p>
           <div className="flex items-center gap-6">
             <Link href="/privacidad" className="hover:text-mires-white transition-colors">Política de Privacidad</Link>
             <Link href="/contacto" className="hover:text-mires-white transition-colors">Contacto</Link>
@@ -2058,7 +2058,7 @@ import Image from 'next/image';
 import { createClient } from '@/utils/supabase/server';
 import { MapPin, ChevronDown } from 'lucide-react';
 // Importamos el logo local directamente
-import logoMires from '@/app/Logo Mires simple.png';
+import logomires from '@/app/Logo mires simple.png';
 
 export default async function Header() {
   const supabase = await createClient();
@@ -2072,8 +2072,8 @@ export default async function Header() {
         <div className="flex items-center gap-8">
           <Link href="/" className="flex items-center gap-2 transition-transform hover:scale-[1.02]">
             <Image 
-              src={logoMires} 
-              alt="Logo MIRES" 
+              src={logomires} 
+              alt="Logo mires" 
               height={45} 
               className="w-auto h-11 object-contain"
               priority // Carga el logo con prioridad alta por estar en el viewport inicial

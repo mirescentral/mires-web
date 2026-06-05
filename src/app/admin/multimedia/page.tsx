@@ -3,7 +3,7 @@ import { Image, Upload, ArrowRight, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
 export const metadata = {
-  title: "Gestión Multimedia | Admin MIRES",
+  title: "Gestión Multimedia | Admin mires",
 };
 
 export default async function AdminMultimediaPage({

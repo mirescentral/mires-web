@@ -3,7 +3,7 @@ import { MapPin, Clock, MessageCircle } from 'lucide-react';
 import FormularioContacto from './FormularioContacto';
 
 export const metadata = {
-  title: "Contacto | MIRES",
+  title: "Contacto | mires",
 };
 
 export default async function ContactoPage() {

@@ -17,7 +17,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "MIRES | Ministerio Restauración",
+  title: "mires | Ministerio Restauración",
   description: "Una iglesia para la ciudad.",
 };
 

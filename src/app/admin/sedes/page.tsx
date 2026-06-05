@@ -4,7 +4,7 @@ import { Building, Save, MapPin, Clock, Phone } from 'lucide-react';
 import Link from 'next/link';
 
 export const metadata = {
-  title: "Gestión de Sedes | Admin MIRES",
+  title: "Gestión de Sedes | Admin mires",
 };
 
 export default async function AdminSedesPage({

@@ -1,7 +1,7 @@
 import { BookOpen } from 'lucide-react';
 
 export const metadata = {
-  title: "Devocionales | MIRES",
+  title: "Devocionales | mires",
   description: "Reflexiones y recursos espirituales para tu crecimiento.",
 };
 

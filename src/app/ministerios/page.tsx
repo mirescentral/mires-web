@@ -2,7 +2,7 @@ import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { createClient } from '@/utils/supabase/server';
 
-export const metadata = { title: "Ministerios | MIRES" };
+export const metadata = { title: "Ministerios | mires" };
 
 export default async function MinisteriosPage() {
   const supabase = await createClient();

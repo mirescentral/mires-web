@@ -1,7 +1,7 @@
 import { ArrowRight } from "lucide-react";
 
 export const metadata = {
-  title: "Dar | MIRES",
+  title: "Dar | mires",
   description: "Tu generosidad transforma vidas.",
 };
 

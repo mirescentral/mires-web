@@ -3,7 +3,7 @@ import { Users, Calendar as CalendarIcon, LogOut, Phone, MapPin, Building, Mail 
 import Link from 'next/link';
 
 export const metadata = {
-  title: "Admin Dashboard | MIRES",
+  title: "Admin Dashboard | mires",
 };
 
 export default async function AdminDashboard() {
@@ -32,7 +32,7 @@ export default async function AdminDashboard() {
       {/* BARRA LATERAL DE NAVEGACIÓN */}
       <aside className="w-64 bg-[#1A2E4A] text-white p-6 flex flex-col shrink-0">
         <div className="mb-10">
-          <h2 className="text-2xl font-serif font-bold text-[#E8863A] tracking-tight">MIRES Admin</h2>
+          <h2 className="text-2xl font-serif font-bold text-[#E8863A] tracking-tight">mires Admin</h2>
           <p className="text-xs text-gray-400 mt-1 font-sans">Panel de Control Interno</p>
         </div>
         

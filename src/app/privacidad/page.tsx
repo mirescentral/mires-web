@@ -1,7 +1,7 @@
 import { ShieldCheck } from 'lucide-react';
 
 export const metadata = {
-  title: "Privacidad | MIRES",
+  title: "Privacidad | mires",
 };
 
 export default function PrivacidadPage() {
@@ -17,7 +17,7 @@ export default function PrivacidadPage() {
         
         <div className="space-y-6 font-sans text-gray-700 leading-relaxed">
           <p>
-            En <strong>Ministerio Restauración (MIRES)</strong> valoramos y respetamos tu privacidad. Esta página contiene información sobre cómo manejamos los datos de nuestra comunidad.
+            En <strong>Ministerio Restauración (mires)</strong> valoramos y respetamos tu privacidad. Esta página contiene información sobre cómo manejamos los datos de nuestra comunidad.
           </p>
           
           <h2 className="text-xl font-semibold text-[#1A2E4A] mt-8 mb-4">1. Recopilación de Datos</h2>

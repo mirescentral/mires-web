@@ -1,7 +1,7 @@
 import { ArrowRight, MapPin, Clock } from 'lucide-react';
 import { createClient } from '@/utils/supabase/server';
 
-export const metadata = { title: "Planifica tu Visita | MIRES" };
+export const metadata = { title: "Planifica tu Visita | mires" };
 
 export default async function SoyNuevoPage() {
   const supabase = await createClient();

@@ -1,7 +1,7 @@
 import { createClient } from '@/utils/supabase/server';
 import { ArrowRight, Calendar } from 'lucide-react';
 
-export const metadata = { title: "Eventos | MIRES" };
+export const metadata = { title: "Eventos | mires" };
 
 export default async function EventosPage() {
   const supabase = await createClient();

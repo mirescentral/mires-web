@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { createClient } from '@/utils/supabase/server';
 import { MapPin, ChevronDown } from 'lucide-react';
 // Importamos el logo local directamente
-import logoMires from '@/app/Logo Mires simple.png';
+import logomires from '@/app/Logo mires simple.png';
 
 export default async function Header() {
   const supabase = await createClient();
@@ -17,8 +17,8 @@ export default async function Header() {
         <div className="flex items-center gap-8">
           <Link href="/" className="flex items-center gap-2 transition-transform hover:scale-[1.02]">
             <Image 
-              src={logoMires} 
-              alt="Logo MIRES" 
+              src={logomires} 
+              alt="Logo mires" 
               height={45} 
               className="w-auto h-11 object-contain"
               priority // Carga el logo con prioridad alta por estar en el viewport inicial

@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 
 export const metadata = {
-  title: "Bandeja de Entrada | Admin MIRES",
+  title: "Bandeja de Entrada | Admin mires",
 };
 
 export const dynamic = 'force-dynamic';
@@ -29,7 +29,7 @@ export default async function AdminMensajesPage() {
       {/* BARRA LATERAL DE NAVEGACIÓN */}
       <aside className="w-64 bg-[#1A2E4A] text-white p-6 flex flex-col shrink-0">
         <div className="mb-10">
-          <h2 className="text-2xl font-serif font-bold text-[#E8863A] tracking-tight">MIRES Admin</h2>
+          <h2 className="text-2xl font-serif font-bold text-[#E8863A] tracking-tight">mires Admin</h2>
           <p className="text-xs text-gray-400 mt-1 font-sans">Panel de Control Interno</p>
         </div>
         

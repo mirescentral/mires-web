@@ -4,7 +4,7 @@ import { CalendarIcon, Trash2, PlusCircle } from 'lucide-react';
 import Link from 'next/link';
 
 export const metadata = {
-  title: "Gestión de Eventos | Admin MIRES",
+  title: "Gestión de Eventos | Admin mires",
 };
 
 export default async function AdminEventosPage({

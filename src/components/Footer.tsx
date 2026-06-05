@@ -30,7 +30,7 @@ export default function Footer() {
           <p>© {new Date().getFullYear()} Ministerio Restauración. Todos los derechos reservados.</p>
           <div className="flex gap-8">
             <a href="https://instagram.com/mirescentral" target="_blank" rel="noopener noreferrer" className="hover:text-eden-white">Instagram</a>
-            <a href="https://youtube.com/@MiresCentral" target="_blank" rel="noopener noreferrer" className="hover:text-eden-white">YouTube</a>
+            <a href="https://youtube.com/@miresCentral" target="_blank" rel="noopener noreferrer" className="hover:text-eden-white">YouTube</a>
             <Link href="/admin" className="hover:text-eden-white">Acceso Equipo</Link>
           </div>
         </div>

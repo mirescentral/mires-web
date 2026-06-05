@@ -22,7 +22,7 @@ export default async function Home() {
         <div className="absolute inset-0 z-0">
           <Image 
             src={fotoPrincipal} 
-            alt="Comunidad MIRES" 
+            alt="Comunidad mires" 
             fill 
             sizes="100vw" 
             className="object-cover object-center grayscale opacity-70" 
@@ -52,7 +52,7 @@ export default async function Home() {
             Somos una iglesia de personas que se aman, que bendicen familias e influyen comunidades con el mensaje de Jesús.
           </h2>
           <p className="font-sans text-lg md:text-xl text-eden-muted leading-relaxed max-w-2xl mx-auto font-light">
-            No importa en la etapa en que te encuentres, en Mires hay un lugar preparado para ti. Descubre el propósito que Dios tiene para tu vida junto a nuestra familia de la fe.
+            No importa en la etapa en que te encuentres, en mires hay un lugar preparado para ti. Descubre el propósito que Dios tiene para tu vida junto a nuestra familia de la fe.
           </p>
         </div>
       </section>
@@ -72,7 +72,7 @@ export default async function Home() {
               <p className="font-sans text-eden-stone/80 text-lg font-light leading-relaxed">
                 Cada semana compartimos mensajes basados en la Biblia, diseñados para traer esperanza, dirección y propósito a tu vida cotidiana.
               </p>
-              <a href="https://www.youtube.com/@MiresCentral" target="_blank" rel="noopener noreferrer" className="inline-flex mt-4 items-center gap-3 border border-eden-white/30 px-8 py-4 rounded-full font-sans text-xs font-semibold tracking-widest uppercase hover:bg-eden-white hover:text-eden-black transition-all duration-300">
+              <a href="https://www.youtube.com/@miresCentral" target="_blank" rel="noopener noreferrer" className="inline-flex mt-4 items-center gap-3 border border-eden-white/30 px-8 py-4 rounded-full font-sans text-xs font-semibold tracking-widest uppercase hover:bg-eden-white hover:text-eden-black transition-all duration-300">
                 Ver en YouTube <ArrowRight size={16} />
               </a>
             </div>
@@ -83,7 +83,7 @@ export default async function Home() {
                 <iframe 
                   className="absolute top-0 left-0 w-full h-full grayscale hover:grayscale-0 transition-all duration-700"
                   src="https://www.youtube.com/embed/nuestro-video-aqui?si=placeholder" 
-                  title="Predicación MIRES Central" 
+                  title="Predicación mires Central" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                   allowFullScreen
                 ></iframe>

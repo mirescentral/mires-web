@@ -1,7 +1,7 @@
 import { login } from './actions';
 import { Lock } from 'lucide-react';
 import Image from 'next/image';
-import logoMires from '@/app/Logo Mires simple.png'; // Asegúrate de que la extensión sea correcta
+import logomires from '@/app/Logo mires simple.png'; // Asegúrate de que la extensión sea correcta
 
 export default function LoginPage({
   searchParams,
@@ -13,7 +13,7 @@ export default function LoginPage({
       <div className="w-full max-w-md bg-white rounded-3xl shadow-lg p-10 border border-gray-100">
         
         <div className="flex justify-center mb-8">
-          <Image src={logoMires} alt="MIRES Logo" width={150} height={50} className="object-contain" />
+          <Image src={logomires} alt="mires Logo" width={150} height={50} className="object-contain" />
         </div>
 
         <div className="text-center mb-8">

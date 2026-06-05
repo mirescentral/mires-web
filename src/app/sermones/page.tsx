@@ -1,6 +1,6 @@
 import { ArrowRight } from 'lucide-react';
 
-export const metadata = { title: "Sermones | MIRES" };
+export const metadata = { title: "Sermones | mires" };
 
 export default function SermonesPage() {
   return (
@@ -43,7 +43,7 @@ export default function SermonesPage() {
           </div>
           
           <div className="mt-20 text-center">
-            <a href="https://www.youtube.com/@MiresCentral" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-3 bg-eden-black text-eden-white px-10 py-5 font-sans text-xs font-semibold tracking-widest uppercase hover:bg-eden-muted transition-colors duration-300">
+            <a href="https://www.youtube.com/@miresCentral" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-3 bg-eden-black text-eden-white px-10 py-5 font-sans text-xs font-semibold tracking-widest uppercase hover:bg-eden-muted transition-colors duration-300">
               Ir al canal de YouTube <ArrowRight size={16} />
             </a>
           </div>
