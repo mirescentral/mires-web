@@ -6,11 +6,11 @@ export default function Footer() {
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="flex flex-col md:flex-row justify-between items-start gap-16 mb-24">
           <div className="max-w-md">
+            {/* LOGO EN HELVETICA NOW DISPLAY - MINÚSCULA FORZADA (!lowercase) */}
             <h2 
-              className="text-5xl font-bold tracking-tighter mb-6"
+              className="text-5xl font-bold tracking-tighter mb-6 !lowercase"
               style={{ 
-                fontFamily: '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif',
-                textTransform: 'lowercase' 
+                fontFamily: '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif'
               }}
             >
               mires

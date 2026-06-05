@@ -29,13 +29,12 @@ export default function Navbar() {
     }`}>
       <div className="container mx-auto px-6 max-w-7xl flex items-center justify-between">
         
-        {/* LOGO EN HELVETICA NOW DISPLAY - MINÚSCULA Y NEGRITA */}
+        {/* LOGO EN HELVETICA NOW DISPLAY - MINÚSCULA FORZADA (!lowercase) */}
         <Link 
           href="/" 
-          className="text-3xl tracking-tighter select-none font-bold"
+          className="text-3xl tracking-tighter select-none font-bold !lowercase"
           style={{ 
-            fontFamily: '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif',
-            textTransform: 'lowercase' 
+            fontFamily: '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif'
           }}
         >
           mires
