@@ -2,48 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  /* La paleta de colores minimalista de Eden Church */
-  --eden-black: #0A0A0A;
-  --eden-white: #FFFFFF;
-  --eden-cream: #F9F8F6;
-  --eden-stone: #E6E5E1;
-  --eden-muted: #737373;
-}
-
 @layer base {
   body {
-    background-color: var(--eden-cream);
-    color: var(--eden-black);
-    font-family: var(--font-inter), sans-serif;
-  }
-
-  /* Títulos editoriales gigantes con Playfair Display */
-  h1, h2, h3, .font-serif-eden {
-    font-family: var(--font-playfair), serif;
-    letter-spacing: -0.03em;
+    @apply bg-eden-cream text-eden-black font-sans;
   }
   
-  /* Personalización estética de la selección de texto */
+  /* Hacemos que los títulos usen la fuente elegante */
+  h1, h2, h3, .font-serif-eden {
+    @apply font-serif tracking-tight;
+  }
+  
   ::selection {
-    background-color: var(--eden-black);
-    color: var(--eden-white);
+    @apply bg-eden-black text-eden-white;
   }
 }
 
-/* Clases utilitarias personalizadas para nuestro nuevo diseño */
-.bg-eden-cream { background-color: var(--eden-cream); }
-.bg-eden-black { background-color: var(--eden-black); }
-.bg-eden-white { background-color: var(--eden-white); }
-.text-eden-black { color: var(--eden-black); }
-.text-eden-muted { color: var(--eden-muted); }
-.border-eden-stone { border-color: var(--eden-stone); }
-
-.fade-in-up {
-  animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+@layer utilities {
+  .fade-in-up {
+    animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 }
