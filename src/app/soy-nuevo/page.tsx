@@ -7,7 +7,6 @@ export default async function SoyNuevoPage() {
   const supabase = await createClient();
   const { data: sedes } = await supabase.from('sedes').select('*').order('nombre');
 
-  // Consulta de la URL de fondo dinámica
   const { data: { publicUrl } } = supabase.storage.from('recursos_web').getPublicUrl('bg-soy-nuevo.png');
   const cacheBuster = new Date().getTime();
   const urlFondo = `${publicUrl}?v=${cacheBuster}`;
@@ -42,21 +41,18 @@ export default async function SoyNuevoPage() {
               </div>
             </div>
 
-            {/* CONTENEDOR GEOMÉTRICO MODIFICADO CON CAPA MULTIMEDIA PASTEL */}
             <div className="relative overflow-hidden p-10 md:p-16 border border-eden-stone/40 bg-[#EDEBE6]">
               
-              {/* Filtro pastel y gradiente dinámico */}
               <div className="absolute inset-0 z-0 select-none pointer-events-none">
+                {/* Eliminamos el onError y agregamos text-transparent */}
                 <img 
                   src={urlFondo} 
                   alt="" 
-                  className="w-full h-full object-cover opacity-25 mix-blend-multiply"
-                  onError={(e) => { (e.target as HTMLElement).style.display = 'none'; }}
+                  className="w-full h-full object-cover opacity-25 mix-blend-multiply text-transparent"
                 />
                 <div className="absolute inset-0 bg-gradient-to-br from-[#EDEBE6]/70 via-[#EDEBE6]/90 to-white/60" />
               </div>
 
-              {/* Contenido aislado en capa superior */}
               <div className="relative z-10">
                 <h2 className="font-serif text-3xl mb-8">Déjanos tus datos</h2>
                 <form action="/api/visita" method="POST" className="space-y-8 font-sans">

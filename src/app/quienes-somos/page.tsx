@@ -29,18 +29,16 @@ export default async function QuienesSomosPage() {
   return (
     <div className="flex flex-col min-h-screen bg-eden-cream text-eden-black pt-32 font-sans">
       
-      {/* SECCIÓN INTRODUCCIÓN CON FIGURA GEOMÉTRICA FUSIONADA CON IMAGEN */}
       <section className="py-20 px-6">
         <div className="container mx-auto px-6 max-w-5xl text-center relative overflow-hidden p-12 md:p-20 bg-[#F1EFEA] border border-eden-stone/40">
           
           <div className="absolute inset-0 z-0 select-none pointer-events-none">
+            {/* Eliminamos el onError y agregamos text-transparent */}
             <img 
               src={urlFondo} 
               alt="" 
-              className="w-full h-full object-cover opacity-20 mix-blend-multiply"
-              onError={(e) => { (e.target as HTMLElement).style.display = 'none'; }}
+              className="w-full h-full object-cover opacity-20 mix-blend-multiply text-transparent"
             />
-            {/* El degradado corre de arriba a abajo bloqueando los bordes duros */}
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#F1EFEA]/80 to-[#F1EFEA]" />
           </div>
 
@@ -54,7 +52,6 @@ export default async function QuienesSomosPage() {
         </div>
       </section>
 
-      {/* VISIÓN Y MISIÓN */}
       <section className="py-24 bg-eden-white border-y border-eden-stone/60">
         <div className="container mx-auto px-6 max-w-7xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
@@ -84,7 +81,6 @@ export default async function QuienesSomosPage() {
         </div>
       </section>
 
-      {/* EN QUÉ CREEMOS */}
       <section className="py-32 bg-eden-black text-eden-white">
         <div className="container mx-auto px-6 max-w-7xl">
           <div className="max-w-3xl mb-20">
@@ -104,7 +100,6 @@ export default async function QuienesSomosPage() {
         </div>
       </section>
 
-      {/* EQUIPO PASTORAL */}
       <section className="py-32 bg-eden-cream">
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="flex flex-col md:flex-row justify-between items-start gap-16 border-t border-eden-stone pt-16">
