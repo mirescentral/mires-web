@@ -1,105 +1,83 @@
+import { ArrowRight, MapPin, Clock } from 'lucide-react';
+import Link from 'next/link';
 import { createClient } from '@/utils/supabase/server';
-import { MapPin, Clock, Coffee, Music, BookOpen } from "lucide-react";
-import FormularioVisita from './FormularioVisita'; // Importamos el formulario interactivo
 
 export const metadata = {
-  title: "Soy Nuevo | MIRES",
-  description: "Bienvenido a casa. Planifica tu visita y conoce qué esperar en nuestra comunidad.",
+  title: "Planifica tu Visita | MIRES",
+  description: "Nos encantaría conocerte este domingo. Prepara tu visita.",
 };
 
 export default async function SoyNuevoPage() {
   const supabase = await createClient();
-  const { data: sedes } = await supabase.from('sedes').select('id, nombre, horarios').order('nombre');
+  const { data: sedes } = await supabase.from('sedes').select('*').order('nombre');
 
   return (
-    <div className="flex flex-col min-h-screen bg-mires-bg">
+    <div className="flex flex-col min-h-screen bg-eden-cream text-eden-black pt-24 md:pt-32">
       
-      {/* HEADER SIMPLE DE SECCIÓN */}
-      <section className="bg-mires-primary text-mires-white py-20">
-        <div className="container mx-auto px-4 text-center max-w-3xl">
-          <h1 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl mb-6 tracking-tight">
-            Bienvenido a casa
+      {/* HEADER EDITORIAL */}
+      <section className="py-20 md:py-32 px-6">
+        <div className="container mx-auto max-w-5xl text-center fade-in-up">
+          <span className="font-sans text-xs font-semibold tracking-[0.25em] uppercase text-eden-muted mb-6 block">
+            Bienvenido a Casa
+          </span>
+          <h1 className="font-serif-eden text-6xl md:text-8xl lg:text-9xl tracking-tighter leading-[0.95] mb-8 text-eden-black">
+            Nos alegra <br className="hidden md:block" /> que estés aquí.
           </h1>
-          <p className="font-sans text-lg md:text-xl text-mires-white/80 leading-relaxed">
-            Sabemos que visitar una iglesia por primera vez puede ser intimidante. 
-            Queremos que te sientas en familia desde el momento en que cruzas la puerta.
+          <p className="font-sans text-lg md:text-xl text-eden-muted font-light leading-relaxed max-w-2xl mx-auto">
+            Sabemos que visitar una iglesia por primera vez puede ser intimidante. Queremos que te sientas en familia desde el momento en que cruzas la puerta.
           </p>
         </div>
       </section>
 
-      {/* ¿QUÉ PASA EN UN CULTO? */}
-      <section className="py-20 bg-mires-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="font-display font-bold text-3xl md:text-4xl text-mires-primary mb-4">
-              ¿Qué esperar en tu visita?
-            </h2>
-            <p className="font-sans text-mires-textMuted max-w-2xl mx-auto">
-              Nuestras reuniones duran aproximadamente 90 minutos y están diseñadas para que conectes con Dios y con otras personas de forma genuina.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <div className="p-8 rounded-2xl bg-mires-bg border border-mires-primary/5 text-center hover:-translate-y-1 transition-transform">
-              <div className="w-16 h-16 bg-mires-white rounded-full flex items-center justify-center text-mires-accent mx-auto mb-6 shadow-sm">
-                <Music size={32} />
-              </div>
-              <h3 className="font-display font-bold text-xl text-mires-primary mb-3">Alabanza Contemporánea</h3>
-              <p className="font-sans text-mires-textMuted text-sm">Comenzamos con música en vivo. Eres libre de cantar, levantar tus manos o simplemente escuchar y reflexionar.</p>
-            </div>
-
-            <div className="p-8 rounded-2xl bg-mires-bg border border-mires-primary/5 text-center hover:-translate-y-1 transition-transform">
-              <div className="w-16 h-16 bg-mires-white rounded-full flex items-center justify-center text-mires-accent mx-auto mb-6 shadow-sm">
-                <BookOpen size={32} />
-              </div>
-              <h3 className="font-display font-bold text-xl text-mires-primary mb-3">Mensaje Práctico</h3>
-              <p className="font-sans text-mires-textMuted text-sm">Escucharás una predicación basada en la Biblia, con aplicaciones reales y directas para tu día a día.</p>
-            </div>
-
-            <div className="p-8 rounded-2xl bg-mires-bg border border-mires-primary/5 text-center hover:-translate-y-1 transition-transform">
-              <div className="w-16 h-16 bg-mires-white rounded-full flex items-center justify-center text-mires-accent mx-auto mb-6 shadow-sm">
-                <Coffee size={32} />
-              </div>
-              <h3 className="font-display font-bold text-xl text-mires-primary mb-3">Comunidad Cercana</h3>
-              <p className="font-sans text-mires-textMuted text-sm">Antes y después del servicio, nos encanta conversar. Siempre habrá alguien dispuesto a saludarte y resolver tus dudas.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* HORARIOS Y SEDES */}
-      <section className="py-20 bg-mires-bg">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <div className="flex flex-col lg:flex-row gap-12 items-center">
-            <div className="lg:w-1/2">
-              <h2 className="font-display font-bold text-3xl md:text-4xl text-mires-primary mb-6">
-                Planifica tu visita esta semana
-              </h2>
-              <p className="font-sans text-mires-textMuted mb-8">
-                Elige la sede que te quede más cómoda. Tenemos equipos de bienvenida listos para recibirte, orientarte y mostrarte dónde puedes sentarte.
-              </p>
-              <div className="space-y-4">
+      {/* FORMULARIO Y SEDES (Layout de dos columnas limpio) */}
+      <section className="py-24 bg-eden-white border-t border-eden-stone">
+        <div className="container mx-auto px-6 max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+            
+            {/* Columna Izquierda: Información de Sedes */}
+            <div>
+              <h2 className="font-serif-eden text-4xl md:text-5xl mb-12">Nuestras Reuniones</h2>
+              <div className="space-y-12">
                 {sedes?.map((sede) => (
-                  <div key={sede.id} className="bg-mires-white p-4 rounded-xl border border-mires-primary/10 flex items-center gap-4">
-                    <div className="bg-mires-primary/10 p-3 rounded-lg text-mires-primary">
-                      <MapPin size={24} />
-                    </div>
-                    <div>
-                      <h4 className="font-display font-bold text-lg text-mires-primary">{sede.nombre}</h4>
-                      <p className="font-sans text-sm text-mires-textMuted flex items-center gap-1">
-                        <Clock size={14} className="text-mires-accent" /> {sede.horarios}
+                  <div key={sede.id} className="border-b border-eden-stone/50 pb-8">
+                    <h3 className="font-sans text-xl font-medium tracking-wide mb-4 text-eden-black">{sede.nombre}</h3>
+                    <div className="space-y-3 font-sans text-sm font-light text-eden-muted">
+                      <p className="flex items-center gap-3">
+                        <Clock size={16} className="text-eden-black" /> {sede.horarios}
+                      </p>
+                      <p className="flex items-start gap-3">
+                        <MapPin size={16} className="text-eden-black mt-1 shrink-0" /> 
+                        <span className="leading-relaxed">{sede.direccion}</span>
                       </p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-            
-            {/* AQUÍ INYECTAMOS NUESTRO FORMULARIO INTERACTIVO */}
-            <div className="lg:w-1/2 w-full">
-              <FormularioVisita sedes={sedes || []} />
+
+            {/* Columna Derecha: Formulario Minimalista */}
+            <div className="bg-eden-cream p-10 md:p-16">
+              <h2 className="font-serif-eden text-3xl mb-8">Déjanos tus datos</h2>
+              <p className="font-sans text-sm font-light text-eden-muted mb-10">
+                Completa este formulario y nuestro equipo te estará esperando en la entrada para darte un recorrido y presentarte a la comunidad.
+              </p>
+              
+              {/* Aquí asumo que tienes tu action conectado, usamos la misma estructura pero con diseño Eden */}
+              <form action="/api/visita" method="POST" className="space-y-8 font-sans">
+                <div>
+                  <label className="block text-xs font-semibold tracking-widest uppercase text-eden-muted mb-3">Nombre Completo</label>
+                  <input type="text" name="nombre" required className="w-full bg-transparent border-b border-eden-stone focus:border-eden-black py-2 outline-none transition-colors rounded-none text-eden-black" />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold tracking-widest uppercase text-eden-muted mb-3">WhatsApp</label>
+                  <input type="tel" name="whatsapp" required className="w-full bg-transparent border-b border-eden-stone focus:border-eden-black py-2 outline-none transition-colors rounded-none text-eden-black" />
+                </div>
+                <button type="submit" className="w-full bg-eden-black text-eden-white font-semibold py-5 text-xs tracking-[0.2em] uppercase hover:bg-eden-muted transition-colors flex items-center justify-center gap-3 mt-4">
+                  Confirmar Visita <ArrowRight size={16} />
+                </button>
+              </form>
             </div>
-            
+
           </div>
         </div>
       </section>
