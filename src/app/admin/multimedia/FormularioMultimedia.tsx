@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Image as ImageIcon, Upload, Loader2, CheckCircle2 } from 'lucide-react';
 import { subirImagenSeccion } from './actions';
+import { useRouter } from 'next/navigation';
 
 interface CardCargaProps {
   seccion: string;
@@ -13,6 +14,7 @@ interface CardCargaProps {
 function FilaCargaMultimedia({ seccion, titulo, descripcion }: CardCargaProps) {
   const [archivo, setArchivo] = useState<File | null>(null);
   const [isPending, setIsPending] = useState(false);
+  const router = useRouter(); // Agregamos el enrutador de Next.js
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -25,9 +27,19 @@ function FilaCargaMultimedia({ seccion, titulo, descripcion }: CardCargaProps) {
       action={async (formData) => {
         setIsPending(true);
         formData.append('seccion', seccion);
-        await subirImagenSeccion(formData);
+        
+        // Esperamos la respuesta del servidor en lugar de que el servidor nos redirija
+        const respuesta = await subirImagenSeccion(formData);
+        
         setIsPending(false); 
         setArchivo(null);
+
+        // Hacemos la redirección nosotros mismos
+        if (respuesta.status === 'success') {
+          router.push(`/admin/multimedia?success=true&actualizado=${respuesta.seccion}`);
+        } else {
+          router.push(`/admin/multimedia?error=${respuesta.code}`);
+        }
       }} 
       className="border border-[#E6E5E1] p-6 bg-white flex flex-col md:flex-row md:items-center justify-between text-left gap-6 transition-colors hover:border-[#0A0A0A]"
     >
