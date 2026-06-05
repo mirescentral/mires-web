@@ -2,13 +2,18 @@
 
 import { useState } from 'react';
 import { Image as ImageIcon, Upload, Loader2, CheckCircle2 } from 'lucide-react';
-import { subirImagenHero } from './actions';
+import { subirImagenSeccion } from './actions';
 
-export default function FormularioMultimedia() {
+interface CardCargaProps {
+  seccion: string;
+  titulo: string;
+  descripcion: string;
+}
+
+function FilaCargaMultimedia({ seccion, titulo, descripcion }: CardCargaProps) {
   const [archivo, setArchivo] = useState<File | null>(null);
   const [isPending, setIsPending] = useState(false);
 
-  // Esta función detecta cuando seleccionas una foto en tu computadora
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       setArchivo(e.target.files[0]);
@@ -19,48 +24,78 @@ export default function FormularioMultimedia() {
     <form 
       action={async (formData) => {
         setIsPending(true);
-        await subirImagenHero(formData);
+        formData.append('seccion', seccion);
+        await subirImagenSeccion(formData);
         setIsPending(false); 
+        setArchivo(null);
       }} 
-      className="border border-[#E6E5E1] p-8 md:p-12 bg-white flex flex-col items-center justify-center text-center"
+      className="border border-[#E6E5E1] p-6 bg-white flex flex-col md:flex-row md:items-center justify-between text-left gap-6 transition-colors hover:border-[#0A0A0A]"
     >
-      <div className="w-16 h-16 bg-[#F9F8F6] border border-[#E6E5E1] flex items-center justify-center text-[#0A0A0A] mb-6 rounded-full">
-        <ImageIcon size={24} strokeWidth={1.5} />
+      <div className="flex items-start gap-4 max-w-md">
+        <div className="w-12 h-12 bg-[#F9F8F6] border border-[#E6E5E1] flex items-center justify-center text-[#0A0A0A] shrink-0">
+          <ImageIcon size={20} strokeWidth={1.5} />
+        </div>
+        <div>
+          <h3 className="font-serif text-lg text-[#0A0A0A] mb-1">{titulo}</h3>
+          <p className="text-[11px] font-light text-[#737373] leading-relaxed">{descripcion}</p>
+        </div>
       </div>
       
-      <div className="mb-8 max-w-sm">
-        <label className="block text-xs font-semibold tracking-widest uppercase text-[#0A0A0A] mb-3 cursor-pointer hover:text-[#737373] transition-colors border-b border-[#0A0A0A] pb-1 inline-block">
-          {archivo ? 'Cambiar Archivo' : 'Seleccionar Archivo'}
-          <input 
-            type="file" 
-            name="imagen_hero" 
-            accept="image/*" 
-            className="hidden" 
-            onChange={handleFileChange}
-          />
-        </label>
-        
-        {/* Aquí mostramos visualmente el nombre del archivo seleccionado */}
-        {archivo ? (
-          <p className="text-xs text-green-700 font-semibold mt-4 flex items-center justify-center gap-2 bg-green-50 py-2 px-4 border border-green-200">
-            <CheckCircle2 size={14} /> {archivo.name} (Listo para subir)
-          </p>
-        ) : (
-          <p className="text-[10px] text-[#737373] font-light tracking-wider mt-4">
-            Formatos admitidos: PNG, JPG o WEBP. Tamaño máximo: 3MB.
-          </p>
-        )}
-      </div>
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 shrink-0 md:w-auto w-full">
+        <div className="text-center sm:text-right min-w-[120px]">
+          <label className="block text-xs font-semibold tracking-widest uppercase text-[#0A0A0A] cursor-pointer hover:text-[#737373] transition-colors border-b border-[#0A0A0A] pb-0.5 inline-block">
+            {archivo ? 'Cambiar' : '[ Seleccionar ]'}
+            <input 
+              type="file" 
+              name="imagen" 
+              accept="image/*" 
+              className="hidden" 
+              onChange={handleFileChange}
+            />
+          </label>
+          {archivo && (
+            <p className="text-[10px] text-green-700 font-medium mt-1 flex items-center justify-center sm:justify-end gap-1">
+              <CheckCircle2 size={10} /> Adjunto
+            </p>
+          )}
+        </div>
 
-      {/* El botón se desactiva si no hay foto seleccionada */}
-      <button 
-        type="submit" 
-        disabled={isPending || !archivo} 
-        className="w-full max-w-xs bg-[#0A0A0A] text-white font-semibold py-4 text-xs tracking-[0.2em] uppercase hover:bg-[#737373] disabled:bg-[#E6E5E1] disabled:text-[#737373] transition-colors flex items-center justify-center gap-3"
-      >
-        {isPending ? 'Subiendo archivo...' : 'Cargar en el Servidor'}
-        {isPending ? <Loader2 size={14} className="animate-spin" /> : <Upload size={14} />}
-      </button>
+        <button 
+          type="submit" 
+          disabled={isPending || !archivo} 
+          className="bg-[#0A0A0A] text-white font-semibold py-3 px-6 text-xs tracking-[0.2em] uppercase hover:bg-[#737373] disabled:bg-[#E6E5E1] disabled:text-[#737373] transition-colors flex items-center justify-center gap-2"
+        >
+          {isPending ? 'Subiendo' : 'Cargar'}
+          {isPending ? <Loader2 size={12} className="animate-spin" /> : <Upload size={12} />}
+        </button>
+      </div>
     </form>
+  );
+}
+
+export default function FormularioMultimedia() {
+  return (
+    <div className="space-y-6 w-full">
+      <FilaCargaMultimedia 
+        seccion="hero"
+        titulo="Portada Principal (Landing Hero)"
+        descripcion="Fotografía a pantalla completa regulada por opacidad para la primera sección de inicio de la web."
+      />
+      <FilaCargaMultimedia 
+        seccion="soy-nuevo"
+        titulo="Fondo Geométrico: Soy Nuevo"
+        descripcion="Aplica una textura multimedia sobre el contenedor del formulario 'Déjanos tus datos' en la sección Planifica tu Visita."
+      />
+      <FilaCargaMultimedia 
+        seccion="ministerios"
+        titulo="Fondo Geométrico: Ministerios"
+        descripcion="Inyecta una fotografía sutil sobre el bloque de cabecera principal de la cartelera de Ministerios."
+      />
+      <FilaCargaMultimedia 
+        seccion="quienes-somos"
+        titulo="Fondo Geométrico: Quiénes Somos"
+        descripcion="Establece la imagen corporativa/pastoral difuminada sobre el bloque introductorio de Nuestra Historia."
+      />
+    </div>
   );
 }
