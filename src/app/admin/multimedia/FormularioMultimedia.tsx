@@ -14,7 +14,7 @@ interface CardCargaProps {
 function FilaCargaMultimedia({ seccion, titulo, descripcion }: CardCargaProps) {
   const [archivo, setArchivo] = useState<File | null>(null);
   const [isPending, setIsPending] = useState(false);
-  const router = useRouter(); // Agregamos el enrutador de Next.js
+  const router = useRouter(); 
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -22,25 +22,32 @@ function FilaCargaMultimedia({ seccion, titulo, descripcion }: CardCargaProps) {
     }
   };
 
+  // Cambio crítico: Usamos onSubmit estándar para tener control total
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!archivo) return;
+    
+    setIsPending(true);
+    
+    const formData = new FormData();
+    formData.append('seccion', seccion);
+    formData.append('imagen', archivo);
+    
+    const respuesta = await subirImagenSeccion(formData);
+    
+    setIsPending(false); 
+    setArchivo(null);
+
+    if (respuesta.status === 'success') {
+      router.push(`/admin/multimedia?success=true&actualizado=${respuesta.seccion}`);
+    } else {
+      router.push(`/admin/multimedia?error=${respuesta.code}`);
+    }
+  };
+
   return (
     <form 
-      action={async (formData) => {
-        setIsPending(true);
-        formData.append('seccion', seccion);
-        
-        // Esperamos la respuesta del servidor en lugar de que el servidor nos redirija
-        const respuesta = await subirImagenSeccion(formData);
-        
-        setIsPending(false); 
-        setArchivo(null);
-
-        // Hacemos la redirección nosotros mismos
-        if (respuesta.status === 'success') {
-          router.push(`/admin/multimedia?success=true&actualizado=${respuesta.seccion}`);
-        } else {
-          router.push(`/admin/multimedia?error=${respuesta.code}`);
-        }
-      }} 
+      onSubmit={handleSubmit}
       className="border border-[#E6E5E1] p-6 bg-white flex flex-col md:flex-row md:items-center justify-between text-left gap-6 transition-colors hover:border-[#0A0A0A]"
     >
       <div className="flex items-start gap-4 max-w-md">
@@ -88,26 +95,10 @@ function FilaCargaMultimedia({ seccion, titulo, descripcion }: CardCargaProps) {
 export default function FormularioMultimedia() {
   return (
     <div className="space-y-6 w-full">
-      <FilaCargaMultimedia 
-        seccion="hero"
-        titulo="Portada Principal (Landing Hero)"
-        descripcion="Fotografía a pantalla completa regulada por opacidad para la primera sección de inicio de la web."
-      />
-      <FilaCargaMultimedia 
-        seccion="soy-nuevo"
-        titulo="Fondo Geométrico: Soy Nuevo"
-        descripcion="Aplica una textura multimedia sobre el contenedor del formulario 'Déjanos tus datos' en la sección Planifica tu Visita."
-      />
-      <FilaCargaMultimedia 
-        seccion="ministerios"
-        titulo="Fondo Geométrico: Ministerios"
-        descripcion="Inyecta una fotografía sutil sobre el bloque de cabecera principal de la cartelera de Ministerios."
-      />
-      <FilaCargaMultimedia 
-        seccion="quienes-somos"
-        titulo="Fondo Geométrico: Quiénes Somos"
-        descripcion="Establece la imagen corporativa/pastoral difuminada sobre el bloque introductorio de Nuestra Historia."
-      />
+      <FilaCargaMultimedia seccion="hero" titulo="Portada Principal (Landing Hero)" descripcion="Fotografía a pantalla completa regulada por opacidad para la primera sección de inicio de la web." />
+      <FilaCargaMultimedia seccion="soy-nuevo" titulo="Fondo Geométrico: Soy Nuevo" descripcion="Aplica una textura multimedia sobre el contenedor del formulario 'Déjanos tus datos' en la sección Planifica tu Visita." />
+      <FilaCargaMultimedia seccion="ministerios" titulo="Fondo Geométrico: Ministerios" descripcion="Inyecta una fotografía sutil sobre el bloque de cabecera principal de la cartelera de Ministerios." />
+      <FilaCargaMultimedia seccion="quienes-somos" titulo="Fondo Geométrico: Quiénes Somos" descripcion="Establece la imagen corporativa/pastoral difuminada sobre el bloque introductorio de Nuestra Historia." />
     </div>
   );
 }

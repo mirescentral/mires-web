@@ -3,8 +3,11 @@ import { createClient } from '@/utils/supabase/server';
 
 export const metadata = { title: "Planifica tu Visita | mires" };
 
-// AÑADIMOS SEARCHPARAMS AQUÍ
-export default async function SoyNuevoPage({ searchParams }: { searchParams: { success?: string, error?: string } }) {
+export default async function SoyNuevoPage({ 
+  searchParams 
+}: { 
+  searchParams: Promise<{ success?: string, error?: string }> 
+}) {
   const supabase = await createClient();
   const { data: sedes } = await supabase.from('sedes').select('*').order('nombre');
 
@@ -12,10 +15,11 @@ export default async function SoyNuevoPage({ searchParams }: { searchParams: { s
   const cacheBuster = new Date().getTime();
   const urlFondo = `${publicUrl}?v=${cacheBuster}`;
 
+  // Resolvemos la promesa en Next.js 15
+  const params = await searchParams;
+
   return (
     <div className="flex flex-col min-h-screen bg-eden-cream text-eden-black pt-32">
-      
-      {/* ... (Todo el header se mantiene igual) ... */}
       <section className="py-20 px-6">
         <div className="container mx-auto max-w-5xl text-center fade-in-up">
           <span className="font-sans text-xs font-semibold tracking-[0.25em] uppercase text-eden-muted mb-6 block">Bienvenido a Casa</span>
@@ -30,7 +34,6 @@ export default async function SoyNuevoPage({ searchParams }: { searchParams: { s
         <div className="container mx-auto px-6 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
             
-            {/* COLUMNA IZQUIERDA (Reuniones) */}
             <div>
               <h2 className="font-serif text-4xl mb-12">Nuestras Reuniones</h2>
               <div className="space-y-12">
@@ -46,7 +49,6 @@ export default async function SoyNuevoPage({ searchParams }: { searchParams: { s
               </div>
             </div>
 
-            {/* COLUMNA DERECHA (Formulario) */}
             <div className="relative overflow-hidden p-10 md:p-16 border border-eden-stone/40 bg-[#EDEBE6]">
               
               <div className="absolute inset-0 z-0 select-none pointer-events-none">
@@ -60,8 +62,8 @@ export default async function SoyNuevoPage({ searchParams }: { searchParams: { s
 
               <div className="relative z-10">
                 
-                {/* MENSAJE DE ÉXITO DINÁMICO */}
-                {searchParams?.success ? (
+                {/* Leemos de 'params' que ya fue resuelto arriba */}
+                {params?.success ? (
                   <div className="bg-green-50 border border-green-200 p-8 text-center space-y-4 mb-8">
                     <CheckCircle2 size={40} className="mx-auto text-green-600" />
                     <h3 className="font-serif text-2xl text-green-900">¡Te esperamos!</h3>
@@ -73,8 +75,7 @@ export default async function SoyNuevoPage({ searchParams }: { searchParams: { s
                   <>
                     <h2 className="font-serif text-3xl mb-8">Déjanos tus datos</h2>
                     
-                    {/* MENSAJE DE ERROR (Opcional) */}
-                    {searchParams?.error && (
+                    {params?.error && (
                       <div className="mb-6 p-4 text-xs font-bold text-red-600 border border-red-200 bg-red-50 uppercase tracking-widest text-center">
                         Ocurrió un error. Por favor, intenta nuevamente.
                       </div>
