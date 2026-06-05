@@ -37,7 +37,7 @@ export default function Navbar() {
             fontFamily: '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif'
           }}
         >
-          mires
+          mires.
         </Link>
 
         {/* NAVEGACIÓN DESKTOP */}

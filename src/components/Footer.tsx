@@ -13,7 +13,7 @@ export default function Footer() {
                 fontFamily: '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif'
               }}
             >
-              mires
+              mires.
             </h2>
             <p className="font-sans text-eden-stone/70 font-light leading-relaxed text-base">
               Amamos ver a las personas restauradas por el amor y la gracia de Jesús.
