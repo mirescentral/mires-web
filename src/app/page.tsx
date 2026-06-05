@@ -3,6 +3,7 @@ import { createClient } from '@/utils/supabase/server';
 import { ArrowRight, MapPin, Clock } from "lucide-react";
 
 // Función "Detective" para extraer estrictamente videos tradicionales (Excluyendo directos/Lives)
+// Función estricta para obtener ÚNICAMENTE videos normales (ignora lives y shorts)
 async function getLatestUploadedVideo() {
   const API_KEY = process.env.YOUTUBE_API_KEY;
   const CHANNEL_ID = process.env.YOUTUBE_CHANNEL_ID;
@@ -10,42 +11,26 @@ async function getLatestUploadedVideo() {
   if (!API_KEY || !CHANNEL_ID) return null;
 
   try {
-    const uploadsPlaylistId = CHANNEL_ID.replace(/^UC/, 'UU');
-
-    // 1. Obtenemos los últimos 5 videos recientes del canal en bloque
-    const playlistUrl = `https://www.googleapis.com/youtube/v3/playlistItems?key=${API_KEY}&playlistId=${uploadsPlaylistId}&part=snippet&maxResults=5`;
-    const playlistRes = await fetch(playlistUrl, { next: { revalidate: 3600 } }); 
-    const playlistData = await playlistRes.json();
+    // Usamos el endpoint de BÚSQUEDA con restricciones estrictas
+    // type=video: Solo videos (no playlists ni canales)
+    // eventType=none: ESTE ES EL SECRETO. Excluye eventos en vivo (live/completed/upcoming)
+    const searchUrl = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=1&type=video&eventType=none`;
     
-    if (!playlistData.items || playlistData.items.length === 0) return null;
+    const searchRes = await fetch(searchUrl, { next: { revalidate: 3600 } });
+    const searchData = await searchRes.json();
+    
+    if (!searchData.items || searchData.items.length === 0) return null;
 
-    // 2. Extraemos todos los IDs de esos 5 videos
-    const videoIds = playlistData.items.map((item: any) => item.snippet.resourceId.videoId).join(',');
+    // Retornamos el primer resultado que, gracias a eventType=none, será 100% un video normal
+    const latestVideo = searchData.items[0];
 
-    // 3. Consultamos a YouTube los metadatos de diagnóstico de esos 5 videos (liveStreamingDetails)
-    const videosUrl = `https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&id=${videoIds}&part=snippet,liveStreamingDetails`;
-    const videosRes = await fetch(videosUrl, { next: { revalidate: 3600 } });
-    const videosData = await videosRes.json();
-
-    // 4. EL FILTRO MÁGICO: Buscamos el primero que NO tenga historial de haber sido un "Directo"
-    const regularVideo = videosData.items?.find((video: any) => !video.liveStreamingDetails);
-
-    // Si encontramos un video tradicional puro, lo devolvemos
-    if (regularVideo) {
-      return {
-        id: regularVideo.id,
-        title: regularVideo.snippet.title
-      };
-    }
-
-    // Si por alguna razón los últimos 5 fueron directos, devolvemos el primero como respaldo
     return {
-      id: playlistData.items[0].snippet.resourceId.videoId,
-      title: playlistData.items[0].snippet.title
+      id: latestVideo.id.videoId,
+      title: latestVideo.snippet.title
     };
 
   } catch (error) {
-    console.error("Error al obtener el video cargado desde YouTube:", error);
+    console.error("Error al obtener el video tradicional desde YouTube:", error);
     return null;
   }
 }
