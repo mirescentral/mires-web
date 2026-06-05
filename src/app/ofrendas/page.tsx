@@ -13,7 +13,7 @@ export default function OfrendasPage() {
           <span className="font-sans text-xs font-semibold tracking-[0.25em] uppercase text-eden-stone/60 mb-6 block">Adoración</span>
           <h1 className="font-serif text-6xl md:text-8xl lg:text-9xl mb-8 tracking-tighter leading-[0.95]">El acto <br className="hidden md:block"/> de dar.</h1>
           <p className="font-sans text-lg md:text-xl text-eden-stone/80 font-light leading-relaxed max-w-2xl mx-auto">
-            Creemos que dar es una respuesta natural de gratitud. Tus aportes sostienen la misión comunitaria y extienden el mensaje de gracia en nuestra ciudad.
+            Creemos que dar es una respuesta natural de gratitud. Tus aportes sostienen la misión de la iglesia y. nos permiten seguir extendiendo el mensaje de Jesús.
           </p>
         </div>
       </section>
@@ -26,7 +26,7 @@ export default function OfrendasPage() {
               <div className="space-y-4 font-sans text-eden-stone font-light text-sm tracking-wide">
                 <div className="flex justify-between border-b border-eden-white/10 pb-3">
                   <span className="text-eden-stone/60 uppercase text-xs tracking-widest font-semibold">Banco</span>
-                  <span>Banco Estado</span>
+                  <span>Banco de Chile</span>
                 </div>
                 <div className="flex justify-between border-b border-eden-white/10 pb-3">
                   <span className="text-eden-stone/60 uppercase text-xs tracking-widest font-semibold">Tipo</span>
@@ -34,15 +34,15 @@ export default function OfrendasPage() {
                 </div>
                 <div className="flex justify-between border-b border-eden-white/10 pb-3">
                   <span className="text-eden-stone/60 uppercase text-xs tracking-widest font-semibold">Número</span>
-                  <span className="font-medium text-eden-white">123456789</span>
+                  <span className="font-medium text-eden-white">1694401205</span>
                 </div>
                 <div className="flex justify-between border-b border-eden-white/10 pb-3">
                   <span className="text-eden-stone/60 uppercase text-xs tracking-widest font-semibold">RUT</span>
-                  <span>65.123.456-7</span>
+                  <span>65.083.328-7</span>
                 </div>
                 <div className="flex justify-between pt-2">
                   <span className="text-eden-stone/60 uppercase text-xs tracking-widest font-semibold">Email</span>
-                  <span>finanzas@mires.cl</span>
+                  <span>transferencias@mires.cl</span>
                 </div>
               </div>
             </div>

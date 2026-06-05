@@ -21,7 +21,7 @@ export default async function ContactoPage() {
             Estamos aquí <br className="hidden md:block" /> para ti.
           </h1>
           <p className="font-sans text-lg md:text-xl text-eden-muted font-light leading-relaxed max-w-2xl mx-auto">
-            Ya sea que tengas una petición de oración o preguntas sobre nuestros ministerios, nos encantaría escucharte.
+            Ya sea que tengas una petición de oración o preguntas sobre nuestra iglesia, nos encantaría escucharte.
           </p>
         </div>
       </section>

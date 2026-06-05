@@ -2,8 +2,7 @@ import Link from "next/link";
 import { createClient } from '@/utils/supabase/server';
 import { ArrowRight, MapPin, Clock } from "lucide-react";
 
-// Función "Detective" para extraer estrictamente videos tradicionales (Excluyendo directos/Lives)
-// Función estricta para obtener ÚNICAMENTE videos normales (ignora lives y shorts)
+// Función "Detective" ampliada a 50 videos para encontrar el último video real
 async function getLatestUploadedVideo() {
   const API_KEY = process.env.YOUTUBE_API_KEY;
   const CHANNEL_ID = process.env.YOUTUBE_CHANNEL_ID;
@@ -11,26 +10,42 @@ async function getLatestUploadedVideo() {
   if (!API_KEY || !CHANNEL_ID) return null;
 
   try {
-    // Usamos el endpoint de BÚSQUEDA con restricciones estrictas
-    // type=video: Solo videos (no playlists ni canales)
-    // eventType=none: ESTE ES EL SECRETO. Excluye eventos en vivo (live/completed/upcoming)
-    const searchUrl = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=1&type=video&eventType=none`;
-    
-    const searchRes = await fetch(searchUrl, { next: { revalidate: 3600 } });
-    const searchData = await searchRes.json();
-    
-    if (!searchData.items || searchData.items.length === 0) return null;
+    const uploadsPlaylistId = CHANNEL_ID.replace(/^UC/, 'UU');
 
-    // Retornamos el primer resultado que, gracias a eventType=none, será 100% un video normal
-    const latestVideo = searchData.items[0];
+    // 1. Aumentamos la red de búsqueda a los últimos 50 videos (el máximo permitido por YouTube)
+    const playlistUrl = `https://www.googleapis.com/youtube/v3/playlistItems?key=${API_KEY}&playlistId=${uploadsPlaylistId}&part=snippet&maxResults=50`;
+    const playlistRes = await fetch(playlistUrl, { next: { revalidate: 3600 } }); 
+    const playlistData = await playlistRes.json();
+    
+    if (!playlistData.items || playlistData.items.length === 0) return null;
 
+    // 2. Extraemos todos los IDs de esos 50 videos
+    const videoIds = playlistData.items.map((item: any) => item.snippet.resourceId.videoId).join(',');
+
+    // 3. Consultamos los datos técnicos profundos de esos 50 videos en un solo viaje
+    const videosUrl = `https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&id=${videoIds}&part=snippet,liveStreamingDetails`;
+    const videosRes = await fetch(videosUrl, { next: { revalidate: 3600 } });
+    const videosData = await videosRes.json();
+
+    // 4. EL FILTRO ESTRICTO: Buscamos el primer video en el historial que NUNCA tuvo detalles de transmisión en vivo
+    const regularVideo = videosData.items?.find((video: any) => !video.liveStreamingDetails);
+
+    // Si encuentra un video puro de estudio, lo devuelve
+    if (regularVideo) {
+      return {
+        id: regularVideo.id,
+        title: regularVideo.snippet.title
+      };
+    }
+
+    // Respaldo de seguridad
     return {
-      id: latestVideo.id.videoId,
-      title: latestVideo.snippet.title
+      id: playlistData.items[0].snippet.resourceId.videoId,
+      title: playlistData.items[0].snippet.title
     };
 
   } catch (error) {
-    console.error("Error al obtener el video tradicional desde YouTube:", error);
+    console.error("Error al obtener el video cargado desde YouTube:", error);
     return null;
   }
 }
@@ -75,7 +90,7 @@ export default async function Home() {
             Su gracia escribe nuevas historias.
           </h1>
           <p className="font-sans text-sm md:text-base text-eden-stone mb-12 max-w-xl font-light tracking-[0.2em] uppercase">
-            Una iglesia para ti y tu familia en la ciudad.
+            Una iglesia para ti y tu familia..
           </p>
           <Link href="/soy-nuevo" className="inline-flex items-center justify-center gap-3 bg-eden-white text-eden-black px-10 py-5 font-sans text-xs font-bold tracking-widest uppercase hover:bg-eden-stone transition-colors duration-300">
             Planifica tu visita <ArrowRight size={16} />
@@ -87,15 +102,14 @@ export default async function Home() {
       <section className="py-32 md:py-48 bg-eden-white">
         <div className="container mx-auto px-6 max-w-5xl text-center">
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-10 leading-tight text-eden-black tracking-tight">
-            Personas que se aman, bendicen familias e influyen comunidades.
-          </h2>
+            Somos una iglesia de personas que se aman, que bendicen familias e influyen comunidades con el mensaje de Jesús.          </h2>
           <p className="font-sans text-lg md:text-xl text-eden-muted leading-relaxed max-w-2xl mx-auto font-light">
-            No importa dónde te encuentres en tu viaje espiritual, en mires hay un lugar preparado para ti. Descubre el propósito que Dios tiene para tu vida junto a una comunidad genuina.
+            No importa en la etapa en que te encuentres, en Mires hay un lugar preparado para ti. Descubre el propósito que Dios tiene para tu vida junto a nuestra familia de la fe.
           </p>
         </div>
       </section>
 
-      {/* SECCIÓN 3: PREDICACIONES (Excluyendo transmisiones en vivo) */}
+      {/* SECCIÓN 3: PREDICACIONES */}
       <section className="py-32 md:py-40 bg-eden-black text-eden-white">
         <div className="container mx-auto px-6 max-w-7xl">
           <div className="flex flex-col lg:flex-row gap-16 items-center">
