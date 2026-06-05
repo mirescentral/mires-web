@@ -17,8 +17,8 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "mires | Ministerio Restauración",
-  description: "Una iglesia para la ciudad.",
+  title: "Mires | Ministerio Restauración",
+  description: "Una iglesia para tu familia.",
 };
 
 export default function RootLayout({
