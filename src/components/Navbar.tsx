@@ -28,10 +28,16 @@ export default function Navbar() {
         : 'bg-eden-cream/95 backdrop-blur-md text-eden-black py-4 border-b border-eden-stone/40'
     }`}>
       <div className="container mx-auto px-6 max-w-7xl flex items-center justify-between">
-        <Link href="/" className="font-serif text-3xl tracking-tighter">
-          MIRES
+        
+        {/* LOGO EN HELVETICA NOW DISPLAY - NEGRITA Y MINÚSCULA */}
+        <Link 
+          href="/" 
+          className="font-logo-mires text-3xl font-bold lowercase tracking-tighter select-none"
+        >
+          mires
         </Link>
 
+        {/* NAVEGACIÓN DESKTOP */}
         <nav className="hidden lg:flex gap-10 font-sans text-[11px] font-semibold tracking-[0.25em] uppercase">
           <Link href="/soy-nuevo" className="hover:opacity-50 transition-opacity">Visítanos</Link>
           <Link href="/ministerios" className="hover:opacity-50 transition-opacity">Ministerios</Link>
