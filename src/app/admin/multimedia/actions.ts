@@ -9,14 +9,15 @@ export async function subirImagenHero(formData: FormData) {
   const archivo = formData.get('imagen_hero') as File;
 
   if (!archivo || archivo.size === 0) {
-    return { success: false, error: 'No se seleccionó ninguna imagen.' };
+    // En lugar de retornar un objeto, redirigimos con un error en la URL
+    redirect('/admin/multimedia?error=sin_archivo');
   }
 
   // Definimos un nombre fijo para la foto de portada principal
   const nombreArchivo = 'foto-principal-hero.png';
 
   // Subimos el archivo reemplazando el anterior en el storage público
-  const { data, error } = await supabase.storage
+  const { error } = await supabase.storage
     .from('recursos_web')
     .upload(nombreArchivo, archivo, {
       cacheControl: '3600',
@@ -25,12 +26,13 @@ export async function subirImagenHero(formData: FormData) {
 
   if (error) {
     console.error('Error al subir la imagen a Supabase Storage:', error);
-    return { success: false, error: error.message };
+    redirect('/admin/multimedia?error=falla_servidor');
   }
 
   // Limpiamos la caché de la landing pública para que muestre el cambio de inmediato
   revalidatePath('/');
   revalidatePath('/admin/multimedia');
   
+  // Redirigimos con éxito
   redirect('/admin/multimedia?success=true');
 }
