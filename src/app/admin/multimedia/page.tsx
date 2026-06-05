@@ -1,15 +1,15 @@
 import { subirImagenHero } from './actions';
-import { Image, Upload, ArrowRight, ArrowLeft } from 'lucide-react';
+import { Image as ImageIcon, Upload, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
 export const metadata = {
-  title: "Gestión Multimedia | Admin mires",
+  title: "Gestión Multimedia | Admin MIRES",
 };
 
 export default async function AdminMultimediaPage({
   searchParams,
 }: {
-  searchParams: { success: string };
+  searchParams: { success?: string, error?: string };
 }) {
   return (
     <div className="min-h-screen bg-[#F9F8F6] text-[#0A0A0A] p-8 md:p-12 font-sans max-w-4xl mx-auto pt-32">
@@ -32,9 +32,17 @@ export default async function AdminMultimediaPage({
         </Link>
       </header>
 
+      {/* MENSAJE DE ÉXITO */}
       {searchParams?.success && (
         <div className="mb-10 p-5 bg-transparent border border-[#0A0A0A] text-[#0A0A0A] text-xs font-semibold tracking-wide uppercase text-center">
           ✓ La nueva imagen de portada fue cargada e implementada en vivo con éxito.
+        </div>
+      )}
+
+      {/* MENSAJE DE ERROR */}
+      {searchParams?.error === 'sin_archivo' && (
+        <div className="mb-10 p-5 bg-transparent border border-red-600 text-red-600 text-xs font-semibold tracking-wide uppercase text-center">
+          ⚠ Error: Debes seleccionar un archivo de imagen antes de presionar el botón de carga.
         </div>
       )}
 
@@ -51,17 +59,17 @@ export default async function AdminMultimediaPage({
         <div className="md:col-span-2">
           <form action={subirImagenHero} className="border border-[#E6E5E1] p-8 md:p-12 bg-white flex flex-col items-center justify-center text-center">
             <div className="w-16 h-16 bg-[#F9F8F6] border border-[#E6E5E1] flex items-center justify-center text-[#0A0A0A] mb-6">
-              <Image size={24} strokeWidth={1.5} />
+              <ImageIcon size={24} strokeWidth={1.5} />
             </div>
             
             <div className="mb-8 max-w-sm">
               <label className="block text-xs font-semibold tracking-widest uppercase text-[#0A0A0A] mb-3 cursor-pointer hover:text-[#737373] transition-colors">
                 [ Seleccionar Archivo ]
+                {/* Eliminamos el 'required' problemático aquí */}
                 <input 
                   type="file" 
                   name="imagen_hero" 
                   accept="image/*" 
-                  required 
                   className="hidden" 
                 />
               </label>
