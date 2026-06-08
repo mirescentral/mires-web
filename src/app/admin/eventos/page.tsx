@@ -1,7 +1,8 @@
 import { createClient } from '@/utils/supabase/server';
 import { crearEvento, eliminarEvento } from './actions';
-import { CalendarIcon, Trash2, PlusCircle } from 'lucide-react';
+import { CalendarIcon, PlusCircle } from 'lucide-react';
 import Link from 'next/link';
+import BotonEliminarEvento from './BotonEliminarEvento';
 
 export const metadata = {
   title: "Gestión de Eventos | Admin mires",
@@ -10,18 +11,17 @@ export const metadata = {
 export default async function AdminEventosPage({
   searchParams,
 }: {
-  searchParams: { success: string };
+  searchParams: Promise<{ success?: string }>;
 }) {
   const supabase = await createClient();
+  const params = await searchParams;
   
-  // 1. Traemos los eventos futuros ordenados por fecha
   const { data: eventos } = await supabase
     .from('eventos')
     .select('*, sedes(nombre)')
     .gte('fecha', new Date().toISOString())
     .order('fecha', { ascending: true });
 
-  // 2. Traemos las sedes para el menú desplegable del formulario
   const { data: sedes } = await supabase.from('sedes').select('id, nombre');
 
   const formatearFecha = (fechaString: string) => {
@@ -47,7 +47,7 @@ export default async function AdminEventosPage({
         </Link>
       </header>
 
-      {searchParams?.success && (
+      {params?.success && (
         <div className="mb-8 p-4 bg-green-50 border border-green-200 text-green-700 rounded-xl font-medium text-sm flex items-center gap-2">
           ✓ El evento se publicó correctamente en la web.
         </div>
@@ -55,7 +55,6 @@ export default async function AdminEventosPage({
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         
-        {/* COLUMNA IZQUIERDA: Formulario para crear evento */}
         <div className="lg:col-span-1">
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sticky top-6">
             <h2 className="font-serif font-bold text-xl text-[#1A2E4A] mb-6 flex items-center gap-2">
@@ -65,18 +64,13 @@ export default async function AdminEventosPage({
             <form action={crearEvento} className="space-y-4">
               <div>
                 <label className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 block">Título del Evento</label>
-                <input 
-                  type="text" name="titulo" required
-                  placeholder="Ej: Noche de Adoración"
-                  className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#E8863A] focus:border-transparent outline-none transition-all text-sm" 
-                />
+                <input type="text" name="titulo" required placeholder="Ej: Noche de Adoración"
+                  className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#E8863A] focus:border-transparent outline-none transition-all text-sm" />
               </div>
               <div>
                 <label className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 block">Fecha y Hora</label>
-                <input 
-                  type="datetime-local" name="fecha" required
-                  className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#E8863A] focus:border-transparent outline-none transition-all text-sm" 
-                />
+                <input type="datetime-local" name="fecha" required
+                  className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#E8863A] focus:border-transparent outline-none transition-all text-sm" />
               </div>
               <div>
                 <label className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 block">Sede</label>
@@ -89,11 +83,8 @@ export default async function AdminEventosPage({
               </div>
               <div>
                 <label className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 block">Link de Registro (Opcional)</label>
-                <input 
-                  type="url" name="registro_url"
-                  placeholder="https://forms.gle/..."
-                  className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#E8863A] focus:border-transparent outline-none transition-all text-sm" 
-                />
+                <input type="url" name="registro_url" placeholder="https://forms.gle/..."
+                  className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#E8863A] focus:border-transparent outline-none transition-all text-sm" />
               </div>
               <button type="submit" className="w-full bg-[#1A2E4A] text-white font-semibold py-3 rounded-xl hover:bg-[#0f1d30] transition-colors mt-2 text-sm">
                 Publicar Evento
@@ -102,7 +93,6 @@ export default async function AdminEventosPage({
           </div>
         </div>
 
-        {/* COLUMNA DERECHA: Lista de eventos activos */}
         <div className="lg:col-span-2 space-y-4">
           <h2 className="font-serif font-bold text-xl text-[#1A2E4A] mb-4">Eventos Activos</h2>
           
@@ -112,9 +102,7 @@ export default async function AdminEventosPage({
             </div>
           ) : (
             eventos.map((evento) => {
-              // Manejo seguro de la relación de sede
               const nombreSede = Array.isArray(evento.sedes) ? evento.sedes[0]?.nombre : evento.sedes?.nombre;
-              
               return (
                 <div key={evento.id} className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div>
@@ -124,22 +112,15 @@ export default async function AdminEventosPage({
                       {nombreSede && <span className="bg-blue-50 text-blue-700 px-2 py-1 rounded-md">{nombreSede}</span>}
                     </div>
                   </div>
-                  
                   <form action={eliminarEvento}>
                     <input type="hidden" name="id" value={evento.id} />
-                    <button type="submit" className="p-3 text-red-500 hover:bg-red-50 rounded-xl transition-colors flex items-center gap-2 text-sm font-semibold" title="Eliminar Evento" onClick={(e) => {
-                      if(!confirm('¿Estás seguro de eliminar este evento?')) e.preventDefault();
-                    }}>
-                      <Trash2 size={18} />
-                      <span className="sm:hidden">Eliminar</span>
-                    </button>
+                    <BotonEliminarEvento titulo={evento.titulo} />
                   </form>
                 </div>
               )
             })
           )}
         </div>
-
       </div>
     </div>
   );

@@ -1,127 +1,69 @@
 import { createClient } from '@/utils/supabase/server';
-import { crearEvento, eliminarEvento } from './actions';
-import { CalendarIcon, PlusCircle } from 'lucide-react';
-import Link from 'next/link';
-import BotonEliminarEvento from './BotonEliminarEvento';
+import { ArrowRight, Calendar } from 'lucide-react';
 
-export const metadata = {
-  title: "Gestión de Eventos | Admin mires",
-};
+export const metadata = { title: "Eventos | mires" };
 
-export default async function AdminEventosPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ success?: string }>;
-}) {
+export default async function EventosPage() {
   const supabase = await createClient();
-  const params = await searchParams;
-  
   const { data: eventos } = await supabase
     .from('eventos')
     .select('*, sedes(nombre)')
     .gte('fecha', new Date().toISOString())
     .order('fecha', { ascending: true });
 
-  const { data: sedes } = await supabase.from('sedes').select('id, nombre');
-
-  const formatearFecha = (fechaString: string) => {
-    return new Date(fechaString).toLocaleDateString('es-CL', {
-      day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
+  const formatearFecha = (fecha: string) => {
+    return new Date(fecha).toLocaleDateString('es-CL', {
+      day: '2-digit', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit'
     });
   };
 
   return (
-    <div className="p-8 md:p-12 font-sans max-w-6xl mx-auto">
-      <header className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-3xl font-serif font-bold text-gray-950 flex items-center gap-3">
-            <CalendarIcon className="text-[#E8863A]" />
-            Cartelera de Eventos
-          </h1>
-          <p className="text-gray-600 mt-2">
-            Agrega o elimina actividades. Los cambios se reflejarán inmediatamente en la sección "Eventos".
+    <div className="flex flex-col min-h-screen bg-eden-black text-eden-white pt-24 md:pt-32">
+      
+      {/* HEADER OSCURO */}
+      <section className="py-24 md:py-32 px-6 border-b border-eden-white/10">
+        <div className="container mx-auto max-w-4xl text-center fade-in-up">
+          <span className="font-sans text-xs font-semibold tracking-[0.25em] uppercase text-eden-stone/60 mb-6 block">Cartelera</span>
+          <h1 className="font-serif-eden text-6xl md:text-8xl lg:text-9xl mb-8 tracking-tighter leading-[0.95]">Lo que está <br className="hidden md:block"/> pasando.</h1>
+          <p className="font-sans text-lg md:text-xl text-eden-stone/80 font-light leading-relaxed max-w-2xl mx-auto">
+            Mantente al día con nuestras próximas actividades, reuniones y eventos especiales.
           </p>
         </div>
-        <Link href="/admin" className="text-sm font-semibold text-gray-500 hover:text-[#1A2E4A] transition-colors border border-gray-200 px-4 py-2 rounded-lg bg-white">
-          Volver al Inicio
-        </Link>
-      </header>
+      </section>
 
-      {params?.success && (
-        <div className="mb-8 p-4 bg-green-50 border border-green-200 text-green-700 rounded-xl font-medium text-sm flex items-center gap-2">
-          ✓ El evento se publicó correctamente en la web.
-        </div>
-      )}
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
-        <div className="lg:col-span-1">
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sticky top-6">
-            <h2 className="font-serif font-bold text-xl text-[#1A2E4A] mb-6 flex items-center gap-2">
-              <PlusCircle size={20} className="text-[#E8863A]" />
-              Nuevo Evento
-            </h2>
-            <form action={crearEvento} className="space-y-4">
-              <div>
-                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 block">Título del Evento</label>
-                <input type="text" name="titulo" required placeholder="Ej: Noche de Adoración"
-                  className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#E8863A] focus:border-transparent outline-none transition-all text-sm" />
-              </div>
-              <div>
-                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 block">Fecha y Hora</label>
-                <input type="datetime-local" name="fecha" required
-                  className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#E8863A] focus:border-transparent outline-none transition-all text-sm" />
-              </div>
-              <div>
-                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 block">Sede</label>
-                <select name="sede_id" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#E8863A] outline-none text-sm bg-white">
-                  <option value="">Selecciona una sede...</option>
-                  {sedes?.map(sede => (
-                    <option key={sede.id} value={sede.id}>{sede.nombre}</option>
-                  ))}
-                </select>
-              </div>
-              <div>
-                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 block">Link de Registro (Opcional)</label>
-                <input type="url" name="registro_url" placeholder="https://forms.gle/..."
-                  className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#E8863A] focus:border-transparent outline-none transition-all text-sm" />
-              </div>
-              <button type="submit" className="w-full bg-[#1A2E4A] text-white font-semibold py-3 rounded-xl hover:bg-[#0f1d30] transition-colors mt-2 text-sm">
-                Publicar Evento
-              </button>
-            </form>
-          </div>
-        </div>
-
-        <div className="lg:col-span-2 space-y-4">
-          <h2 className="font-serif font-bold text-xl text-[#1A2E4A] mb-4">Eventos Activos</h2>
-          
+      {/* LISTA DE EVENTOS EN FILAS */}
+      <section className="py-24 md:py-32">
+        <div className="container mx-auto px-6 max-w-5xl">
           {!eventos || eventos.length === 0 ? (
-            <div className="bg-white rounded-2xl border border-gray-100 p-10 text-center text-gray-500 text-sm">
-              No hay eventos futuros programados.
+            <div className="text-center py-20 border border-eden-white/10">
+              <p className="font-sans text-eden-stone/60 font-light tracking-widest uppercase text-sm">No hay eventos próximos programados.</p>
             </div>
           ) : (
-            eventos.map((evento) => {
-              const nombreSede = Array.isArray(evento.sedes) ? evento.sedes[0]?.nombre : evento.sedes?.nombre;
-              return (
-                <div key={evento.id} className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                  <div>
-                    <h3 className="font-bold text-gray-900 text-lg">{evento.titulo}</h3>
-                    <div className="flex flex-wrap items-center gap-3 mt-2 text-sm text-gray-500">
-                      <span className="bg-gray-100 px-2 py-1 rounded-md">{formatearFecha(evento.fecha)}</span>
-                      {nombreSede && <span className="bg-blue-50 text-blue-700 px-2 py-1 rounded-md">{nombreSede}</span>}
+            <div className="flex flex-col">
+              {eventos.map((evento) => {
+                const sedeData = evento.sedes as any;
+                const nombreSede = Array.isArray(sedeData) ? sedeData[0]?.nombre : sedeData?.nombre;
+                return (
+                  <div key={evento.id} className="group border-b border-eden-white/10 py-10 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:bg-eden-white/5 transition-colors px-6">
+                    <div>
+                      <p className="font-sans text-eden-stone/60 text-xs font-semibold tracking-widest uppercase mb-3 flex items-center gap-2">
+                        <Calendar size={14} /> {formatearFecha(evento.fecha)}
+                      </p>
+                      <h2 className="font-serif-eden text-3xl md:text-4xl text-eden-white">{evento.titulo}</h2>
+                      {nombreSede && <p className="font-sans text-eden-stone font-light mt-3">{nombreSede}</p>}
                     </div>
+                    {evento.registro_url && (
+                      <a href={evento.registro_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 font-sans text-xs font-semibold tracking-[0.2em] uppercase text-eden-white hover:text-eden-stone transition-colors border border-eden-white/30 px-6 py-3 rounded-full shrink-0">
+                        Registrarse <ArrowRight size={14} />
+                      </a>
+                    )}
                   </div>
-                  <form action={eliminarEvento}>
-                    <input type="hidden" name="id" value={evento.id} />
-                    <BotonEliminarEvento titulo={evento.titulo} />
-                  </form>
-                </div>
-              )
-            })
+                )
+              })}
+            </div>
           )}
         </div>
-      </div>
+      </section>
     </div>
   );
 }
