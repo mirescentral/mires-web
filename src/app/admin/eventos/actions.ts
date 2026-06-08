@@ -23,7 +23,7 @@ export async function crearEvento(formData: FormData) {
         titulo, 
         fecha, 
         registro_url, 
-        sede_id: sede_id ? parseInt(sede_id) : null 
+        sede_id: sede_id ? sede_id : null 
       }
     ])
 
