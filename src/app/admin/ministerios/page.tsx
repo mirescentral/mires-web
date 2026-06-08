@@ -2,6 +2,7 @@ import { createClient } from '@/utils/supabase/server';
 import { actualizarMinisterio, crearMinisterio, eliminarMinisterio } from './actions';
 import { HeartHandshake, Save, PlusCircle, Trash2 } from 'lucide-react';
 import Link from 'next/link';
+import BotonEliminarMinisterio from './BotonEliminarMinisterio'
 
 export const metadata = {
   title: "Gestión de Ministerios | Admin MIRES",
@@ -104,9 +105,8 @@ export default async function AdminMinisteriosPage({
                   {/* Botón Eliminar Oculto hasta Hover */}
                   <form action={eliminarMinisterio} className="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
                     <input type="hidden" name="id" value={min.id} />
-                    <button type="submit" onClick={(e) => {if(!confirm(`¿Seguro que deseas eliminar el ministerio ${min.nombre}?`)) e.preventDefault()}} className="text-red-500 hover:text-red-700 bg-red-50 p-2 rounded-full transition-colors">
-                      <Trash2 size={16} />
-                    </button>
+                    <BotonEliminarMinisterio nombre={min.nombre} />
+
                   </form>
 
                   <div className="bg-[#F9F8F6] p-5 border-b border-gray-100 pr-14">
