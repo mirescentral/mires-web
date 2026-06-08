@@ -64,8 +64,7 @@ export default async function Home() {
     .from('recursos_web')
     .getPublicUrl('foto-principal-hero.png');
     
-  const cacheBuster = new Date().getTime();
-  const urlFinalImagen = `${publicUrl}?v=${cacheBuster}`;
+  const urlFinalImagen = publicUrl;
 
   // Extraemos las variables limpias que nos envió nuestra función filtrada
   const videoId = latestVideoItem?.id || '';

@@ -12,8 +12,7 @@ export default async function SoyNuevoPage({
   const { data: sedes } = await supabase.from('sedes').select('*').order('nombre');
 
   const { data: { publicUrl } } = supabase.storage.from('recursos_web').getPublicUrl('bg-soy-nuevo.png');
-  const cacheBuster = new Date().getTime();
-  const urlFondo = `${publicUrl}?v=${cacheBuster}`;
+  const urlFondo = publicUrl;
 
   // Resolvemos la promesa en Next.js 15
   const params = await searchParams;
