@@ -15,16 +15,15 @@ export async function actualizarSede(formData: FormData) {
   const whatsapp = formData.get('whatsapp') as string
   const map_url = formData.get('map_url') as string
 
-  // Preparamos los datos básicos
   const updateData: any = { nombre, direccion, horarios, whatsapp }
-  // Solo intentamos guardar map_url si enviaste un dato, por si no has creado la columna en Supabase
   if (map_url) updateData.map_url = map_url
 
   const { error } = await supabase.from('sedes').update(updateData).eq('id', id)
-  
   if (error) console.error("Error al actualizar:", error)
 
   revalidatePath('/', 'layout')
+  revalidatePath('/soy-nuevo')
+  revalidatePath('/admin/sedes')
   redirect('/admin/sedes?success=actualizado')
 }
 
@@ -42,10 +41,11 @@ export async function crearSede(formData: FormData) {
   if (map_url) insertData.map_url = map_url
 
   const { error } = await supabase.from('sedes').insert([insertData])
-  
   if (error) console.error("Error al crear:", error)
 
   revalidatePath('/', 'layout')
+  revalidatePath('/soy-nuevo')
+  revalidatePath('/admin/sedes')
   redirect('/admin/sedes?success=creado')
 }
 
@@ -55,9 +55,10 @@ export async function eliminarSede(formData: FormData) {
   const id = formData.get('id') as string
 
   const { error } = await supabase.from('sedes').delete().eq('id', id)
-  
   if (error) console.error("Error al eliminar:", error)
 
   revalidatePath('/', 'layout')
+  revalidatePath('/soy-nuevo')
+  revalidatePath('/admin/sedes')
   redirect('/admin/sedes?success=eliminado')
 }
