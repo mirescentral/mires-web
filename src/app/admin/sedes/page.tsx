@@ -2,6 +2,7 @@ import { createClient } from '@/utils/supabase/server';
 import { actualizarSede, crearSede, eliminarSede } from './actions';
 import { Building, Save, MapPin, Clock, Phone, PlusCircle, Trash2, Map as MapIcon } from 'lucide-react';
 import Link from 'next/link';
+import BotonEliminarSede from '@/app/admin/sedes/BotonEliminarSede';
 
 export const metadata = {
   title: "Gestión de Sedes | Admin MIRES",
@@ -98,9 +99,7 @@ export default async function AdminSedesPage({
                 {/* Botón Eliminar Oculto hasta hacer hover */}
                 <form action={eliminarSede} className="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
                   <input type="hidden" name="id" value={sede.id} />
-                  <button type="submit" onClick={(e) => {if(!confirm(`¿Seguro que deseas eliminar la sede ${sede.nombre}?`)) e.preventDefault()}} className="text-red-500 hover:text-red-700 bg-red-50 p-2 rounded-full transition-colors" title="Eliminar Sede">
-                    <Trash2 size={16} />
-                  </button>
+                  <BotonEliminarSede nombre={sede.nombre} />
                 </form>
 
                 <div className="bg-[#F9F8F6] p-5 border-b border-gray-100 pr-14">
