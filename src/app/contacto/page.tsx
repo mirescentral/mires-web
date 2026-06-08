@@ -1,5 +1,6 @@
 import { createClient } from '@/utils/supabase/server';
 import { Mail, Phone, MapPin, Clock, ArrowRight } from 'lucide-react';
+import FormularioContacto from './FormularioContacto';
 
 export const metadata = {
   title: "Contacto | mires",
@@ -35,84 +36,7 @@ export default async function ContactoPage() {
           
           {/* COLUMNA IZQUIERDA: FORMULARIO "DÉJANOS TUS DATOS" */}
           <div className="lg:col-span-7 bg-eden-white border border-eden-stone/60 p-8 md:p-12 shadow-sm">
-            <h2 className="font-serif text-3xl mb-8 tracking-tight">Déjanos tus datos</h2>
-            
-            {/* Formulario de contacto (puedes vincularlo a un Server Action para guardar en Supabase) */}
-            <form className="space-y-8">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                <div className="flex flex-col gap-2">
-                  <label className="text-[10px] font-bold tracking-widest uppercase text-eden-muted">Nombre Completo</label>
-                  <input 
-                    type="text" 
-                    required 
-                    placeholder="Ej. Juan Pérez"
-                    className="bg-transparent border-b border-eden-stone focus:border-eden-black py-2 text-sm font-light outline-none transition-colors"
-                  />
-                </div>
-                <div className="flex flex-col gap-2">
-                  <label className="text-[10px] font-bold tracking-widest uppercase text-eden-muted">Correo Electrónico</label>
-                  <input 
-                    type="email" 
-                    required 
-                    placeholder="juan@ejemplo.com"
-                    className="bg-transparent border-b border-eden-stone focus:border-eden-black py-2 text-sm font-light outline-none transition-colors"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                <div className="flex flex-col gap-2">
-                  <label className="text-[10px] font-bold tracking-widest uppercase text-eden-muted">Teléfono / WhatsApp</label>
-                  <input 
-                    type="tel" 
-                    placeholder="+56 9 1234 5678"
-                    className="bg-transparent border-b border-eden-stone focus:border-eden-black py-2 text-sm font-light outline-none transition-colors"
-                  />
-                </div>
-
-                {/* NUEVO CAMPO: SELECCIÓN DINÁMICA DE IGLESIA (SEDE) */}
-                <div className="flex flex-col gap-2">
-                  <label className="text-[10px] font-bold tracking-widest uppercase text-eden-muted">¿A qué iglesia asistes?</label>
-                  <div className="relative">
-                    <select 
-                      name="sede_id"
-                      required
-                      defaultValue=""
-                      className="w-full bg-transparent border-b border-eden-stone focus:border-eden-black py-2 text-sm font-light outline-none appearance-none rounded-none cursor-pointer transition-colors text-eden-black"
-                    >
-                      <option value="" disabled className="text-eden-muted">Selecciona una sede</option>
-                      {sedes?.map((sede) => (
-                        <option key={sede.id} value={sede.id} className="bg-eden-cream text-eden-black">
-                          {sede.nombre}
-                        </option>
-                      ))}
-                    </select>
-                    {/* Pequeña flecha geométrica decorativa para el menú desplegable */}
-                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-1 text-eden-muted">
-                      <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <label className="text-[10px] font-bold tracking-widest uppercase text-eden-muted">¿En qué podemos ayudarte?</label>
-                <textarea 
-                  rows={4}
-                  placeholder="Escribe tu mensaje o petición aquí..."
-                  className="bg-transparent border border-eden-stone focus:border-eden-black p-4 text-sm font-light outline-none transition-colors resize-none rounded-none"
-                ></textarea>
-              </div>
-
-              <button 
-                type="submit"
-                className="w-full bg-eden-black text-eden-white font-bold py-5 text-xs tracking-widest uppercase hover:bg-eden-muted transition-colors duration-300 flex items-center justify-center gap-3 rounded-none"
-              >
-                Enviar Mensaje <ArrowRight size={14} />
-              </button>
-            </form>
+            <FormularioContacto />
           </div>
 
           {/* COLUMNA DERECHA: INFORMACIÓN DE SEDES Y CONTACTO DIRECTO */}
